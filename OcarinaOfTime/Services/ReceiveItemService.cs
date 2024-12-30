@@ -25,11 +25,6 @@ public class ReceiveItemService
 
 	public async Task ReceiveItem(ItemInfo item)
 	{
-		if (ShopScenes.Contains(await _currentSceneService.GetCurrentScene()))
-		{
-			return;
-		}
-
 		const uint incomingPlayerAddress = 0xA0400026;
 		const uint incomingItemAddress = 0xA0400028;
 
@@ -56,6 +51,11 @@ public class ReceiveItemService
 
 		await _memoryService.Write16(address: incomingPlayerAddress, dataToWrite: 0x00);
 		await _memoryService.Write16(address: incomingItemAddress, dataToWrite: (ushort)(item.ItemId - 66000));
+	}
+
+	public async Task<bool> CanReceiveItem()
+	{
+		return !ShopScenes.Contains(await _currentSceneService.GetCurrentScene());
 	}
 
 	private static readonly HashSet<ushort> ShopScenes = [0x2C, 0x2D, 0x2E, 0x2F, 0x30, 0x31, 0x32, 0x33, 0x42, 0x4B];

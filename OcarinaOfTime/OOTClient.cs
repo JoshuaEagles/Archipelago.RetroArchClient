@@ -139,7 +139,8 @@ public class OOTClient
 					continue;
 				}
 
-				if (_apSession.Items.Index > gameReceivedItemsCount)
+				var canReceiveItem = await _receiveItemService.CanReceiveItem();
+				if (canReceiveItem && _apSession.Items.Index > gameReceivedItemsCount)
 				{
 					clientSideReceivedItemsCount = gameReceivedItemsCount;
 
