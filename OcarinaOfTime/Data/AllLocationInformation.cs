@@ -363,7 +363,7 @@ public static class AllLocationInformation
 			name: "Deku Tree Queen Gohma Heart",
 			type: LocationType.BossItem,
 			offset: 0x11,
-			bitToCheck: default,
+			bitToCheck: 0,
 			area: Area.DekuTree
 		),
 
@@ -456,10 +456,10 @@ public static class AllLocationInformation
 		),
 
 		new LocationInformation(
-			name: "Deku Tree MQ Queen Gohma Heart",
+			name: "Deku Tree Queen Gohma Heart",
 			type: LocationType.BossItem,
 			offset: 0x11,
-			bitToCheck: default,
+			bitToCheck: 0,
 			area: Area.DekuTreeMQ
 		),
 
@@ -3572,7 +3572,7 @@ public static class AllLocationInformation
 			type: LocationType.BossItem,
 			offset: 0x16,
 			bitToCheck: default,
-			area: Area.WaterTemple
+			area: Area.WaterTempleMQ
 		),
 
 		// Gerudo Valley
@@ -4460,7 +4460,7 @@ public static class AllLocationInformation
 			type: LocationType.BossItem,
 			offset: 0x17,
 			bitToCheck: default,
-			area: Area.SpiritTemple
+			area: Area.SpiritTempleMQ
 		),
 
 		// Outside Ganon's Castle
