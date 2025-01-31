@@ -1,20 +1,17 @@
-using OOT_AP_Client.Services.Interfaces;
+using Archipelago.OoTClient.Net.Services.Interfaces;
 
-namespace OOT_AP_Client.OcarinaOfTime.Services;
+namespace Archipelago.OoTClient.Net.OcarinaOfTime.Services;
 
-public class CurrentSceneService
+// Maybe add documentation detailing what this service is for, what functions it provides, what the functions do, etc.
+// Helps to get other developers interested in helping with the client up to speed.
+
+// See Enums.GameModes for example on how this could be achieved.
+public class CurrentSceneService(IMemoryService memoryService)
 {
-	private IMemoryService _memoryService;
-
-	public CurrentSceneService(IMemoryService memoryService)
-	{
-		_memoryService = memoryService;
-	}
-
 	public async Task<ushort> GetCurrentScene()
 	{
 		const uint currentSceneAddress = 0xA01C8544;
 
-		return (ushort)await _memoryService.Read16(currentSceneAddress);
+		return await memoryService.Read16(currentSceneAddress);
 	}
 }

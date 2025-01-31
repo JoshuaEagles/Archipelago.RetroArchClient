@@ -4,9 +4,9 @@ namespace Archipelago.OoTClient.Net.OcarinaOfTime.Models;
 // Helps to get other developers interested in helping with the client up to speed.
 
 // See Enums.GameModes for example on how this could be achieved.
-public record CollectibleFlagOffset
+public record OoTClientSlotData
 {
-	public required long ItemId { get; init; }
-	public required long Offset { get; init; }
-	public required long Flag { get; init; }
+	public required bool ShuffleScrubs { get; init; }
+	public required uint CollectibleOverridesFlagsAddress { get; init; }
+	public required List<CollectibleFlagOffset> CollectibleFlagOffsets { get; init; }
 }

@@ -4,42 +4,41 @@ using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
 using Newtonsoft.Json.Linq;
-using OOT_AP_Client.OcarinaOfTime.Models;
-using OOT_AP_Client.OcarinaOfTime.Services;
-using OOT_AP_Client.Services;
-using OOT_AP_Client.Services.Interfaces;
+using Archipelago.OoTClient.Net.OcarinaOfTime.Models;
+using Archipelago.OoTClient.Net.OcarinaOfTime.Services;
+using Archipelago.OoTClient.Net.Services;
+using Archipelago.OoTClient.Net.Services.Interfaces;
 
-namespace OOT_AP_Client.OcarinaOfTime;
+namespace Archipelago.OoTClient.Net.OcarinaOfTime;
 
-public class OOTClient
+public class OotClient
 {
 	private readonly ArchipelagoSession _apSession;
 	private readonly DeathLinkService _archipelagoDeathLinkService;
 	private readonly CollectibleCheckService _collectibleCheckService;
 
-	private readonly OOTClientConnectionSettings _connectionSettings;
-	private readonly CurrentSceneService _currentSceneService;
+	private readonly OoTClientConnectionSettings _connectionSettings;
 	private readonly GameCompleteService _gameCompleteService;
 	private readonly GameModeService _gameModeService;
 	private readonly LocationCheckService _locationCheckService;
 	private readonly IMemoryService _memoryService;
-	private readonly OOTClientDeathLinkService _ootClientDeathLinkService;
+	private readonly OoTClientDeathLinkService _ootClientDeathLinkService;
 	private readonly PlayerNameService _playerNameService;
 	private readonly ReceiveItemService _receiveItemService;
 
-	public OOTClient()
+	public OotClient()
 	{
 		_connectionSettings = PromptForConnectionSettings();
 
 		var udpClient = new UdpClient();
-		udpClient.Connect(hostname: _connectionSettings.RetroarchHostName, port: _connectionSettings.RetroarchPort);
+		udpClient.Connect(hostname: _connectionSettings.RetroArchHostName, port: _connectionSettings.RetroArchPort);
 
-		_memoryService = new RetroarchMemoryService(udpClient);
+		_memoryService = new RetroArchMemoryService(udpClient);
 		_playerNameService = new PlayerNameService(_memoryService);
-		_currentSceneService = new CurrentSceneService(_memoryService);
+		var currentSceneService = new CurrentSceneService(_memoryService);
 		_receiveItemService = new ReceiveItemService(
 			memoryService: _memoryService,
-			currentSceneService: _currentSceneService
+			currentSceneService: currentSceneService
 		);
 		_gameModeService = new GameModeService(_memoryService);
 		_locationCheckService = new LocationCheckService(
@@ -47,10 +46,10 @@ public class OOTClient
 			gameModeService: _gameModeService
 		);
 		_collectibleCheckService = new CollectibleCheckService(_memoryService);
-		_ootClientDeathLinkService = new OOTClientDeathLinkService(
+		_ootClientDeathLinkService = new OoTClientDeathLinkService(
 			memoryService: _memoryService,
 			gameModeService: _gameModeService,
-			currentSceneService: _currentSceneService
+			currentSceneService: currentSceneService
 		);
 		_gameCompleteService = new GameCompleteService(_memoryService);
 
@@ -159,23 +158,27 @@ public class OOTClient
 			}
 
 			// Handle Game Completion
-			if (!isGameCompletionSent)
+			if (isGameCompletionSent)
 			{
-				var isGameComplete = await _gameCompleteService.IsGameComplete();
-
-				currentGameMode = await _gameModeService.GetCurrentGameMode();
-				if (!currentGameMode.IsInGame)
-				{
-					continue;
-				}
-
-				if (isGameComplete)
-				{
-					_apSession.SetGoalAchieved();
-					isGameCompletionSent = true;
-					Console.WriteLine("Game completed");
-				}
+				continue;
 			}
+			
+			var isGameComplete = await _gameCompleteService.IsGameComplete();
+
+			currentGameMode = await _gameModeService.GetCurrentGameMode();
+			if (!currentGameMode.IsInGame)
+			{
+				continue;
+			}
+
+			if (!isGameComplete)
+			{
+				continue;
+			}
+			
+			_apSession.SetGoalAchieved();
+			isGameCompletionSent = true;
+			Console.WriteLine("Game completed");
 		}
 	}
 
@@ -186,11 +189,13 @@ public class OOTClient
 
 	// idea for receiving local items:
 	// could have a sort of local database of checked locations, might want that anyway for performance reasons
-	// any location in the local save file that is checked would be in there, but if you make a new save then there could be locations checked in the multiworld that aren't marked as checked in the local database
-	// the idea would be that when processing the item queue, we can check against the local database, if the location is marked as checked there then that means we don't give the item, if it's not marked as checked then we do give the item
+	// any location in the local save file that is checked would be in there, but if you make a new save then there
+	// could be locations checked in the multiworld that aren't marked as checked in the local database
+	// the idea would be that when processing the item queue, we can check against the local database,
+	// if the location is marked as checked there then that means we don't give the item, if it's not marked as checked then we do give the item
 	// this would avoid giving duplicate items but mean we can receive local items when making a new save file
 
-	private static OOTClientConnectionSettings PromptForConnectionSettings()
+	private static OoTClientConnectionSettings PromptForConnectionSettings()
 	{
 		Console.WriteLine("Enter the Archipelago Server Hostname, default: archipelago.gg");
 		var apHostname = Console.ReadLine();
@@ -199,6 +204,9 @@ public class OOTClient
 			apHostname = "archipelago.gg";
 		}
 
+		// Might not want to specify a default port if this client is used with the
+		// WebService, as ports are never picked to be the same over rooms.
+		// In the end, this isn't a big issue, but it's worth the consideration.
 		Console.WriteLine("Enter the Archipelago Server port, default: 38281");
 		var apPortString = Console.ReadLine();
 		var apPort = string.IsNullOrWhiteSpace(apPortString) ? 38281 : int.Parse(apPortString);
@@ -210,28 +218,28 @@ public class OOTClient
 			slotName = "Player";
 		}
 
-		Console.WriteLine("Enter the Retroarch Hostname, default: localhost");
-		var retroarchHostname = Console.ReadLine();
-		if (string.IsNullOrEmpty(retroarchHostname))
+		Console.WriteLine("Enter the RetroArch Hostname, default: localhost");
+		var retroArchHostname = Console.ReadLine();
+		if (string.IsNullOrEmpty(retroArchHostname))
 		{
-			retroarchHostname = "localhost";
+			retroArchHostname = "localhost";
 		}
 
-		Console.WriteLine("Enter the Retroarch Port, default: 55355");
-		var retroarchPortString = Console.ReadLine();
-		var retroarchPort = string.IsNullOrWhiteSpace(retroarchPortString) ? 55355 : int.Parse(retroarchPortString);
+		Console.WriteLine("Enter the RetroArch Port, default: 55355");
+		var retroArchPortString = Console.ReadLine();
+		var retroArchPort = string.IsNullOrWhiteSpace(retroArchPortString) ? 55355 : int.Parse(retroArchPortString);
 
-		return new OOTClientConnectionSettings
+		return new OoTClientConnectionSettings
 		{
 			ArchipelagoHostName = apHostname,
 			ArchipelagoPort = apPort,
 			SlotName = slotName,
-			RetroarchHostName = retroarchHostname,
-			RetroarchPort = retroarchPort,
+			RetroArchHostName = retroArchHostname,
+			RetroArchPort = retroArchPort,
 		};
 	}
 
-	private async Task<OOTClientSlotData> GetSlotData()
+	private async Task<OoTClientSlotData> GetSlotData()
 	{
 		var slotData = await _apSession.DataStorage.GetSlotDataAsync();
 
@@ -247,7 +255,7 @@ public class OOTClient
 		var collectibleFlagOffsets
 			= SlotDataCollectableFlagOffsetsToArray(slotData["collectible_flag_offsets"] as JObject);
 
-		return new OOTClientSlotData
+		return new OoTClientSlotData
 		{
 			ShuffleScrubs = scrubsanityEnabled,
 			CollectibleOverridesFlagsAddress = collectibleOverridesFlagsAddress,
@@ -319,7 +327,7 @@ public class OOTClient
 		Console.WriteLine("Player names written");
 	}
 
-	private async Task<long[]> GetAllCheckedLocationIds(OOTClientSlotData slotData)
+	private async Task<long[]> GetAllCheckedLocationIds(OoTClientSlotData slotData)
 	{
 		var checkedLocationNames = await _locationCheckService.GetAllCheckedLocationNames(slotData);
 

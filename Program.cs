@@ -1,4 +1,4 @@
-﻿using OOT_AP_Client.OcarinaOfTime;
+﻿using Archipelago.OoTClient.Net.OcarinaOfTime;
 
-var ootClient = new OOTClient();
+var ootClient = new OotClient();
 await ootClient.RunClient();

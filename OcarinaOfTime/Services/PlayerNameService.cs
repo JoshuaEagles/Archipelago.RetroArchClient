@@ -1,17 +1,14 @@
 using System.Text;
-using OOT_AP_Client.Services.Interfaces;
+using Archipelago.OoTClient.Net.Services.Interfaces;
 
-namespace OOT_AP_Client.OcarinaOfTime.Services;
+namespace Archipelago.OoTClient.Net.OcarinaOfTime.Services;
 
-public class PlayerNameService
+// Maybe add documentation detailing what this service is for, what functions it provides, what the functions do, etc.
+// Helps to get other developers interested in helping with the client up to speed.
+
+// See Enums.GameModes for example on how this could be achieved.
+public class PlayerNameService(IMemoryService memoryService)
 {
-	private readonly IMemoryService _memoryService;
-
-	public PlayerNameService(IMemoryService memoryService)
-	{
-		_memoryService = memoryService;
-	}
-
 	public async Task WritePlayerName(byte index, string name)
 	{
 		const uint namesAddress = 0x80400034;
@@ -47,13 +44,7 @@ public class PlayerNameService
 			bytesToWrite.Add(charByte ?? 0xDF);
 		}
 
-		await _memoryService.WriteByteArray(
-			address: (uint)nameToWriteAddress,
-			dataToWrite: bytesToWrite.Take(4).ToArray()
-		);
-		await _memoryService.WriteByteArray(
-			address: (uint)nameToWriteAddress + 4,
-			dataToWrite: bytesToWrite.Skip(4).Take(4).ToArray()
-		);
+		await memoryService.WriteByteArray((uint)nameToWriteAddress, bytesToWrite.Take(4).ToArray());
+		await memoryService.WriteByteArray((uint)nameToWriteAddress + 4,  bytesToWrite.Skip(4).Take(4).ToArray());
 	}
 }

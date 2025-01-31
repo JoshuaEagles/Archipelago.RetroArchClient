@@ -1,27 +1,16 @@
-using OOT_AP_Client.OcarinaOfTime.Enums;
+using Archipelago.OoTClient.Net.OcarinaOfTime.Enums;
 
-namespace OOT_AP_Client.OcarinaOfTime.Models;
+namespace Archipelago.OoTClient.Net.OcarinaOfTime.Models;
 
-public class LocationInformation
+// Maybe add documentation detailing what this model class is for, what it represents, etc.
+// Helps to get other developers interested in helping with the client up to speed.
+
+// See Enums.GameModes for example on how this could be achieved.
+public class LocationInformation(string name, LocationType type, byte offset, byte bitToCheck, Area area)
 {
-	public string Name { get; }
-	public LocationType Type { get; }
-	public byte Offset { get; }
-	public byte BitToCheck { get; }
-	public Area Area { get; }
-
-	public LocationInformation(
-		string name,
-		LocationType type,
-		byte offset,
-		byte bitToCheck,
-		Area area
-	)
-	{
-		Name = name;
-		Type = type;
-		Offset = offset;
-		BitToCheck = bitToCheck;
-		Area = area;
-	}
+	public string Name { get; } = name;
+	public LocationType Type { get; } = type;
+	public byte Offset { get; } = offset;
+	public byte BitToCheck { get; } = bitToCheck;
+	public Area Area { get; } = area;
 }

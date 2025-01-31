@@ -1,17 +1,14 @@
-using OOT_AP_Client.Services.Interfaces;
+using Archipelago.OoTClient.Net.Services.Interfaces;
 
-namespace OOT_AP_Client.OcarinaOfTime.Services;
+namespace Archipelago.OoTClient.Net.OcarinaOfTime.Services;
 
-public class GameCompleteService
+// Maybe add documentation detailing what this service is for, what functions it provides, what the functions do, etc.
+// Helps to get other developers interested in helping with the client up to speed.
+
+// See Enums.GameModes for example on how this could be achieved.
+public class GameCompleteService(IMemoryService memoryService)
 {
-	private IMemoryService _memoryService;
-
-	private bool _isGameComplete = false;
-
-	public GameCompleteService(IMemoryService memoryService)
-	{
-		_memoryService = memoryService;
-	}
+	private bool _isGameComplete;
 
 	public async Task<bool> IsGameComplete()
 	{
@@ -21,7 +18,7 @@ public class GameCompleteService
 		}
 
 		const uint scenePointerAddress = 0xA01CA208;
-		var scenePointerValue = (uint)await _memoryService.Read32(scenePointerAddress);
+		var scenePointerValue = await memoryService.Read32(scenePointerAddress);
 
 		const uint triforceHuntCompleteCreditsCutscenePointer = 0x80383C10;
 		const uint ganonDefeatedCutscenePointer = 0x80382720;

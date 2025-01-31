@@ -1,5 +1,9 @@
-namespace OOT_AP_Client.OcarinaOfTime.Enums;
+namespace Archipelago.OoTClient.Net.OcarinaOfTime.Enums;
 
+// Maybe add documentation detailing what this enum is for, what each element represents, etc.
+// Helps to get other developers interested in helping with the client up to speed.
+
+// See Enums.GameModes for example on how this could be achieved.
 public enum Area
 {
 	// Overworld
@@ -27,27 +31,27 @@ public enum Area
 
 	// Dungeons
 	DekuTree,
-	DekuTreeMQ,
+	DekuTreeMq,
 	DodongosCavern,
-	DodongosCavernMQ,
+	DodongosCavernMq,
 	JabuJabusBelly,
-	JabuJabusBellyMQ,
+	JabuJabusBellyMq,
 	ForestTemple,
-	ForestTempleMQ,
+	ForestTempleMq,
 	FireTemple,
-	FireTempleMQ,
+	FireTempleMq,
 	IceCavern,
-	IceCavernMQ,
+	IceCavernMq,
 	WaterTemple,
-	WaterTempleMQ,
+	WaterTempleMq,
 	BottomOfTheWell,
-	BottomOfTheWellMQ,
+	BottomOfTheWellMq,
 	ShadowTemple,
-	ShadowTempleMQ,
+	ShadowTempleMq,
 	GerudoTrainingGround,
-	GerudoTrainingGroundMQ,
+	GerudoTrainingGroundMq,
 	SpiritTemple,
-	SpiritTempleMQ,
+	SpiritTempleMq,
 	GanonsCastle,
-	GanonsCastleMQ,
+	GanonsCastleMq
 }

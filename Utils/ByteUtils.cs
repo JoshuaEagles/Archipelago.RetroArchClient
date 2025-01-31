@@ -1,9 +1,7 @@
-namespace OOT_AP_Client.Utils;
+namespace Archipelago.OoTClient.Net.Utils;
 
 public static class ByteUtils
 {
 	public static bool CheckBit(long memoryToCheck, byte bitToCheck)
-	{
-		return ((uint)(memoryToCheck & (1 << bitToCheck))) >= 1;
-	}
+		=> (memoryToCheck & (1 << bitToCheck)) >= 1;
 }
