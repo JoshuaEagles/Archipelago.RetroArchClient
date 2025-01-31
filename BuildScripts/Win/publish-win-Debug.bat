@@ -1,2 +1,2 @@
 @echo off
-dotnet publish --configuration Debug --self-contained -r win-x64
+dotnet publish ../../Archipelago.OoTClient.Net.csproj --configuration Debug --self-contained -r win-x64
