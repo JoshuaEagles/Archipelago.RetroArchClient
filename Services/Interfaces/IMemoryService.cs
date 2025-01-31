@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Archipelago.OoTClient.Net.Models;
 
 namespace Archipelago.OoTClient.Net.Services.Interfaces;

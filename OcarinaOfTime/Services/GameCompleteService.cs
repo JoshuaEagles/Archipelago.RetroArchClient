@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Archipelago.OoTClient.Net.Services.Interfaces;
 
 namespace Archipelago.OoTClient.Net.OcarinaOfTime.Services;

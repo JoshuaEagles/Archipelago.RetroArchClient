@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Archipelago.OoTClient.Net.Services.Interfaces;
 
 namespace Archipelago.OoTClient.Net.OcarinaOfTime.Services;

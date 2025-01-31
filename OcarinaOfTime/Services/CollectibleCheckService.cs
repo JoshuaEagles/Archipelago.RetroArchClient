@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Archipelago.OoTClient.Net.Models;
 using Archipelago.OoTClient.Net.OcarinaOfTime.Models;
 using Archipelago.OoTClient.Net.Services.Interfaces;

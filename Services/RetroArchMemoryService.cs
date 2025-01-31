@@ -1,6 +1,10 @@
+using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 using Archipelago.OoTClient.Net.Models;
 using Archipelago.OoTClient.Net.Services.Interfaces;
 using Archipelago.OoTClient.Net.Utils;
