@@ -15,7 +15,7 @@ using Archipelago.RetroArchClient.Services.Interfaces;
 
 namespace Archipelago.RetroArchClient.OcarinaOfTime;
 
-public class OotClient
+public class OoTClient
 {
 	private readonly ArchipelagoSession _apSession;
 	private readonly DeathLinkService _archipelagoDeathLinkService;
@@ -30,32 +30,38 @@ public class OotClient
 	private readonly PlayerNameService _playerNameService;
 	private readonly ReceiveItemService _receiveItemService;
 
-	public OotClient()
+	public OoTClient()
 	{
 		_connectionSettings = PromptForConnectionSettings();
 
 		var udpClient = new UdpClient();
 		udpClient.Connect(hostname: _connectionSettings.RetroArchHostName, port: _connectionSettings.RetroArchPort);
 
-		_memoryService = new RetroArchMemoryService(udpClient);
-		_playerNameService = new PlayerNameService(_memoryService);
-		var currentSceneService = new CurrentSceneService(_memoryService);
+		_memoryService = new RetroArchMemoryService(
+			udpClient: udpClient);
+		_playerNameService = new PlayerNameService(
+			memoryService: _memoryService);
+		var currentSceneService = new CurrentSceneService(
+			memoryService: _memoryService);
 		_receiveItemService = new ReceiveItemService(
 			memoryService: _memoryService,
 			currentSceneService: currentSceneService
 		);
-		_gameModeService = new GameModeService(_memoryService);
+		_gameModeService = new GameModeService(
+			memoryService: _memoryService);
 		_locationCheckService = new LocationCheckService(
 			memoryService: _memoryService,
 			gameModeService: _gameModeService
 		);
-		_collectibleCheckService = new CollectibleCheckService(_memoryService);
+		_collectibleCheckService = new CollectibleCheckService(
+			memoryService: _memoryService);
 		_ootClientDeathLinkService = new OoTClientDeathLinkService(
 			memoryService: _memoryService,
 			gameModeService: _gameModeService,
 			currentSceneService: currentSceneService
 		);
-		_gameCompleteService = new GameCompleteService(_memoryService);
+		_gameCompleteService = new GameCompleteService(
+			memoryService: _memoryService);
 
 		_apSession = ArchipelagoSessionFactory.CreateSession(
 			hostname: _connectionSettings.ArchipelagoHostName,
@@ -84,16 +90,20 @@ public class OotClient
 	{
 		var slotData = await GetSlotData();
 
-		await WritePlayerNames(apSession: _apSession, playerNameService: _playerNameService);
+		await WritePlayerNames(
+			apSession: _apSession, 
+			playerNameService: _playerNameService);
 
 		// Setup DeathLink
 		await _ootClientDeathLinkService.StoreDeathLinkEnabledFromMemory();
 		var deathLinkEnabled = _ootClientDeathLinkService.DeathLinkEnabled;
+		
 		Console.WriteLine($"DeathLink {(deathLinkEnabled ? "is" : "is not")} enabled.");
+		
 		if (deathLinkEnabled)
 		{
 			_archipelagoDeathLinkService.EnableDeathLink();
-			_archipelagoDeathLinkService.OnDeathLinkReceived += (_) =>
+			_archipelagoDeathLinkService.OnDeathLinkReceived += _ =>
 			{
 				_ootClientDeathLinkService.ReceiveDeathLink();
 				Console.WriteLine("Death link received");
@@ -104,9 +114,7 @@ public class OotClient
 		await _locationCheckService.InitializeBigPoesRequired();
 
 		var clientSideReceivedItemsCount = -1;
-
 		var isGameCompletionSent = false;
-
 		var wasPreviouslyInGame = false;
 
 		while (true)
@@ -115,6 +123,7 @@ public class OotClient
 
 			// Handle detecting resets and reinitialization
 			var currentGameMode = await _gameModeService.GetCurrentGameMode();
+			
 			if (!currentGameMode.IsInGame)
 			{
 				wasPreviouslyInGame = false;
@@ -134,15 +143,18 @@ public class OotClient
 
 			// Receive Items
 			var gameReceivedItemsCount = await _receiveItemService.GetLocalReceivedItemIndex();
+			
 			if (gameReceivedItemsCount > clientSideReceivedItemsCount)
 			{
 				currentGameMode = await _gameModeService.GetCurrentGameMode();
+				
 				if (!currentGameMode.IsInGame)
 				{
 					continue;
 				}
 
 				var canReceiveItem = await _receiveItemService.CanReceiveItem();
+				
 				if (canReceiveItem && _apSession.Items.Index > gameReceivedItemsCount)
 				{
 					clientSideReceivedItemsCount = gameReceivedItemsCount;
@@ -154,6 +166,7 @@ public class OotClient
 
 			// Handle DeathLink
 			var shouldSendDeathLink = await _ootClientDeathLinkService.ProcessDeathLink();
+			
 			if (shouldSendDeathLink)
 			{
 				var deathLink = new DeathLink(_connectionSettings.SlotName);
@@ -170,6 +183,7 @@ public class OotClient
 			var isGameComplete = await _gameCompleteService.IsGameComplete();
 
 			currentGameMode = await _gameModeService.GetCurrentGameMode();
+			
 			if (!currentGameMode.IsInGame)
 			{
 				continue;
@@ -203,20 +217,24 @@ public class OotClient
 	{
 		Console.WriteLine("Enter the Archipelago Server Hostname, default: archipelago.gg");
 		var apHostname = Console.ReadLine();
+		
 		if (string.IsNullOrWhiteSpace(apHostname))
 		{
 			apHostname = "archipelago.gg";
 		}
 
-		// Might not want to specify a default port if this client is used with the
-		// WebService, as ports are never picked to be the same over rooms.
-		// In the end, this isn't a big issue, but it's worth the consideration.
+		// 38281 is the port where Archipelago runs if locally hosted.
+		// This is useful for testing the client on a local server.
+		// However, on the long run, it might be better to have this be configurable
+		// through a config file and make it so the client can select the port
+		// on its own through this.
 		Console.WriteLine("Enter the Archipelago Server port, default: 38281");
 		var apPortString = Console.ReadLine();
 		var apPort = string.IsNullOrWhiteSpace(apPortString) ? 38281 : int.Parse(apPortString);
 
 		Console.WriteLine("Enter the Slot Name, default: Player");
 		var slotName = Console.ReadLine();
+		
 		if (string.IsNullOrEmpty(slotName))
 		{
 			slotName = "Player";
@@ -224,6 +242,7 @@ public class OotClient
 
 		Console.WriteLine("Enter the RetroArch Hostname, default: localhost");
 		var retroArchHostname = Console.ReadLine();
+		
 		if (string.IsNullOrEmpty(retroArchHostname))
 		{
 			retroArchHostname = "localhost";
@@ -253,11 +272,12 @@ public class OotClient
 		// Reading from the 0x8000000 address range would be valid, it's the same memory as 0xA0000000, just keeping all accesses in 0xA0000000 for consistency
 		var collectibleOverridesFlagsAddress
 			= await _memoryService.Read32(
-				0xA0400000 + Convert.ToUInt32(slotData["collectible_override_flags"])
+				address: 0xA0400000 + Convert.ToUInt32(slotData["collectible_override_flags"])
 			) - 0x80000000 + 0xA0000000;
 
 		var collectibleFlagOffsets
-			= SlotDataCollectableFlagOffsetsToArray(slotData["collectible_flag_offsets"] as JObject);
+			= SlotDataCollectableFlagOffsetsToArray(
+				slotDataCollectibleFlagOffsets: slotData["collectible_flag_offsets"] as JObject);
 
 		return new OoTClientSlotData
 		{
@@ -288,8 +308,7 @@ public class OotClient
 
 				var itemId = long.Parse(flagOffsetData.Key);
 
-				var jArray = flagOffsetData.Value as JArray;
-				if (jArray is null)
+				if (flagOffsetData.Value is not JArray jArray)
 				{
 					Console.WriteLine("Null JArray in collectible flag offsets, this shouldn't happen!");
 					continue;
@@ -314,8 +333,12 @@ public class OotClient
 
 	private static async Task WritePlayerNames(ArchipelagoSession apSession, PlayerNameService playerNameService)
 	{
-		var playerNames = apSession.Players.AllPlayers.Skip(1).Select(x => x.Name);
+		var playerNames = apSession.Players.AllPlayers
+			.Skip(1)
+			.Select(x => x.Name);
+		
 		var nameIndex = 1; // the names are 1 indexed, nothing is stored at index 0
+		
 		foreach (var name in playerNames)
 		{
 			if (nameIndex >= 255)
@@ -323,11 +346,15 @@ public class OotClient
 				break;
 			}
 
-			await playerNameService.WritePlayerName(index: (byte)nameIndex, name: name);
+			await playerNameService.WritePlayerName(
+				index: (byte)nameIndex, 
+				name: name);
 			nameIndex++;
 		}
 
-		await playerNameService.WritePlayerName(index: 255, name: "APPlayer");
+		await playerNameService.WritePlayerName(
+			index: 255, 
+			name: "APPlayer");
 		Console.WriteLine("Player names written");
 	}
 
@@ -337,7 +364,7 @@ public class OotClient
 
 		var checkedLocationIds = checkedLocationNames
 			.Select(
-				(locationName) => _apSession.Locations.GetLocationIdFromName(
+				locationName => _apSession.Locations.GetLocationIdFromName(
 					game: "Ocarina of Time",
 					locationName: locationName
 				)
@@ -346,8 +373,9 @@ public class OotClient
 		var checkedCollectibleIds = (await _collectibleCheckService.GetAllCheckedCollectibleIds(
 			collectibleOverridesFlagAddress: slotData.CollectibleOverridesFlagsAddress,
 			collectibleFlagOffsets: slotData.CollectibleFlagOffsets
-		)).Select((id) => id);
+		)).Select(id => id);
 
-		return checkedLocationIds.Concat(checkedCollectibleIds).ToArray();
+		return checkedLocationIds.Concat(checkedCollectibleIds)
+			.ToArray();
 	}
 }

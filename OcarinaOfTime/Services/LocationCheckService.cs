@@ -12,10 +12,6 @@ using Archipelago.RetroArchClient.Utils;
 
 namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 
-// Maybe add documentation detailing what this service is for, what functions it provides, what the functions do, etc.
-// Helps to get other developers interested in helping with the client up to speed.
-
-// See Enums.GameModes for example on how this could be achieved.
 public class LocationCheckService(IMemoryService memoryService, GameModeService gameModeService)
 {
 	private readonly HashSet<Area> _areasToSkipChecking = [];
@@ -24,7 +20,8 @@ public class LocationCheckService(IMemoryService memoryService, GameModeService 
 
 	public async Task InitializeMasterQuestHandling()
 	{
-		var autoTrackerContextAddress = await memoryService.Read32(0xA040000C) - 0x80000000 + 0xA0000000;
+		var autoTrackerContextAddress = await memoryService.Read32(
+			address: 0xA040000C) - 0x80000000 + 0xA0000000;
 		var masterQuestTableAddress = autoTrackerContextAddress + 0x02E;
 
 		var dungeonToDungeonId = new Dictionary<Area, byte>
@@ -43,10 +40,15 @@ public class LocationCheckService(IMemoryService memoryService, GameModeService 
 			{ Area.GanonsCastle, 0xD },
 		};
 
-		var memoryReadCommands = dungeonToDungeonId.Values.Select(dungeonId => new MemoryReadCommand
-			{ Address = masterQuestTableAddress + dungeonId, NumberOfBytes = 1 }).ToList();
+		var memoryReadCommands = dungeonToDungeonId.Values
+			.Select(dungeonId => new MemoryReadCommand
+			{
+				Address = masterQuestTableAddress + dungeonId,
+				NumberOfBytes = 1
+			}).ToList();
 		
-		var memoryDictionary = await memoryService.ReadMemoryToLongMulti(memoryReadCommands);
+		var memoryDictionary = await memoryService.ReadMemoryToLongMulti(
+			readCommands: memoryReadCommands);
 
 		foreach (var (area, dungeonId) in dungeonToDungeonId)
 		{
@@ -61,8 +63,8 @@ public class LocationCheckService(IMemoryService memoryService, GameModeService 
 
 	public async Task InitializeBigPoesRequired()
 	{
-		const long bigPoesRequiredAddress = 0xA0400EAD;
-		var bigPoesRequired = await memoryService.Read8(bigPoesRequiredAddress);
+		var bigPoesRequired = await memoryService.Read8(
+			address: AddressConstants.BigPoesRequiredAddress);
 		_bigPoePointsRequired = bigPoesRequired * 100;
 	}
 
@@ -71,15 +73,21 @@ public class LocationCheckService(IMemoryService memoryService, GameModeService 
 	public async Task<List<string>> GetAllCheckedLocationNames(OoTClientSlotData ootClientSlotData)
 	{
 		var outgoingItemKey
-			= await memoryService.ReadMemoryToByteArray(0x8040002c, 4);
+			= await memoryService.ReadMemoryToByteArray(
+				address: 0x8040002c,
+				numberOfBytes: 4);
 
 		// Since this is async with the emulator, there's a chance that the key
 		// gets populated after we read it but before we write to clear it
 		// So we make sure we actually read some data before clearing it
 		if (outgoingItemKey.Any(b => b != 0x00))
 		{
-			await memoryService.WriteByteArray(0x8040002c, "\0\0\0\0"u8.ToArray());
-			await memoryService.WriteByteArray(0x80400030, "\0\0\0\0"u8.ToArray());
+			await memoryService.WriteByteArray(
+				address: 0x8040002c, 
+				dataToWrite: "\0\0\0\0"u8.ToArray());
+			await memoryService.WriteByteArray(
+				address: 0x80400030,
+				dataToWrite: "\0\0\0\0"u8.ToArray());
 		}
 
 		var locationsToCheck
@@ -105,10 +113,13 @@ public class LocationCheckService(IMemoryService memoryService, GameModeService 
 		}
 
 		// Iterate over the locationsToCheck again, using the dictionary for memory checks now
-		// 31st Jan 2025: Converted to LINQ expression
-		return (from locationInformation in locationsToCheck
-			where CheckLocation(locationInformation, outgoingItemKey, memoryDictionary)
-			select locationInformation.Name).ToList();
+		return locationsToCheck
+			.Where(locationInformation => CheckLocation(
+				locationInformation: locationInformation,
+				outgoingItemKey: outgoingItemKey,
+				memoryDictionary: memoryDictionary))
+			.Select(locationInformation => locationInformation.Name)
+			.ToList();
 	}
 
 	private static MemoryReadCommand GetMemoryReadCommandForLocation(LocationInformation locationInformation)
@@ -138,21 +149,30 @@ public class LocationCheckService(IMemoryService memoryService, GameModeService 
 
 	// This is also where the flag for Fire Arrows is
 	private static MemoryReadCommand GetChestFlagsReadCommand(LocationInformation locationInformation)
-		=> GetLocalSceneMemoryReadCommand(locationInformation.Offset, 0x0);
+		=> GetLocalSceneMemoryReadCommand(
+			sceneOffset: locationInformation.Offset, 
+			sceneDataOffset: 0x0);
 
 	// Applies to all three types of Great Fairy check
 	private static MemoryReadCommand GetGreatFairyReadCommand(LocationInformation locationInformation)
-		=> GetLocalSceneMemoryReadCommand(locationInformation.Offset, 0x4);
+		=> GetLocalSceneMemoryReadCommand(
+			sceneOffset: locationInformation.Offset, 
+			sceneDataOffset: 0x4);
 
 	private static MemoryReadCommand GetCollectibleFlagsReadCommand(LocationInformation locationInformation)
-		=> GetLocalSceneMemoryReadCommand(locationInformation.Offset, 0xC);
+		=> GetLocalSceneMemoryReadCommand(
+			sceneOffset: locationInformation.Offset, 
+			sceneDataOffset: 0xC);
 
 	private static MemoryReadCommand GetScrubsanityFlagsReadCommand(LocationInformation locationInformation)
-		=> GetLocalSceneMemoryReadCommand(locationInformation.Offset, 0x10);
+		=> GetLocalSceneMemoryReadCommand(
+			sceneOffset: locationInformation.Offset, 
+			sceneDataOffset: 0x10);
 
 	private static MemoryReadCommand GetSkulltulaReadCommand(LocationInformation locationInformation)
 	{
-		var skulltulaLocationAddress = GetSkulltulaLocationAddress(locationInformation);
+		var skulltulaLocationAddress = GetSkulltulaLocationAddress(
+			locationInformation: locationInformation);
 
 		return new MemoryReadCommand
 		{
@@ -161,69 +181,47 @@ public class LocationCheckService(IMemoryService memoryService, GameModeService 
 		};
 	}
 
-	private static MemoryReadCommand GetShopReadCommand()
-	{
-		// TODO: Should centralize and de-duplicate these offset constants
-		const long shopContextOffset = 0xA011AB84;
+	private static MemoryReadCommand GetShopReadCommand() => 
+		new() { Address = AddressConstants.ShopContextOffset, NumberOfBytes = 4 };
 
-		return new MemoryReadCommand { Address = shopContextOffset, NumberOfBytes = 4 };
-	}
+	private static MemoryReadCommand GetBigPoeReadCommand() =>
+		new() { Address = AddressConstants.BigPoePointsAddress, NumberOfBytes = 4 };
 
-	private static MemoryReadCommand GetBigPoeReadCommand()
-	{
-		const long bigPoesPointsAddress = 0xA011B48C;
-
-		return new MemoryReadCommand { Address = bigPoesPointsAddress, NumberOfBytes = 4 };
-	}
 
 	private static MemoryReadCommand GetEventReadCommand(LocationInformation locationInformation)
 	{
-		const long eventContextAddress = 0xA011B4A4;
-
-		var eventAddress = eventContextAddress + locationInformation.Offset * 2;
+		var eventAddress = AddressConstants.EventContextAddress + locationInformation.Offset * 2;
 
 		return new MemoryReadCommand { Address = eventAddress, NumberOfBytes = 2 };
 	}
 
 	private static MemoryReadCommand GetGetInfoReadCommand(LocationInformation locationInformation)
 	{
-		const long getInfoStartAddress = 0xA011B4C0;
-
-		var itemGetInfoAddress = getInfoStartAddress + locationInformation.Offset;
+		var itemGetInfoAddress = AddressConstants.GetInfoStartAddress + locationInformation.Offset;
 
 		return new MemoryReadCommand { Address = itemGetInfoAddress, NumberOfBytes = 1 };
 	}
 
 	private static MemoryReadCommand GetInfoTableReadCommand(LocationInformation locationInformation)
 	{
-		const long infoTableStartAddress = 0xA011B4C8;
-
-		var itemInfoTableAddress = infoTableStartAddress + locationInformation.Offset;
+		var itemInfoTableAddress = AddressConstants.InfoTableStartAddress + locationInformation.Offset;
 
 		return new MemoryReadCommand { Address = itemInfoTableAddress, NumberOfBytes = 1 };
 	}
 
 	private static MemoryReadCommand GetMembershipCardReadCommand()
 	{
-		const long eventContextAddress = 0xA011B4A4;
-		const long eventAddress = eventContextAddress + 0x9 * 2;
-
+		const long eventAddress = AddressConstants.EventContextAddress + 0x9 * 2;
+		
 		return new MemoryReadCommand { Address = eventAddress, NumberOfBytes = 2 };
 	}
+	
 
-	private static MemoryReadCommand GetFishingReadCommand()
-	{
-		const long fishingContextAddress = 0xA011B490;
+	private static MemoryReadCommand GetFishingReadCommand() => 
+		new() { Address = AddressConstants.FishingContextAddress, NumberOfBytes = 4 };
 
-		return new MemoryReadCommand { Address = fishingContextAddress, NumberOfBytes = 4 };
-	}
-
-	private static MemoryReadCommand GetBiggoronSwordReadCommand()
-	{
-		const long equipmentOffset = 0xA011A640;
-
-		return new MemoryReadCommand { Address = equipmentOffset, NumberOfBytes = 4 };
-	}
+	private static MemoryReadCommand GetBiggoronSwordReadCommand() => 
+		new() { Address = AddressConstants.EquipmentOffset, NumberOfBytes = 4 };
 
 	private bool CheckLocation(
 		LocationInformation locationInformation,
@@ -233,28 +231,80 @@ public class LocationCheckService(IMemoryService memoryService, GameModeService 
 	{
 		return locationInformation.Type switch
 		{
-			LocationType.Chest => CheckChestLocation(locationInformation, outgoingItemKey, memoryDictionary),
-			LocationType.Cow => CheckCowLocation(locationInformation, outgoingItemKey, memoryDictionary),
-			LocationType.Skulltula => CheckSkulltulaLocation(locationInformation, memoryDictionary),
-			LocationType.Shop => CheckShopLocation(locationInformation, memoryDictionary),
-			LocationType.GroundItem => CheckGroundItemLocation(locationInformation, outgoingItemKey, memoryDictionary),
-			LocationType.Event => CheckEventLocation(locationInformation, memoryDictionary),
-			LocationType.GetInfo => CheckGetInfoLocation(locationInformation, memoryDictionary),
-			LocationType.InfoTable => CheckInfoTableLocation(locationInformation, memoryDictionary),
-			LocationType.Scrubsanity => CheckScrubsanityLocation(locationInformation, memoryDictionary),
-			LocationType.BossItem => CheckBossItemLocation(locationInformation, outgoingItemKey, memoryDictionary),
-			LocationType.BigPoeBottle => CheckBigPoeBottleLocation(memoryDictionary),
-			LocationType.GreatFairy => CheckGreatFairyMagicLocation(locationInformation, outgoingItemKey, memoryDictionary),
-			LocationType.TrailGreatFairy => CheckTrailGreatFairyMagicLocation(locationInformation, outgoingItemKey, memoryDictionary),
-			LocationType.CraterGreatFairy => CheckCraterGreatFairyMagicLocation(locationInformation, outgoingItemKey, memoryDictionary),
-			LocationType.Medigoron => CheckMedigoronLocation(locationInformation, outgoingItemKey, memoryDictionary),
-			LocationType.BiggoronSword => CheckBiggoronSwordLocation(memoryDictionary),
-			LocationType.BeanSale => CheckBeanSaleLocation(locationInformation, outgoingItemKey, memoryDictionary),
-			LocationType.FishingChild => CheckFishingLocation(false, memoryDictionary),
-			LocationType.FishingAdult => CheckFishingLocation(true, memoryDictionary),
-			LocationType.FireArrows => CheckFireArrowsLocation(locationInformation, outgoingItemKey, memoryDictionary),
-			LocationType.MembershipCardCheck => CheckMembershipCardLocation(memoryDictionary),
-			LocationType.BombchuSalesman => CheckBombchuSalesmanLocation(locationInformation, outgoingItemKey, memoryDictionary),
+			LocationType.Chest => CheckChestLocation(
+				locationInformation: locationInformation, 
+				outgoingItemKey: outgoingItemKey, 
+				memoryDictionary: memoryDictionary),
+			LocationType.Cow => CheckCowLocation(
+				locationInformation: locationInformation, 
+				outgoingItemKey: outgoingItemKey, 
+				memoryDictionary: memoryDictionary),
+			LocationType.Skulltula => CheckSkulltulaLocation(
+				locationInformation: locationInformation, 
+				memoryDictionary: memoryDictionary),
+			LocationType.Shop => CheckShopLocation(
+				locationInformation: locationInformation, 
+				memoryDictionary: memoryDictionary),
+			LocationType.GroundItem => CheckGroundItemLocation(
+				locationInformation: locationInformation, 
+				outgoingItemKey: outgoingItemKey, 
+				memoryDictionary: memoryDictionary),
+			LocationType.Event => CheckEventLocation(
+				locationInformation: locationInformation, 
+				memoryDictionary: memoryDictionary),
+			LocationType.GetInfo => CheckGetInfoLocation(
+				locationInformation: locationInformation, 
+				memoryDictionary: memoryDictionary),
+			LocationType.InfoTable => CheckInfoTableLocation(
+				locationInformation: locationInformation, 
+				memoryDictionary: memoryDictionary),
+			LocationType.Scrubsanity => CheckScrubsanityLocation(
+				locationInformation: locationInformation, 
+				memoryDictionary: memoryDictionary),
+			LocationType.BossItem => CheckBossItemLocation(
+				locationInformation: locationInformation, 
+				outgoingItemKey: outgoingItemKey, 
+				memoryDictionary: memoryDictionary),
+			LocationType.BigPoeBottle => CheckBigPoeBottleLocation(
+				memoryDictionary: memoryDictionary),
+			LocationType.GreatFairy => CheckGreatFairyMagicLocation(
+				locationInformation: locationInformation, 
+				outgoingItemKey: outgoingItemKey, 
+				memoryDictionary: memoryDictionary),
+			LocationType.TrailGreatFairy => CheckTrailGreatFairyMagicLocation(
+				locationInformation: locationInformation, 
+				outgoingItemKey: outgoingItemKey, 
+				memoryDictionary: memoryDictionary),
+			LocationType.CraterGreatFairy => CheckCraterGreatFairyMagicLocation(
+				locationInformation: locationInformation, 
+				outgoingItemKey: outgoingItemKey, 
+				memoryDictionary: memoryDictionary),
+			LocationType.Medigoron => CheckMedigoronLocation(
+				locationInformation: locationInformation, 
+				outgoingItemKey: outgoingItemKey, 
+				memoryDictionary: memoryDictionary),
+			LocationType.BiggoronSword => CheckBiggoronSwordLocation(
+				memoryDictionary: memoryDictionary),
+			LocationType.BeanSale => CheckBeanSaleLocation(
+				locationInformation: locationInformation, 
+				outgoingItemKey: outgoingItemKey, 
+				memoryDictionary: memoryDictionary),
+			LocationType.FishingChild => CheckFishingLocation(
+				isAdult: false, 
+				memoryDictionary: memoryDictionary),
+			LocationType.FishingAdult => CheckFishingLocation(
+				isAdult: true, 
+				memoryDictionary: memoryDictionary),
+			LocationType.FireArrows => CheckFireArrowsLocation(
+				locationInformation: locationInformation, 
+				outgoingItemKey: outgoingItemKey, 
+				memoryDictionary: memoryDictionary),
+			LocationType.MembershipCardCheck => CheckMembershipCardLocation(
+				memoryDictionary: memoryDictionary),
+			LocationType.BombchuSalesman => CheckBombchuSalesmanLocation(
+				locationInformation: locationInformation, 
+				outgoingItemKey: outgoingItemKey, 
+				memoryDictionary: memoryDictionary),
 			_ => throw new InvalidOperationException(
 				$"Unknown LocationType {locationInformation.Type} for location {locationInformation.Name}"
 			),
@@ -263,59 +313,143 @@ public class LocationCheckService(IMemoryService memoryService, GameModeService 
 
 	private static bool CheckChestLocation(LocationInformation locationInformation, byte[] outgoingItemKey,
 		Dictionary<long, long> memoryDictionary)
-		=> OutgoingKeyCheck(outgoingItemKey, locationInformation.Offset, locationInformation.BitToCheck, 0x1) 
-		       || SceneCheck(locationInformation.Offset, locationInformation.BitToCheck, 0x0, memoryDictionary);
+		=> OutgoingKeyCheck(
+			   outgoingItemKey: outgoingItemKey,
+			   sceneOffset: locationInformation.Offset,
+			   bitToCheck: locationInformation.BitToCheck,
+			   ootrLocationType: 0x1)
+		   || SceneCheck(
+			   sceneOffset: locationInformation.Offset,
+			   bitToCheck: locationInformation.BitToCheck,
+			   sceneDataOffset: 0x0,
+			   memoryDictionary: memoryDictionary);
 
 	private static bool CheckGroundItemLocation(LocationInformation locationInformation, byte[] outgoingItemKey,
 		Dictionary<long, long> memoryDictionary)
-		=> OutgoingKeyCheck(outgoingItemKey, locationInformation.Offset, locationInformation.BitToCheck, 0x2)
-		   || SceneCheck(locationInformation.Offset, locationInformation.BitToCheck, 0xC, memoryDictionary);
+		=> OutgoingKeyCheck(
+			   outgoingItemKey: outgoingItemKey,
+			   sceneOffset: locationInformation.Offset,
+			   bitToCheck: locationInformation.BitToCheck,
+			   ootrLocationType: 0x2)
+		   || SceneCheck(
+			   sceneOffset: locationInformation.Offset,
+			   bitToCheck: locationInformation.BitToCheck, 
+			   sceneDataOffset: 0xC, 
+			   memoryDictionary: memoryDictionary);
 
 	private static bool CheckBossItemLocation(LocationInformation locationInformation, byte[] outgoingItemKey,
 		Dictionary<long, long> memoryDictionary)
-		=> OutgoingKeyCheck(outgoingItemKey, locationInformation.Offset, 0x4F, 0x0) 
-		       || SceneCheck(locationInformation.Offset, 0x1F, 0xC, memoryDictionary);
+		=> OutgoingKeyCheck(
+			   outgoingItemKey: outgoingItemKey,
+			   sceneOffset: locationInformation.Offset,
+			   bitToCheck: 0x4F,
+			   ootrLocationType: 0x0)
+		   || SceneCheck(
+			   sceneOffset: locationInformation.Offset,
+			   bitToCheck: 0x1F,
+			   sceneDataOffset: 0xC,
+			   memoryDictionary: memoryDictionary);
 
 	// updates save context immediately, so the existing client doesn't check temp context
 	// need to figure out the temp context format eventually so that we can do temp context more efficiently later
 	private static bool CheckScrubsanityLocation(LocationInformation locationInformation,
 		Dictionary<long, long> memoryDictionary)
-		=> SceneCheck(locationInformation.Offset, locationInformation.BitToCheck, 0x10, memoryDictionary);
+		=> SceneCheck(
+			sceneOffset: locationInformation.Offset, 
+			bitToCheck: locationInformation.BitToCheck,
+			sceneDataOffset: 0x10, 
+			memoryDictionary: memoryDictionary);
 
 	private static bool CheckCowLocation(LocationInformation locationInformation, byte[] outgoingItemKey,
 		Dictionary<long, long> memoryDictionary)
-		=> OutgoingKeyCheck(outgoingItemKey, locationInformation.Offset, (byte)(locationInformation.BitToCheck - 0x03), 0x0) 
-		   || SceneCheck(locationInformation.Offset, locationInformation.BitToCheck, 0xC, memoryDictionary);
+		=> OutgoingKeyCheck(
+			   outgoingItemKey: outgoingItemKey, 
+			   sceneOffset: locationInformation.Offset, 
+			   bitToCheck: (byte)(locationInformation.BitToCheck - 0x03), 
+			   ootrLocationType: 0x0) 
+		   || SceneCheck(
+			   sceneOffset: locationInformation.Offset, 
+			   bitToCheck: locationInformation.BitToCheck, 
+			   sceneDataOffset: 0xC, 
+			   memoryDictionary: memoryDictionary);
 
 	private static bool CheckGreatFairyMagicLocation(LocationInformation locationInformation, byte[] outgoingItemKey,
 		Dictionary<long, long> memoryDictionary)
-		=> OutgoingKeyCheck(outgoingItemKey, locationInformation.Offset, locationInformation.BitToCheck, 0x0) 
-		   || SceneCheck(locationInformation.Offset, locationInformation.BitToCheck, 0x04, memoryDictionary);
+		=> OutgoingKeyCheck(
+			   outgoingItemKey: outgoingItemKey,
+			   sceneOffset: locationInformation.Offset,
+			   bitToCheck: locationInformation.BitToCheck,
+			   ootrLocationType: 0x0)
+		   || SceneCheck(
+			   sceneOffset: locationInformation.Offset,
+			   bitToCheck: locationInformation.BitToCheck, 
+			   sceneDataOffset: 0x04, 
+			   memoryDictionary: memoryDictionary);
 
 	private static bool CheckTrailGreatFairyMagicLocation(LocationInformation locationInformation, byte[] outgoingItemKey,
 		Dictionary<long, long> memoryDictionary)
-		=> OutgoingKeyCheck(outgoingItemKey, 0xFF, 0x13, 0x05) 
-		   || SceneCheck(locationInformation.Offset, locationInformation.BitToCheck, 0x04, memoryDictionary);
+		=> OutgoingKeyCheck(
+			   outgoingItemKey: outgoingItemKey, 
+			   sceneOffset: 0xFF, 
+			   bitToCheck: 0x13, 
+			   ootrLocationType: 0x05) 
+		   || SceneCheck(
+			   sceneOffset: locationInformation.Offset, 
+			   bitToCheck: locationInformation.BitToCheck, 
+			   sceneDataOffset: 0x04, 
+			   memoryDictionary: memoryDictionary);
 
 	private static bool CheckCraterGreatFairyMagicLocation(LocationInformation locationInformation, byte[] outgoingItemKey,
 		Dictionary<long, long> memoryDictionary)
-		=> OutgoingKeyCheck(outgoingItemKey, 0xFF, 0x14, 0x05) 
-		   || SceneCheck(locationInformation.Offset, locationInformation.BitToCheck, 0x04, memoryDictionary);
+		=> OutgoingKeyCheck(
+			   outgoingItemKey: outgoingItemKey, 
+			   sceneOffset: 0xFF, 
+			   bitToCheck: 0x14, 
+			   ootrLocationType: 0x05) 
+		   || SceneCheck(
+			   sceneOffset: locationInformation.Offset, 
+			   bitToCheck: locationInformation.BitToCheck, 
+			   sceneDataOffset: 0x04, 
+			   memoryDictionary: memoryDictionary);
 
 	private static bool CheckMedigoronLocation(LocationInformation locationInformation, byte[] outgoingItemKey,
 		Dictionary<long, long> memoryDictionary)
-		=> OutgoingKeyCheck(outgoingItemKey, locationInformation.Offset, 0x16, 0x0) 
-		   || SceneCheck(locationInformation.Offset, locationInformation.BitToCheck, 0xC, memoryDictionary);
+		=> OutgoingKeyCheck(
+			   outgoingItemKey: outgoingItemKey, 
+			   sceneOffset: locationInformation.Offset, 
+			   bitToCheck: 0x16, 
+			   ootrLocationType: 0x0) 
+		   || SceneCheck(
+			   sceneOffset: locationInformation.Offset, 
+			   bitToCheck: locationInformation.BitToCheck, 
+			   sceneDataOffset: 0xC, 
+			   memoryDictionary: memoryDictionary);
 
 	private static bool CheckBeanSaleLocation(LocationInformation locationInformation, byte[] outgoingItemKey,
 		Dictionary<long, long> memoryDictionary)
-		=> OutgoingKeyCheck(outgoingItemKey, locationInformation.Offset, 0x16, 0x0) 
-		   || SceneCheck(locationInformation.Offset, locationInformation.BitToCheck, 0xC, memoryDictionary);
+		=> OutgoingKeyCheck(
+			   outgoingItemKey: outgoingItemKey, 
+			   sceneOffset: locationInformation.Offset, 
+			   bitToCheck: 0x16, 
+			   ootrLocationType: 0x0) 
+		   || SceneCheck(
+			   sceneOffset: locationInformation.Offset, 
+			   bitToCheck: locationInformation.BitToCheck, 
+			   sceneDataOffset: 0xC, 
+			   memoryDictionary: memoryDictionary);
 	
 	private static bool CheckBombchuSalesmanLocation(LocationInformation locationInformation, byte[] outgoingItemKey,
 		Dictionary<long, long> memoryDictionary)
-		=> OutgoingKeyCheck(outgoingItemKey, locationInformation.Offset, 0x03, 0x0) 
-		   || SceneCheck(locationInformation.Offset, locationInformation.BitToCheck, 0xC, memoryDictionary);
+		=> OutgoingKeyCheck(
+			   outgoingItemKey: outgoingItemKey, 
+			   sceneOffset: locationInformation.Offset, 
+			   bitToCheck: 0x03, 
+			   ootrLocationType: 0x0) 
+		   || SceneCheck(
+			   sceneOffset: locationInformation.Offset, 
+			   bitToCheck: locationInformation.BitToCheck, 
+			   sceneDataOffset: 0xC, 
+			   memoryDictionary: memoryDictionary);
 
 	private static bool CheckSkulltulaLocation(LocationInformation locationInformation, 
 		Dictionary<long, long> memoryDictionary)
@@ -323,16 +457,16 @@ public class LocationCheckService(IMemoryService memoryService, GameModeService 
 		var skulltulaLocationAddress = GetSkulltulaLocationAddress(locationInformation);
 		var nearbyMemory = memoryDictionary[skulltulaLocationAddress];
 
-		return ByteUtils.CheckBit(memoryToCheck: nearbyMemory, bitToCheck: locationInformation.BitToCheck);
+		return ByteUtils.CheckBit(
+			memoryToCheck: nearbyMemory, 
+			bitToCheck: locationInformation.BitToCheck);
 	}
 
 	// TODO: need to document and figure this out more
 	private static long GetSkulltulaLocationAddress(LocationInformation locationInformation)
 	{
-		const long skulltulaFlagsOffset = 0xA011B46C;
-
 		var skulltulaArrayIndex = locationInformation.Offset + 3 - 2 * (locationInformation.Offset % 4);
-		var localSkulltulaOffset = skulltulaFlagsOffset + skulltulaArrayIndex;
+		var localSkulltulaOffset = AddressConstants.SkulltulaFlagsOffset + skulltulaArrayIndex;
 
 		return localSkulltulaOffset;
 	}
@@ -340,19 +474,18 @@ public class LocationCheckService(IMemoryService memoryService, GameModeService 
 	private static bool CheckShopLocation(LocationInformation locationInformation,
 		Dictionary<long, long> memoryDictionary)
 	{
-		const long shopContextOffset = 0xA011AB84;
-
-		var nearbyMemory = memoryDictionary[shopContextOffset];
+		var nearbyMemory = memoryDictionary[AddressConstants.ShopContextOffset];
 		var bitToCheck = locationInformation.Offset * 4 + locationInformation.BitToCheck;
 
-		return ByteUtils.CheckBit(nearbyMemory, (byte)bitToCheck);
+		return ByteUtils.CheckBit(
+			memoryToCheck: nearbyMemory, 
+			bitToCheck: (byte)bitToCheck);
 	}
 
 	// Checked via looking at the points on the card, rather than getting the item itself
 	private bool CheckBigPoeBottleLocation(Dictionary<long, long> memoryDictionary)
 	{
-		const long bigPoesPointsAddress = 0xA011B48C;
-		var bigPoesPoints = memoryDictionary[bigPoesPointsAddress];
+		var bigPoesPoints = memoryDictionary[AddressConstants.BigPoePointsAddress];
 
 		return bigPoesPoints >= _bigPoePointsRequired;
 	}
@@ -360,86 +493,108 @@ public class LocationCheckService(IMemoryService memoryService, GameModeService 
 	private static bool CheckEventLocation(LocationInformation locationInformation,
 		Dictionary<long, long> memoryDictionary)
 	{
-		const long eventContextAddress = 0xA011B4A4;
-
-		var eventAddress = eventContextAddress + locationInformation.Offset * 2;
+		var eventAddress = AddressConstants.EventContextAddress + locationInformation.Offset * 2;
 		var eventRow = memoryDictionary[eventAddress];
 
-		return ByteUtils.CheckBit(eventRow, locationInformation.BitToCheck);
+		return ByteUtils.CheckBit(
+			memoryToCheck: eventRow, 
+			bitToCheck: locationInformation.BitToCheck);
 	}
 
 	private static bool CheckGetInfoLocation(LocationInformation locationInformation,
 		Dictionary<long, long> memoryDictionary)
 	{
-		const long getInfoStartAddress = 0xA011B4C0;
-
-		var itemGetInfoAddress = getInfoStartAddress + locationInformation.Offset;
+		var itemGetInfoAddress = AddressConstants.GetInfoStartAddress + locationInformation.Offset;
 		var nearbyMemory = memoryDictionary[itemGetInfoAddress];
 
-		return ByteUtils.CheckBit(nearbyMemory, locationInformation.BitToCheck);
+		return ByteUtils.CheckBit(
+			memoryToCheck: nearbyMemory, 
+			bitToCheck: locationInformation.BitToCheck);
 	}
 
 	private static bool CheckInfoTableLocation(LocationInformation locationInformation,
 		Dictionary<long, long> memoryDictionary)
 	{
-		const long infoTableStartAddress = 0xA011B4C8;
-
-		var itemInfoTableAddress = infoTableStartAddress + locationInformation.Offset;
+		var itemInfoTableAddress =  AddressConstants.InfoTableStartAddress + locationInformation.Offset;
 		var nearbyMemory = memoryDictionary[itemInfoTableAddress];
 
-		return ByteUtils.CheckBit(nearbyMemory, locationInformation.BitToCheck);
+		return ByteUtils.CheckBit(
+			memoryToCheck: nearbyMemory, 
+			bitToCheck: locationInformation.BitToCheck);
 	}
 
 	private static bool CheckMembershipCardLocation(Dictionary<long, long> memoryDictionary)
 	{
-		const long eventContextAddress = 0xA011B4A4;
-		const long eventAddress = eventContextAddress + 0x9 * 2;
-
+		const long eventAddress = AddressConstants.EventContextAddress + 0x9 * 2;
+		
 		var eventRow = memoryDictionary[eventAddress];
 
-		return ByteUtils.CheckBit(eventRow, 0)
-			&& ByteUtils.CheckBit(eventRow, 1)
-			&& ByteUtils.CheckBit(eventRow, 2)
-			&& ByteUtils.CheckBit(eventRow, 3);
+		return ByteUtils.CheckBit(
+			       memoryToCheck: eventRow,
+			       bitToCheck: 0)
+		       && ByteUtils.CheckBit(
+			       memoryToCheck: eventRow,
+			       bitToCheck: 1)
+		       && ByteUtils.CheckBit(
+			       memoryToCheck: eventRow,
+			       bitToCheck: 2)
+		       && ByteUtils.CheckBit(
+			       memoryToCheck: eventRow,
+			       bitToCheck: 3);
 	}
 
 	private static bool CheckFishingLocation(bool isAdult, Dictionary<long, long> memoryDictionary)
 	{
-		const long fishingContextAddress = 0xA011B490;
-
 		var bitToCheck = isAdult ? 11 : 10;
-		var nearbyMemory = memoryDictionary[fishingContextAddress];
+		var nearbyMemory = memoryDictionary[AddressConstants.FishingContextAddress];
 
-		return ByteUtils.CheckBit(nearbyMemory, (byte)bitToCheck);
+		return ByteUtils.CheckBit(
+			memoryToCheck: nearbyMemory, 
+			bitToCheck: (byte)bitToCheck);
 	}
 
 	private static bool CheckFireArrowsLocation(LocationInformation locationInformation, byte[] outgoingItemKey,
 		Dictionary<long, long> memoryDictionary)
-		=> OutgoingKeyCheck(outgoingItemKey, locationInformation.Offset, 0x58, 0x0) 
-		   || SceneCheck(locationInformation.Offset, locationInformation.BitToCheck, 0x0, memoryDictionary);
+		=> OutgoingKeyCheck(
+			   outgoingItemKey: outgoingItemKey, 
+			   sceneOffset: locationInformation.Offset, 
+			   bitToCheck: 0x58, 
+			   ootrLocationType: 0x0) 
+		   || SceneCheck(
+			   sceneOffset: locationInformation.Offset, 
+			   bitToCheck: locationInformation.BitToCheck, 
+			   sceneDataOffset: 0x0, 
+			   memoryDictionary: memoryDictionary);
 
 	private static bool CheckBiggoronSwordLocation(Dictionary<long, long> memoryDictionary)
 	{
-		const long equipmentOffset = 0xA011A640;
 		const byte bitToCheck = 8;
 
-		var nearbyMemory = memoryDictionary[equipmentOffset];
+		var nearbyMemory = memoryDictionary[AddressConstants.EquipmentOffset];
 
-		return ByteUtils.CheckBit(nearbyMemory, bitToCheck);
+		return ByteUtils.CheckBit(
+			memoryToCheck: nearbyMemory, 
+			bitToCheck: bitToCheck);
 	}
 
 	private static bool SceneCheck(byte sceneOffset, byte bitToCheck, byte sceneDataOffset,
 		Dictionary<long, long> memoryDictionary)
 	{
-		var localSceneOffset = GetLocalSceneOffset(sceneOffset: sceneOffset, sceneDataOffset: sceneDataOffset);
+		var localSceneOffset = GetLocalSceneOffset(
+			sceneOffset: sceneOffset, 
+			sceneDataOffset: sceneDataOffset);
 		var nearbyMemory = memoryDictionary[localSceneOffset];
 
-		return ByteUtils.CheckBit(nearbyMemory, bitToCheck);
+		return ByteUtils.CheckBit(
+			memoryToCheck: nearbyMemory, 
+			bitToCheck: bitToCheck);
 	}
 
 	private static MemoryReadCommand GetLocalSceneMemoryReadCommand(byte sceneOffset, byte sceneDataOffset)
 	{
-		var localSceneOffset = GetLocalSceneOffset(sceneOffset, sceneDataOffset);
+		var localSceneOffset = GetLocalSceneOffset(
+			sceneOffset: sceneOffset, 
+			sceneDataOffset: sceneDataOffset);
 
 		return new MemoryReadCommand
 		{
@@ -450,9 +605,7 @@ public class LocationCheckService(IMemoryService memoryService, GameModeService 
 
 	private static long GetLocalSceneOffset(byte sceneOffset, byte sceneDataOffset)
 	{
-		const long sceneFlagsOffset = 0xA011A6A4;
-
-		var localSceneOffset = sceneFlagsOffset + 0x1c * sceneOffset + sceneDataOffset;
+		var localSceneOffset = AddressConstants.SceneFlagsOffset + 0x1c * sceneOffset + sceneDataOffset;
 
 		return localSceneOffset;
 	}

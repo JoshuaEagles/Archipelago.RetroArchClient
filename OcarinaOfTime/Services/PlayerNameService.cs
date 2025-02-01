@@ -6,10 +6,6 @@ using Archipelago.RetroArchClient.Services.Interfaces;
 
 namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 
-// Maybe add documentation detailing what this service is for, what functions it provides, what the functions do, etc.
-// Helps to get other developers interested in helping with the client up to speed.
-
-// See Enums.GameModes for example on how this could be achieved.
 public class PlayerNameService(IMemoryService memoryService)
 {
 	public async Task WritePlayerName(byte index, string name)
@@ -47,7 +43,11 @@ public class PlayerNameService(IMemoryService memoryService)
 			bytesToWrite.Add(charByte ?? 0xDF);
 		}
 
-		await memoryService.WriteByteArray((uint)nameToWriteAddress, bytesToWrite.Take(4).ToArray());
-		await memoryService.WriteByteArray((uint)nameToWriteAddress + 4,  bytesToWrite.Skip(4).Take(4).ToArray());
+		await memoryService.WriteByteArray(
+			address: (uint)nameToWriteAddress, 
+			dataToWrite: bytesToWrite.Take(4).ToArray());
+		await memoryService.WriteByteArray(
+			address: (uint)nameToWriteAddress + 4,  
+			dataToWrite: bytesToWrite.Skip(4).Take(4).ToArray());
 	}
 }

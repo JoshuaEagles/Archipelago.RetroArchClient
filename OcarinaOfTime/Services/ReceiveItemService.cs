@@ -2,52 +2,52 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Archipelago.MultiClient.Net.Models;
 using Archipelago.RetroArchClient.Models;
+using Archipelago.RetroArchClient.OcarinaOfTime.Data;
 using Archipelago.RetroArchClient.Services.Interfaces;
 
 namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 
-// Maybe add documentation detailing what this service is for, what functions it provides, what the functions do, etc.
-// Helps to get other developers interested in helping with the client up to speed.
-
-// See Enums.GameModes for example on how this could be achieved.
 public class ReceiveItemService(IMemoryService memoryService, CurrentSceneService currentSceneService)
 {
 	public async Task<ushort> GetLocalReceivedItemIndex()
 	{
-		const uint localReceivedItemsCountAddress = 0xA011A660;
-		var localReceivedItemsCount = await memoryService.Read16(localReceivedItemsCountAddress);
+		var localReceivedItemsCount = await memoryService.Read16(
+			address: AddressConstants.LocalReceivedItemsCountAddress);
 
 		return localReceivedItemsCount;
 	}
 
 	public async Task ReceiveItem(ItemInfo item)
-	{
-		const uint incomingPlayerAddress = 0xA0400026;
-		const uint incomingItemAddress = 0xA0400028;
-
-		// Verify that the last item was processed already before trying to send another
+	{// Verify that the last item was processed already before trying to send another
 		var memoryReadCommands = new MemoryReadCommand[]
 		{
 			new()
 			{
-				Address = incomingPlayerAddress,
+				Address = AddressConstants.IncomingPlayerAddress,
 				NumberOfBytes = 2,
 			},
 			new()
 			{
-				Address = incomingItemAddress,
+				Address = AddressConstants.IncomingItemAddress,
 				NumberOfBytes = 2,
-			},
+			}
 		};
-		var currentIncomingMemoryState = await memoryService.ReadMemoryToLongMulti(memoryReadCommands);
-		if (currentIncomingMemoryState[incomingPlayerAddress] != 0 ||
-			currentIncomingMemoryState[incomingItemAddress] != 0)
+		
+		var currentIncomingMemoryState = await memoryService.ReadMemoryToLongMulti(
+			readCommands: memoryReadCommands);
+		
+		if (currentIncomingMemoryState[AddressConstants.IncomingPlayerAddress] != 0 ||
+			currentIncomingMemoryState[AddressConstants.IncomingItemAddress] != 0)
 		{
 			return;
 		}
 
-		await memoryService.Write16(address: incomingPlayerAddress, dataToWrite: 0x00);
-		await memoryService.Write16(address: incomingItemAddress, dataToWrite: (ushort)(item.ItemId - 66000));
+		await memoryService.Write16(
+			address: AddressConstants.IncomingPlayerAddress, 
+			dataToWrite: 0x00);
+		await memoryService.Write16(
+			address: AddressConstants.IncomingItemAddress, 
+			dataToWrite: (ushort)(item.ItemId - 66000));
 	}
 
 	public async Task<bool> CanReceiveItem()

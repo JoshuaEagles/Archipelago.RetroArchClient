@@ -1,4 +1,4 @@
 ﻿using Archipelago.RetroArchClient.OcarinaOfTime;
 
-var ootClient = new OotClient();
+var ootClient = new OoTClient();
 await ootClient.RunClient();

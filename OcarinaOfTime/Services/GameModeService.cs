@@ -1,16 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Archipelago.RetroArchClient.OcarinaOfTime.Data;
 using Archipelago.RetroArchClient.OcarinaOfTime.Enums;
 using Archipelago.RetroArchClient.OcarinaOfTime.Models;
 using Archipelago.RetroArchClient.Services.Interfaces;
 
 namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 
-// Maybe add documentation detailing what this service is for, what functions it provides, what the functions do, etc.
-// Helps to get other developers interested in helping with the client up to speed.
-
-// See Enums.GameModes for example on how this could be achieved.
 public class GameModeService(IMemoryService memoryService)
 {
 	public async Task<GameMode> GetCurrentGameMode()
@@ -61,40 +58,27 @@ public class GameModeService(IMemoryService memoryService)
 	}
 
 	private async Task<byte> GetMainState()
-	{
-		const uint mainStateOffset = 0xA011B92F;
-
-		return await memoryService.Read8(mainStateOffset);
-	}
+	 => await memoryService.Read8(
+		 address: AddressConstants.MainStateOffset);
 
 	private async Task<byte> GetSubState()
-	{
-		const uint subStateOffset = 0xA011B933;
-
-		return await memoryService.Read8(subStateOffset);
-	}
+		=> await memoryService.Read8(
+			address: AddressConstants.SubStateOffset);
 
 	private async Task<byte> GetMenuState()
-	{
-		const uint menuStateOffset = 0xA01D8DD5;
-
-		return await memoryService.Read8(menuStateOffset);
-	}
+		=> await memoryService.Read8(
+			address: AddressConstants.MenuStateOffset);
 
 	private async Task<uint> GetLogoState()
-	{
-		const uint logoStateOffset = 0xA011F200;
-
-		return await memoryService.Read32(logoStateOffset);
-	}
+		=> await memoryService.Read32(
+			address: AddressConstants.LogoStateOffset);
 
 	private async Task<bool> GetLinkIsDying()
 	{
-		const uint linkStateOffset = 0xA01DB09C;
-		const uint linkHealthOffset = 0xA011A600;
-
-		var linkState = await memoryService.Read32(linkStateOffset);
-		var linkHealth = await memoryService.Read16(linkHealthOffset);
+		var linkState = await memoryService.Read32(
+			address: AddressConstants.LinkStateOffset);
+		var linkHealth = await memoryService.Read16(
+			address: AddressConstants.LinkHealthOffset);
 
 		return (linkState & 0x00000080) > 0 && linkHealth == 0;
 	}

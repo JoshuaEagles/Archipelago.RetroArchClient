@@ -96,7 +96,7 @@ public class OoTClientDeathLinkService(
 
 	}
 
-	// The game crashes if killed in the market entrance or outside the ToT
-	// -- Is this intended? Or is this a quirk with RetroArch and the core?
+	// As it currently is due to how the current version of the AP Rando works,
+	// the game crashes in scenes like the Market entrance or outside Temple of Time
 	private static readonly HashSet<ushort> DeathCrashScenes = [27, 28, 29, 35, 36, 37];
 }

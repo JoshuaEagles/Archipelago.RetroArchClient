@@ -8,10 +8,6 @@ using Archipelago.RetroArchClient.Utils;
 
 namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 
-// Maybe add documentation detailing what this service is for, what functions it provides, what the functions do, etc.
-// Helps to get other developers interested in helping with the client up to speed.
-
-// See Enums.GameModes for example on how this could be achieved.
 public class CollectibleCheckService(IMemoryService memoryService)
 {
 	public async Task<List<long>> GetAllCheckedCollectibleIds(
@@ -21,11 +17,13 @@ public class CollectibleCheckService(IMemoryService memoryService)
 	{
 		var memoryReadCommands = new List<MemoryReadCommand>();
 		var alreadyQueuedOffsets = new HashSet<long>();
-		
+
 		foreach (var collectibleFlagOffset in collectibleFlagOffsets)
 		{
 			var addressOfTargetByte =
-				GetAddressForCollectibleOffset(collectibleOverridesFlagAddress, collectibleFlagOffset);
+				GetAddressForCollectibleOffset(
+					collectibleOverridesFlagAddress: collectibleOverridesFlagAddress, 
+					collectibleFlagOffset: collectibleFlagOffset);
 
 			if (alreadyQueuedOffsets.Contains(addressOfTargetByte))
 			{
@@ -37,19 +35,33 @@ public class CollectibleCheckService(IMemoryService memoryService)
 				Address = addressOfTargetByte,
 				NumberOfBytes = 1,
 			};
-			
+
 			memoryReadCommands.Add(memoryReadCommand);
 			alreadyQueuedOffsets.Add(addressOfTargetByte);
 		}
 
-		var memoryDictionary = await memoryService.ReadMemoryToLongMulti(memoryReadCommands);
+		var memoryDictionary = await memoryService.ReadMemoryToLongMulti(readCommands: memoryReadCommands);
 
-		return (from collectibleFlagOffset in collectibleFlagOffsets
-			let addressOfTargetByte =
-				GetAddressForCollectibleOffset(collectibleOverridesFlagAddress, collectibleFlagOffset)
-			let memoryContainingFlag = memoryDictionary[addressOfTargetByte]
-			where ByteUtils.CheckBit(memoryContainingFlag, (byte)(collectibleFlagOffset.Flag % 8))
-			select collectibleFlagOffset.ItemId).ToList();
+		return
+			collectibleFlagOffsets
+				.Select(collectibleFlagOffset => new
+				{
+					collectibleFlagOffset,
+					addressOfTargetByte =
+						GetAddressForCollectibleOffset(
+							collectibleOverridesFlagAddress: collectibleOverridesFlagAddress,
+							collectibleFlagOffset: collectibleFlagOffset)
+				})
+				.Select(x => new
+				{
+					x.collectibleFlagOffset,
+					memoryContainingFlag = memoryDictionary[x.addressOfTargetByte]
+				})
+				.Where(x => ByteUtils.CheckBit(
+					memoryToCheck: x.memoryContainingFlag, 
+					bitToCheck: (byte)(x.collectibleFlagOffset.Flag % 8)))
+				.Select(x => x.collectibleFlagOffset.ItemId)
+				.ToList();
 	}
 
 	private static long GetAddressForCollectibleOffset(
