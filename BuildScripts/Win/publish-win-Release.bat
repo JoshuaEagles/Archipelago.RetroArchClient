@@ -1,2 +1,2 @@
 @echo off
-dotnet publish ../../Archipelago.OoTClient.Net.csproj --configuration Release --self-contained -r win-x64
+dotnet publish ../../Archipelago.RetroArchClient.csproj --configuration Release --self-contained -r win-x64

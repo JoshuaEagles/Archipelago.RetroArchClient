@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using Archipelago.OoTClient.Net.Services.Interfaces;
+using Archipelago.RetroArchClient.Services.Interfaces;
 
-namespace Archipelago.OoTClient.Net.OcarinaOfTime.Services;
+namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 
 // Maybe add documentation detailing what this service is for, what functions it provides, what the functions do, etc.
 // Helps to get other developers interested in helping with the client up to speed.

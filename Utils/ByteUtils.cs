@@ -1,4 +1,4 @@
-namespace Archipelago.OoTClient.Net.Utils;
+namespace Archipelago.RetroArchClient.Utils;
 
 public static class ByteUtils
 {

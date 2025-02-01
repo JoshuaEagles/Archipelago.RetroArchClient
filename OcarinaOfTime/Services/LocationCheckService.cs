@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
-using Archipelago.OoTClient.Net.Models;
-using Archipelago.OoTClient.Net.OcarinaOfTime.Data;
-using Archipelago.OoTClient.Net.OcarinaOfTime.Enums;
-using Archipelago.OoTClient.Net.OcarinaOfTime.Models;
-using Archipelago.OoTClient.Net.Services.Interfaces;
-using Archipelago.OoTClient.Net.Utils;
+using Archipelago.RetroArchClient.Models;
+using Archipelago.RetroArchClient.OcarinaOfTime.Data;
+using Archipelago.RetroArchClient.OcarinaOfTime.Enums;
+using Archipelago.RetroArchClient.OcarinaOfTime.Models;
+using Archipelago.RetroArchClient.Services.Interfaces;
+using Archipelago.RetroArchClient.Utils;
 
-namespace Archipelago.OoTClient.Net.OcarinaOfTime.Services;
+namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 
 // Maybe add documentation detailing what this service is for, what functions it provides, what the functions do, etc.
 // Helps to get other developers interested in helping with the client up to speed.

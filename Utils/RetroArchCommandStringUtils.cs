@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Linq;
 
-namespace Archipelago.OoTClient.Net.Utils;
+namespace Archipelago.RetroArchClient.Utils;
 
 // TODO: add checks that look for error messages, the number after the address is -1 if it's an error, so detecting that case shouldn't be too hard
 

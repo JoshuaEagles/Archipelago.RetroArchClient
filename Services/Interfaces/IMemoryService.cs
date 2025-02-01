@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Archipelago.OoTClient.Net.Models;
+using Archipelago.RetroArchClient.Models;
 
-namespace Archipelago.OoTClient.Net.Services.Interfaces;
+namespace Archipelago.RetroArchClient.Services.Interfaces;
 
 // Maybe add documentation detailing what this interface is for, what functions it defines, what the functions do, etc.
 // Helps to get other developers interested in helping with the client up to speed.

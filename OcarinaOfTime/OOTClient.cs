@@ -8,12 +8,12 @@ using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
 using Newtonsoft.Json.Linq;
-using Archipelago.OoTClient.Net.OcarinaOfTime.Models;
-using Archipelago.OoTClient.Net.OcarinaOfTime.Services;
-using Archipelago.OoTClient.Net.Services;
-using Archipelago.OoTClient.Net.Services.Interfaces;
+using Archipelago.RetroArchClient.OcarinaOfTime.Models;
+using Archipelago.RetroArchClient.OcarinaOfTime.Services;
+using Archipelago.RetroArchClient.Services;
+using Archipelago.RetroArchClient.Services.Interfaces;
 
-namespace Archipelago.OoTClient.Net.OcarinaOfTime;
+namespace Archipelago.RetroArchClient.OcarinaOfTime;
 
 public class OotClient
 {

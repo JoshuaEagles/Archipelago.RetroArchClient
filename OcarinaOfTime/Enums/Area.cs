@@ -1,4 +1,4 @@
-namespace Archipelago.OoTClient.Net.OcarinaOfTime.Enums;
+namespace Archipelago.RetroArchClient.OcarinaOfTime.Enums;
 
 // Maybe add documentation detailing what this enum is for, what each element represents, etc.
 // Helps to get other developers interested in helping with the client up to speed.

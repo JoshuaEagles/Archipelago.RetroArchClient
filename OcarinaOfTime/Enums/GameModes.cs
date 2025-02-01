@@ -1,4 +1,4 @@
-﻿namespace Archipelago.OoTClient.Net.OcarinaOfTime.Enums;
+﻿namespace Archipelago.RetroArchClient.OcarinaOfTime.Enums;
 
 /// <summary>
 /// Represents all possible game modes in which the game can find itself in during runtime.

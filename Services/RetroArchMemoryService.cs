@@ -5,11 +5,11 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using Archipelago.OoTClient.Net.Models;
-using Archipelago.OoTClient.Net.Services.Interfaces;
-using Archipelago.OoTClient.Net.Utils;
+using Archipelago.RetroArchClient.Models;
+using Archipelago.RetroArchClient.Services.Interfaces;
+using Archipelago.RetroArchClient.Utils;
 
-namespace Archipelago.OoTClient.Net.Services;
+namespace Archipelago.RetroArchClient.Services;
 
 // Maybe add documentation detailing what this service is for, what functions it provides, what the functions do, etc.
 // Helps to get other developers interested in helping with the client up to speed.

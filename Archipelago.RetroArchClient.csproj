@@ -5,8 +5,8 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <AssemblyName>Archipelago.OoTClient.Net</AssemblyName>
-        <RootNamespace>Archipelago.OoTClient.Net</RootNamespace>
+        <AssemblyName>Archipelago.RetroArchClient</AssemblyName>
+        <RootNamespace>Archipelago.RetroArchClient</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

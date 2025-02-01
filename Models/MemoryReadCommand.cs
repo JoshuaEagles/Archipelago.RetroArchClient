@@ -1,4 +1,4 @@
-namespace Archipelago.OoTClient.Net.Models;
+namespace Archipelago.RetroArchClient.Models;
 
 // Maybe add documentation detailing what this model record is for, what it represents, etc.
 // Helps to get other developers interested in helping with the client up to speed.

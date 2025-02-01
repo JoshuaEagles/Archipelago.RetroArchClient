@@ -1,7 +1,7 @@
-using Archipelago.OoTClient.Net.OcarinaOfTime.Enums;
-using Archipelago.OoTClient.Net.OcarinaOfTime.Models;
+using Archipelago.RetroArchClient.OcarinaOfTime.Enums;
+using Archipelago.RetroArchClient.OcarinaOfTime.Models;
 
-namespace Archipelago.OoTClient.Net.OcarinaOfTime.Data;
+namespace Archipelago.RetroArchClient.OcarinaOfTime.Data;
 
 // Maybe add documentation detailing what this class is for, what functions it provides, what the functions do, etc...
 // Helps to get other developers interested in helping with the client up to speed.
