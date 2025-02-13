@@ -8,7 +8,3 @@
 ## Features that should be investigated:<br/>
 - [ ] Client gives feedback to user on Item Sent/Item Received. Possible implementation of how this could look like:<br/>"{Player} found {Other Player}'s {Item} at {Location}" or "{Player} found their {Item} at {Location}"
 - [ ] Client should give feedback if an exception has occured so the user can understand what went wrong and report a crash to us later this way.
----
-## Planned for the future:
-- [ ] Avalonia UI Build of the Client
-- [ ] General BizHawk support

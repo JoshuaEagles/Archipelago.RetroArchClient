@@ -177,23 +177,31 @@ public class OoTClient
 			// Handle Game Completion
 			if (isGameCompletionSent)
 			{
+				// Skip further code execution once complete flag has been sent.
 				continue;
 			}
 			
+			// Get complete flag.
 			var isGameComplete = await _gameCompleteService.IsGameComplete();
 
+			// Get current game mode.
 			currentGameMode = await _gameModeService.GetCurrentGameMode();
 			
 			if (!currentGameMode.IsInGame)
 			{
+				// If the current game mode is not "In Game"
+				// then skip further code execution
 				continue;
 			}
 
 			if (!isGameComplete)
 			{
+				// If game is not complete, then skip further code execution.
 				continue;
 			}
 			
+			// Notify the session that the goal has been completed.
+			// Set the complete sent flag to true and notify the user that they met their goal.
 			_apSession.SetGoalAchieved();
 			isGameCompletionSent = true;
 			Console.WriteLine("Game completed");
