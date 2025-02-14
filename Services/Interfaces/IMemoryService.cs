@@ -1,7 +1,13 @@
-using OOT_AP_Client.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Archipelago.RetroArchClient.Models;
 
-namespace OOT_AP_Client.Services.Interfaces;
+namespace Archipelago.RetroArchClient.Services.Interfaces;
 
+// Maybe add documentation detailing what this interface is for, what functions it defines, what the functions do, etc.
+// Helps to get other developers interested in helping with the client up to speed.
+
+// See OcarinaOfTime.Enums.GameModes for example on how this could be achieved.
 public interface IMemoryService
 {
 	Task<byte[]> ReadMemoryToByteArray(long address, int numberOfBytes);

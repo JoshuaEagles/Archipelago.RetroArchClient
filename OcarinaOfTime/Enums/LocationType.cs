@@ -1,5 +1,9 @@
-namespace OOT_AP_Client.OcarinaOfTime.Enums;
+namespace Archipelago.RetroArchClient.OcarinaOfTime.Enums;
 
+// Maybe add documentation detailing what this enum is for, what each element represents, etc.
+// Helps to get other developers interested in helping with the client up to speed.
+
+// See Enums.GameModes for example on how this could be achieved.
 public enum LocationType
 {
 	Chest,

@@ -1,112 +1,98 @@
-using OOT_AP_Client.OcarinaOfTime.Models;
-using OOT_AP_Client.Services.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Archipelago.RetroArchClient.OcarinaOfTime.Data;
+using Archipelago.RetroArchClient.OcarinaOfTime.Enums;
+using Archipelago.RetroArchClient.OcarinaOfTime.Models;
+using Archipelago.RetroArchClient.Services.Interfaces;
 
-namespace OOT_AP_Client.OcarinaOfTime.Services;
+namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 
-public class GameModeService
+public class GameModeService(IMemoryService memoryService)
 {
-	private readonly IMemoryService _memoryService;
-
-	public GameModeService(IMemoryService memoryService)
-	{
-		_memoryService = memoryService;
-	}
-
 	public async Task<GameMode> GetCurrentGameMode()
 	{
 		var logoState = await GetLogoState();
+		
 		if (logoState is 0x802C5880 or 0)
 		{
-			return GameModes["N64 Logo"];
+			return AvailableGameModes[GameModes.N64Logo];
 		}
 
 		var mainState = await GetMainState();
+		
 		switch (mainState)
 		{
 			case 1:
-				return GameModes["Title Screen"];
+				return AvailableGameModes[GameModes.TitleScreen];
 			case 2:
-				return GameModes["File Select"];
+				return AvailableGameModes[GameModes.FileSelect];
 		}
 
 		var menuState = await GetMenuState();
+		
 		switch (menuState)
 		{
 			case 0:
 			{
 				var isLinkDying = await GetLinkIsDying();
+				
 				if (isLinkDying)
 				{
-					return GameModes["Dying"];
+					return AvailableGameModes[GameModes.Dying];
 				}
 
 				var subState = await GetSubState();
-				if (subState == 4)
-				{
-					return GameModes["Cutscene"];
-				}
-
-				return GameModes["Normal Gameplay"];
+				
+				return subState == 4 
+					? AvailableGameModes[GameModes.Cutscene] 
+					: AvailableGameModes[GameModes.NormalGameplay];
 			}
 			case < 9 or 13 or 18 or 19:
-				return GameModes["Paused"];
+				return AvailableGameModes[GameModes.Paused];
 			case 9 or 0xB:
-				return GameModes["Dying Menu Start"];
+				return AvailableGameModes[GameModes.DyingMenuStart];
 			default:
-				return GameModes["Dead"];
+				return AvailableGameModes[GameModes.Dead];
 		}
 	}
 
 	private async Task<byte> GetMainState()
-	{
-		const uint mainStateOffset = 0xA011B92F;
-
-		return await _memoryService.Read8(mainStateOffset);
-	}
+	 => await memoryService.Read8(
+		 address: AddressConstants.MainStateOffset);
 
 	private async Task<byte> GetSubState()
-	{
-		const uint subStateOffset = 0xA011B933;
-
-		return await _memoryService.Read8(subStateOffset);
-	}
+		=> await memoryService.Read8(
+			address: AddressConstants.SubStateOffset);
 
 	private async Task<byte> GetMenuState()
-	{
-		const uint menuStateOffset = 0xA01D8DD5;
-
-		return await _memoryService.Read8(menuStateOffset);
-	}
+		=> await memoryService.Read8(
+			address: AddressConstants.MenuStateOffset);
 
 	private async Task<uint> GetLogoState()
-	{
-		const uint logoStateOffset = 0xA011F200;
-
-		return (uint)await _memoryService.Read32(logoStateOffset);
-	}
+		=> await memoryService.Read32(
+			address: AddressConstants.LogoStateOffset);
 
 	private async Task<bool> GetLinkIsDying()
 	{
-		const uint linkStateOffset = 0xA01DB09C;
-		const uint linkHealthOffset = 0xA011A600;
-
-		var linkState = await _memoryService.Read32(linkStateOffset);
-		var linkHealth = await _memoryService.Read16(linkHealthOffset);
+		var linkState = await memoryService.Read32(
+			address: AddressConstants.LinkStateOffset);
+		var linkHealth = await memoryService.Read16(
+			address: AddressConstants.LinkHealthOffset);
 
 		return (linkState & 0x00000080) > 0 && linkHealth == 0;
 	}
-
-	// TODO: Change the names to be an enum
-	private static readonly Dictionary<string, GameMode> GameModes = new GameMode[]
+	
+	private static readonly Dictionary<GameModes, GameMode> AvailableGameModes = new GameMode[]
 	{
-		new() { Name = "N64 Logo", IsInGame = false },
-		new() { Name = "Title Screen", IsInGame = false },
-		new() { Name = "File Select", IsInGame = false },
-		new() { Name = "Dying", IsInGame = true },
-		new() { Name = "Cutscene", IsInGame = true },
-		new() { Name = "Normal Gameplay", IsInGame = true },
-		new() { Name = "Paused", IsInGame = true },
-		new() { Name = "Dying Menu Start", IsInGame = false },
-		new() { Name = "Dead", IsInGame = false },
-	}.ToDictionary((gameMode) => gameMode.Name);
+		new() { CurrentGameMode = GameModes.N64Logo, IsInGame = false },
+		new() { CurrentGameMode = GameModes.TitleScreen, IsInGame = false },
+		new() { CurrentGameMode = GameModes.FileSelect, IsInGame = false },
+		new() { CurrentGameMode = GameModes.Dying, IsInGame = true },
+		new() { CurrentGameMode = GameModes.Cutscene, IsInGame = true },
+		new() { CurrentGameMode = GameModes.NormalGameplay, IsInGame = true },
+		new() { CurrentGameMode = GameModes.Paused, IsInGame = true },
+		new() { CurrentGameMode = GameModes.DyingMenuStart, IsInGame = false },
+		new() { CurrentGameMode = GameModes.Dead, IsInGame = false },
+	}.ToDictionary(gameMode => gameMode.CurrentGameMode);
 }

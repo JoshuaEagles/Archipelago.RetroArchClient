@@ -1,34 +1,29 @@
-using OOT_AP_Client.Models;
-using OOT_AP_Client.OcarinaOfTime.Models;
-using OOT_AP_Client.Services.Interfaces;
-using OOT_AP_Client.Utils;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Archipelago.RetroArchClient.Models;
+using Archipelago.RetroArchClient.OcarinaOfTime.Models;
+using Archipelago.RetroArchClient.Services.Interfaces;
+using Archipelago.RetroArchClient.Utils;
 
-namespace OOT_AP_Client.OcarinaOfTime.Services;
+namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 
-public class CollectibleCheckService
+public class CollectibleCheckService(IMemoryService memoryService)
 {
-	private readonly IMemoryService _memoryService;
-
-	public CollectibleCheckService(IMemoryService memoryService)
-	{
-		_memoryService = memoryService;
-	}
-
 	public async Task<List<long>> GetAllCheckedCollectibleIds(
 		long collectibleOverridesFlagAddress,
 		List<CollectibleFlagOffset> collectibleFlagOffsets
 	)
 	{
-		var checkedCollectibleIds = new List<long>();
-
 		var memoryReadCommands = new List<MemoryReadCommand>();
 		var alreadyQueuedOffsets = new HashSet<long>();
+
 		foreach (var collectibleFlagOffset in collectibleFlagOffsets)
 		{
-			var addressOfTargetByte = GetAddressForCollectibleOffset(
-				collectibleOverridesFlagAddress: collectibleOverridesFlagAddress,
-				collectibleFlagOffset: collectibleFlagOffset
-			);
+			var addressOfTargetByte =
+				GetAddressForCollectibleOffset(
+					collectibleOverridesFlagAddress: collectibleOverridesFlagAddress, 
+					collectibleFlagOffset: collectibleFlagOffset);
 
 			if (alreadyQueuedOffsets.Contains(addressOfTargetByte))
 			{
@@ -40,34 +35,36 @@ public class CollectibleCheckService
 				Address = addressOfTargetByte,
 				NumberOfBytes = 1,
 			};
-			memoryReadCommands.Add(memoryReadCommand);
 
+			memoryReadCommands.Add(memoryReadCommand);
 			alreadyQueuedOffsets.Add(addressOfTargetByte);
 		}
 
-		var memoryDictionary = await _memoryService.ReadMemoryToLongMulti(memoryReadCommands);
+		var memoryDictionary = await memoryService.ReadMemoryToLongMulti(readCommands: memoryReadCommands);
 
-		foreach (var collectibleFlagOffset in collectibleFlagOffsets)
-		{
-			var addressOfTargetByte = GetAddressForCollectibleOffset(
-				collectibleOverridesFlagAddress: collectibleOverridesFlagAddress,
-				collectibleFlagOffset: collectibleFlagOffset
-			);
-			var memoryContainingFlag = memoryDictionary[addressOfTargetByte];
-
-			if (ByteUtils.CheckBit(
-					memoryToCheck: memoryContainingFlag,
-					bitToCheck: (byte)(collectibleFlagOffset.Flag % 8)
-				))
-			{
-				checkedCollectibleIds.Add(collectibleFlagOffset.ItemId);
-			}
-		}
-
-		return checkedCollectibleIds;
+		return
+			collectibleFlagOffsets
+				.Select(collectibleFlagOffset => new
+				{
+					collectibleFlagOffset,
+					addressOfTargetByte =
+						GetAddressForCollectibleOffset(
+							collectibleOverridesFlagAddress: collectibleOverridesFlagAddress,
+							collectibleFlagOffset: collectibleFlagOffset)
+				})
+				.Select(x => new
+				{
+					x.collectibleFlagOffset,
+					memoryContainingFlag = memoryDictionary[x.addressOfTargetByte]
+				})
+				.Where(x => ByteUtils.CheckBit(
+					memoryToCheck: x.memoryContainingFlag, 
+					bitToCheck: (byte)(x.collectibleFlagOffset.Flag % 8)))
+				.Select(x => x.collectibleFlagOffset.ItemId)
+				.ToList();
 	}
 
-	private long GetAddressForCollectibleOffset(
+	private static long GetAddressForCollectibleOffset(
 		long collectibleOverridesFlagAddress,
 		CollectibleFlagOffset collectibleFlagOffset
 	)

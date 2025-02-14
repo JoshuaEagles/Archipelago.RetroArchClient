@@ -4,9 +4,12 @@ namespace Archipelago.RetroArchClient.OcarinaOfTime.Models;
 // Helps to get other developers interested in helping with the client up to speed.
 
 // See Enums.GameModes for example on how this could be achieved.
-public record CollectibleFlagOffset
+public record OoTClientConnectionSettings
 {
-	public required long ItemId { get; init; }
-	public required long Offset { get; init; }
-	public required long Flag { get; init; }
+	public required string ArchipelagoHostName { get; init; }
+	public required int ArchipelagoPort { get; init; }
+	public required string SlotName { get; init; }
+
+	public required string RetroArchHostName { get; init; }
+	public required int RetroArchPort { get; init; }
 }

@@ -1,17 +1,13 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using OOT_AP_Client.Services.Interfaces;
+using System.Threading.Tasks;
+using Archipelago.RetroArchClient.Services.Interfaces;
 
-namespace OOT_AP_Client.OcarinaOfTime.Services;
+namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 
-public class PlayerNameService
+public class PlayerNameService(IMemoryService memoryService)
 {
-	private readonly IMemoryService _memoryService;
-
-	public PlayerNameService(IMemoryService memoryService)
-	{
-		_memoryService = memoryService;
-	}
-
 	public async Task WritePlayerName(byte index, string name)
 	{
 		const uint namesAddress = 0x80400034;
@@ -47,13 +43,11 @@ public class PlayerNameService
 			bytesToWrite.Add(charByte ?? 0xDF);
 		}
 
-		await _memoryService.WriteByteArray(
-			address: (uint)nameToWriteAddress,
-			dataToWrite: bytesToWrite.Take(4).ToArray()
-		);
-		await _memoryService.WriteByteArray(
-			address: (uint)nameToWriteAddress + 4,
-			dataToWrite: bytesToWrite.Skip(4).Take(4).ToArray()
-		);
+		await memoryService.WriteByteArray(
+			address: (uint)nameToWriteAddress, 
+			dataToWrite: bytesToWrite.Take(4).ToArray());
+		await memoryService.WriteByteArray(
+			address: (uint)nameToWriteAddress + 4,  
+			dataToWrite: bytesToWrite.Skip(4).Take(4).ToArray());
 	}
 }

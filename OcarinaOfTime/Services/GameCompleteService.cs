@@ -1,17 +1,12 @@
-using OOT_AP_Client.Services.Interfaces;
+using System.Threading.Tasks;
+using Archipelago.RetroArchClient.OcarinaOfTime.Data;
+using Archipelago.RetroArchClient.Services.Interfaces;
 
-namespace OOT_AP_Client.OcarinaOfTime.Services;
+namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 
-public class GameCompleteService
+public class GameCompleteService(IMemoryService memoryService)
 {
-	private IMemoryService _memoryService;
-
-	private bool _isGameComplete = false;
-
-	public GameCompleteService(IMemoryService memoryService)
-	{
-		_memoryService = memoryService;
-	}
+	private bool _isGameComplete;
 
 	public async Task<bool> IsGameComplete()
 	{
@@ -20,13 +15,12 @@ public class GameCompleteService
 			return true;
 		}
 
-		const uint scenePointerAddress = 0xA01CA208;
-		var scenePointerValue = (uint)await _memoryService.Read32(scenePointerAddress);
+		var scenePointerValue = await memoryService.Read32(
+			address: AddressConstants.ScenePointerAddress);
 
-		const uint triforceHuntCompleteCreditsCutscenePointer = 0x80383C10;
-		const uint ganonDefeatedCutscenePointer = 0x80382720;
-
-		if (scenePointerValue is not (triforceHuntCompleteCreditsCutscenePointer or ganonDefeatedCutscenePointer))
+		if (scenePointerValue is not 
+		    ((uint)AddressConstants.TriforceHuntCompleteCreditsCutscenePointer 
+		    or (uint)AddressConstants.GanonDefeatedCutscenePointer))
 		{
 			return false;
 		}

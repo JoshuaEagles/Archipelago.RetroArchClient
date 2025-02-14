@@ -1,12 +1,18 @@
 using System.Globalization;
+using System.Linq;
 
-namespace OOT_AP_Client.Utils;
+namespace Archipelago.RetroArchClient.Utils;
 
 // TODO: add checks that look for error messages, the number after the address is -1 if it's an error, so detecting that case shouldn't be too hard
 
-// Response from Retroarch for reads looks like this: READ_CORE_MEMORY <address> 12 34 56...
-// Response from Retroarch for writes looks like this: WRITE_CORE_MEMORY <address> <number of bytes written>
-public static class RetroarchCommandStringUtils
+// Response from RetroArch for reads looks like this: READ_CORE_MEMORY <address> 12 34 56...
+// Response from RetroArch for writes looks like this: WRITE_CORE_MEMORY <address> <number of bytes written>
+
+// Maybe also add documentation detailing what this class is for, what functions it provides, what the functions do, etc...
+// Helps to get other developers interested in helping with the client up to speed.
+
+// See OcarinaOfTime.Enums.GameModes for example on how this could be achieved.
+public static class RetroArchCommandStringUtils
 {
 	public static long ParseAddress(string receivedString)
 	{
@@ -24,9 +30,9 @@ public static class RetroarchCommandStringUtils
 
 	public static long ParseReadMemoryToLong(string receivedString, bool isBigEndian)
 	{
-		var bytes = ParseReadMemoryToArray(receivedString: receivedString, isBigEndian: isBigEndian);
+		var bytes = ParseReadMemoryToArray(receivedString, isBigEndian);
 
-		var outputNumber = default(long);
+		var outputNumber = 0L;
 
 		var byteOffset = 0;
 		foreach (var dataByte in bytes.Reverse())
@@ -49,7 +55,7 @@ public static class RetroarchCommandStringUtils
 		}
 
 		return byteStrings
-			.Select((s) => byte.Parse(s: s, style: NumberStyles.HexNumber))
+			.Select((s) => byte.Parse(s, NumberStyles.HexNumber))
 			.ToArray();
 	}
 
