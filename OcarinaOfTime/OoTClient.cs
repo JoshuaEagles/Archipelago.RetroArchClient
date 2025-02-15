@@ -29,7 +29,7 @@ public class OoTClient
 	private readonly OoTClientDeathLinkService _ootClientDeathLinkService;
 	private readonly PlayerNameService _playerNameService;
 	private readonly ReceiveItemService _receiveItemService;
-
+	
 	public OoTClient()
 	{
 		_connectionSettings = PromptForConnectionSettings();
@@ -73,7 +73,7 @@ public class OoTClient
 			itemsHandlingFlags: ItemsHandlingFlags.RemoteItems
 		);
 		_archipelagoDeathLinkService = _apSession.CreateDeathLinkService();
-
+		
 		if (!loginResult.Successful)
 		{
 			var loginFailure = (LoginFailure)loginResult;
@@ -106,9 +106,12 @@ public class OoTClient
 			_archipelagoDeathLinkService.OnDeathLinkReceived += _ =>
 			{
 				_ootClientDeathLinkService.ReceiveDeathLink();
-				Console.WriteLine("Death link received");
+				Console.WriteLine("DeathLink: Another player died, killing you...");
 			};
 		}
+		
+		// Setup message logging
+		_apSession.MessageLog.OnMessageReceived += ClientLoggerService.LogServerMessage;
 
 		await _locationCheckService.InitializeMasterQuestHandling();
 		await _locationCheckService.InitializeBigPoesRequired();
@@ -171,7 +174,7 @@ public class OoTClient
 			{
 				var deathLink = new DeathLink(_connectionSettings.SlotName);
 				_archipelagoDeathLinkService.SendDeathLink(deathLink);
-				Console.WriteLine("Death link sent.");
+				Console.WriteLine("DeathLink: Sending death to your friends...");
 			}
 
 			// Handle Game Completion
