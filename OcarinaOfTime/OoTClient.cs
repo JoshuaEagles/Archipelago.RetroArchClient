@@ -106,7 +106,7 @@ public class OoTClient
 			_archipelagoDeathLinkService.OnDeathLinkReceived += _ =>
 			{
 				_ootClientDeathLinkService.ReceiveDeathLink();
-				Console.WriteLine("DeathLink: Another player died, killing you...");
+				Console.WriteLine("DeathLink: Someone ran out of health...");
 			};
 		}
 		
@@ -366,7 +366,6 @@ public class OoTClient
 		await playerNameService.WritePlayerName(
 			index: 255, 
 			name: "APPlayer");
-		Console.WriteLine("Player names written");
 	}
 
 	private async Task<long[]> GetAllCheckedLocationIds(OoTClientSlotData slotData)

@@ -46,9 +46,9 @@ public static class ClientLoggerService
                 break;
             case JoinLogMessage joinLogMessage:
                 WriteColoredText(joinLogMessage.Player.Name, ConsoleColor.Cyan);
-                Console.Write(" (");
+                HandleJoinTags(joinLogMessage);
                 WriteColoredText(joinLogMessage.Player.Game, ConsoleColor.DarkMagenta);
-                Console.Write($"[{string.Join(", ", joinLogMessage.Tags)}]) joined the game\n");
+                Console.Write($" [{string.Join(", ", joinLogMessage.Tags)}] joined the game\n");
                 break;
             case LeaveLogMessage leaveLogMessage:
                 WriteColoredText(leaveLogMessage.Player.Name, ConsoleColor.Cyan);
@@ -81,4 +81,21 @@ public static class ClientLoggerService
         ItemFlags.None => ConsoleColor.Gray,
         _ => Console.ForegroundColor
     };
+
+    private static void HandleJoinTags(JoinLogMessage joinLogMessage)
+    {
+        if (joinLogMessage.Tags.Contains("TextOnly"))
+        {
+            Console.Write(" viewing ");
+            return;
+        }
+
+        if (joinLogMessage.Tags.Contains("Tracker"))
+        {
+            Console.Write(" tracking ");
+            return;
+        }
+        
+        Console.Write(" playing ");
+    }
 }
