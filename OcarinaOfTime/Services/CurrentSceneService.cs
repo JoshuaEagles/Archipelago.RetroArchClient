@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Archipelago.RetroArchClient.OcarinaOfTime.Data;
 using Archipelago.RetroArchClient.Services.Interfaces;
 

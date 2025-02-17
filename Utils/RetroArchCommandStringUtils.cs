@@ -1,5 +1,4 @@
 using System.Globalization;
-using System.Linq;
 
 namespace Archipelago.RetroArchClient.Utils;
 
@@ -55,7 +54,7 @@ public static class RetroArchCommandStringUtils
 		}
 
 		return byteStrings
-			.Select((s) => byte.Parse(s, NumberStyles.HexNumber))
+			.Select(s => byte.Parse(s, NumberStyles.HexNumber))
 			.ToArray();
 	}
 

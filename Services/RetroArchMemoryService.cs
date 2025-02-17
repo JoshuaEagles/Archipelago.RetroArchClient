@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 using Archipelago.RetroArchClient.Models;
 using Archipelago.RetroArchClient.Services.Interfaces;
 using Archipelago.RetroArchClient.Utils;
@@ -34,7 +30,7 @@ public class RetroArchMemoryService(UdpClient udpClient) : IMemoryService
 		}
 
 		var receivedBytes = await SendAndReceiveReadMemory(
-			address: address, 
+			address: address,
 			numberOfBytes: numberOfBytes);
 
 		var dataFromMemory = RetroArchCommandStringUtils.ParseReadMemoryToArray(
@@ -45,20 +41,20 @@ public class RetroArchMemoryService(UdpClient udpClient) : IMemoryService
 		return dataFromMemory;
 	}
 
-	public async Task<byte> Read8(long address) => 
+	public async Task<byte> Read8(long address) =>
 		(byte)await ReadMemoryToLong(
-			address: address, 
+			address: address,
 			numberOfBytes: 1);
 
-	public async Task<ushort> Read16(long address) => 
+	public async Task<ushort> Read16(long address) =>
 		(ushort)await ReadMemoryToLong(
-			address: address, 
+			address: address,
 			numberOfBytes: 2);
-	
 
-	public async Task<uint> Read32(long address) => 
+
+	public async Task<uint> Read32(long address) =>
 		(uint)await ReadMemoryToLong(
-			address: address, 
+			address: address,
 			numberOfBytes: 4);
 
 	public async Task<Dictionary<long, long>> ReadMemoryToLongMulti(IEnumerable<MemoryReadCommand> readCommands)
@@ -66,7 +62,7 @@ public class RetroArchMemoryService(UdpClient udpClient) : IMemoryService
 		var receivedStrings = await SendAndReceiveReadMemoryMulti(
 			readCommands: readCommands);
 		var responses = new Dictionary<long, long>();
-		
+
 		foreach (var receivedString in receivedStrings)
 		{
 			var numberOfBytes = RetroArchCommandStringUtils.ParseNumberOfBytes(
@@ -75,9 +71,9 @@ public class RetroArchMemoryService(UdpClient udpClient) : IMemoryService
 				address: RetroArchCommandStringUtils.ParseAddress(receivedString),
 				numberOfBytes: numberOfBytes
 			);
-			
+
 			var data = RetroArchCommandStringUtils.ParseReadMemoryToLong(
-				receivedString: receivedString, 
+				receivedString: receivedString,
 				isBigEndian: true);
 			responses.Add(address, data);
 		}
@@ -90,7 +86,7 @@ public class RetroArchMemoryService(UdpClient udpClient) : IMemoryService
 		var receivedStrings = await SendAndReceiveReadMemoryMulti(
 			readCommands: readCommands);
 		var responses = new Dictionary<long, byte[]>();
-		
+
 		foreach (var receivedString in receivedStrings)
 		{
 			var numberOfBytes = RetroArchCommandStringUtils.ParseNumberOfBytes(
@@ -100,9 +96,9 @@ public class RetroArchMemoryService(UdpClient udpClient) : IMemoryService
 				address: RetroArchCommandStringUtils.ParseAddress(receivedString),
 				numberOfBytes: numberOfBytes
 			);
-			
+
 			var data = RetroArchCommandStringUtils.ParseReadMemoryToArray(
-				receivedString: receivedString, 
+				receivedString: receivedString,
 				isBigEndian: true);
 			responses.Add(address, data);
 		}
@@ -111,24 +107,24 @@ public class RetroArchMemoryService(UdpClient udpClient) : IMemoryService
 	}
 
 	// for now don't write more than 4 bytes at a time, this won't work if you do
-	public async Task<int> WriteByteArray(long address, byte[] dataToWrite) => 
+	public async Task<int> WriteByteArray(long address, byte[] dataToWrite) =>
 		await WriteMemory(
-			address: address, 
+			address: address,
 			dataToWrite: dataToWrite.Reverse().ToArray());
 
-	public async Task Write8(long address, byte dataToWrite) => 
+	public async Task Write8(long address, byte dataToWrite) =>
 		await WriteMemory(
-			address: address, 
+			address: address,
 			dataToWrite: NumberToByteArray(dataToWrite, 1));
 
-	public async Task Write16(long address, ushort dataToWrite) => 
+	public async Task Write16(long address, ushort dataToWrite) =>
 		await WriteMemory(
-			address: address, 
+			address: address,
 			dataToWrite: NumberToByteArray(dataToWrite, 2));
 
-	public async Task Write32(long address, uint dataToWrite) => 
+	public async Task Write32(long address, uint dataToWrite) =>
 		await WriteMemory(
-			address: address, 
+			address: address,
 			dataToWrite: NumberToByteArray(dataToWrite, 4));
 
 	// Need to massively rethink this service, right now the performance is abysmal
@@ -154,10 +150,10 @@ public class RetroArchMemoryService(UdpClient udpClient) : IMemoryService
 		}
 
 		var receivedString = await SendAndReceiveReadMemory(
-			address: address, 
+			address: address,
 			numberOfBytes: numberOfBytes);
 		var dataFromMemory = RetroArchCommandStringUtils.ParseReadMemoryToLong(
-			receivedString: receivedString, 
+			receivedString: receivedString,
 			isBigEndian: true);
 
 		return dataFromMemory;
@@ -166,7 +162,7 @@ public class RetroArchMemoryService(UdpClient udpClient) : IMemoryService
 	private async Task<string> SendAndReceiveReadMemory(long address, int numberOfBytes)
 	{
 		var convertedAddress = ConvertAddressToN64(
-			address: address, 
+			address: address,
 			numberOfBytes: numberOfBytes);
 
 		udpClient.Send(Encoding.UTF8.GetBytes($"READ_CORE_MEMORY {convertedAddress:X8} {numberOfBytes}"));
@@ -184,7 +180,7 @@ public class RetroArchMemoryService(UdpClient udpClient) : IMemoryService
 		var stringBuilder = new StringBuilder();
 		var receivedStrings = new List<string>();
 		var commandsExecuted = 0;
-		
+
 		while (commandsExecuted < inMemoryReadCommands.Length)
 		{
 			foreach (var readCommand in inMemoryReadCommands.Skip(commandsExecuted).Take(commandsPerIteration))
@@ -203,7 +199,7 @@ public class RetroArchMemoryService(UdpClient udpClient) : IMemoryService
 
 				stringBuilder.Append(
 					$"READ_CORE_MEMORY {ConvertAddressToN64(
-						address: readCommand.Address, 
+						address: readCommand.Address,
 						numberOfBytes: readCommand.NumberOfBytes):X8} {readCommand.NumberOfBytes}\n"
 				);
 			}
@@ -213,9 +209,9 @@ public class RetroArchMemoryService(UdpClient udpClient) : IMemoryService
 
 			var responseCounter = 0;
 			while (responseCounter < Math.Min(
-					commandsPerIteration,
-					inMemoryReadCommands.Length - commandsExecuted
-				))
+				       commandsPerIteration,
+				       inMemoryReadCommands.Length - commandsExecuted
+			       ))
 			{
 				var receivedBytes = (await udpClient.ReceiveAsync()).Buffer;
 				var receivedString = Encoding.UTF8.GetString(receivedBytes);
@@ -233,7 +229,7 @@ public class RetroArchMemoryService(UdpClient udpClient) : IMemoryService
 	private async Task<int> WriteMemory(long address, byte[] dataToWrite)
 	{
 		var receivedString = await SendAndReceiveWriteMemory(
-			address: address, 
+			address: address,
 			dataToWrite: dataToWrite);
 
 		var bytesWritten = RetroArchCommandStringUtils.ParseWriteMemoryBytesWritten(
@@ -245,12 +241,12 @@ public class RetroArchMemoryService(UdpClient udpClient) : IMemoryService
 	private async Task<string> SendAndReceiveWriteMemory(long address, byte[] dataToWrite)
 	{
 		var convertedAddress = ConvertAddressToN64(
-			address: address, 
+			address: address,
 			numberOfBytes: dataToWrite.Length);
 		var dataToWriteString = string.Join(' ', dataToWrite.Select(b => $"{b:X2}"));
 		var str = $"WRITE_CORE_MEMORY {convertedAddress:X8} {dataToWriteString}";
 		var bytes = Encoding.UTF8.GetBytes(str);
-		
+
 		udpClient.Send(bytes);
 
 		var receivedBytes = (await udpClient.ReceiveAsync()).Buffer;
@@ -278,7 +274,7 @@ public class RetroArchMemoryService(UdpClient udpClient) : IMemoryService
 	{
 		var outputByteArray = new byte[numberOfBytes];
 		var offset = 8 * (numberOfBytes - 1);
-		
+
 		for (var i = 0; i < numberOfBytes; i++)
 		{
 			outputByteArray[numberOfBytes - i - 1] = (byte)(number >> offset);
