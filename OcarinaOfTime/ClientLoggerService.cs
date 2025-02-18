@@ -25,16 +25,19 @@ public static class ClientLoggerService
 
                 break;
             case ItemSendLogMessage itemSendLogMessage:
-                if (itemSendLogMessage.IsReceiverTheActivePlayer)
+                var sender = itemSendLogMessage.Sender;
+                var receiver = itemSendLogMessage.Receiver;
+                
+                if (sender == receiver)
                 {
-                    WriteColoredText(itemSendLogMessage.Sender.Name, ConsoleColor.Cyan);
+                    WriteColoredText(sender.Name, ConsoleColor.Cyan);
                     Console.Write(" found their ");
                 }
                 else
                 {
-                    WriteColoredText(itemSendLogMessage.Sender.Name, ConsoleColor.Cyan);
+                    WriteColoredText(sender.Name, ConsoleColor.Cyan);
                     Console.Write(" found ");
-                    WriteColoredText(itemSendLogMessage.Receiver.Name, ConsoleColor.Cyan);
+                    WriteColoredText(receiver.Name, ConsoleColor.Cyan);
                     Console.Write("'s ");
                 }
 
