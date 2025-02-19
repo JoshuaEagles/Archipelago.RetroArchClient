@@ -70,7 +70,9 @@ public class OoTClient
 		var loginResult = _apSession.TryConnectAndLogin(
 			game: "Ocarina of Time",
 			name: _connectionSettings.SlotName,
-			itemsHandlingFlags: ItemsHandlingFlags.RemoteItems
+			itemsHandlingFlags: ItemsHandlingFlags.RemoteItems,
+			version: new Version(0, 5, 1),
+			tags: ["AP"]
 		);
 		_archipelagoDeathLinkService = _apSession.CreateDeathLinkService();
 		
@@ -83,6 +85,13 @@ public class OoTClient
 		}
 
 		Console.WriteLine("Connected to Archipelago");
+		Console.ForegroundColor = ConsoleColor.Red;
+		Console.WriteLine("--------NOTICE--------");
+		Console.WriteLine(
+			"Please be aware that due to technical limitations, you cannot send messages through this client to the server!");
+		Console.WriteLine("Please use the Archipelago TextClient instead to send messages to the server.");
+		Console.WriteLine("----------------------");
+		Console.ResetColor();
 	}
 
 	[DoesNotReturn]

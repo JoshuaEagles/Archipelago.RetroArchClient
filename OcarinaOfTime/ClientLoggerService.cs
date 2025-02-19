@@ -65,7 +65,6 @@ public static class ClientLoggerService
                 WriteColoredText(chatLogMessage.Player.Name, ConsoleColor.Cyan);
                 Console.Write($": {chatLogMessage.Message}\n");
                 break;
-            
         }
     }
 
