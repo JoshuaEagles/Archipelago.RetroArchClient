@@ -25,7 +25,7 @@ public class OoTClient
 	private readonly OoTClientDeathLinkService _ootClientDeathLinkService;
 	private readonly PlayerNameService _playerNameService;
 	private readonly ReceiveItemService _receiveItemService;
-	
+
 	public OoTClient()
 	{
 		_connectionSettings = PromptForConnectionSettings();
@@ -71,7 +71,7 @@ public class OoTClient
 			tags: ["AP"]
 		);
 		_archipelagoDeathLinkService = _apSession.CreateDeathLinkService();
-		
+
 		if (!loginResult.Successful)
 		{
 			var loginFailure = (LoginFailure)loginResult;
@@ -114,7 +114,7 @@ public class OoTClient
 				Console.WriteLine("DeathLink: Someone ran out of health.");
 			};
 		}
-		
+
 		// Setup message logging
 		_apSession.MessageLog.OnMessageReceived += ClientLoggerService.LogServerMessage;
 
