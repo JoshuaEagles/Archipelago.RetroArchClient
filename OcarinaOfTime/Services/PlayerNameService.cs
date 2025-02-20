@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Archipelago.RetroArchClient.Services.Interfaces;
 
 namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
@@ -44,10 +41,10 @@ public class PlayerNameService(IMemoryService memoryService)
 		}
 
 		await memoryService.WriteByteArray(
-			address: (uint)nameToWriteAddress, 
+			address: (uint)nameToWriteAddress,
 			dataToWrite: bytesToWrite.Take(4).ToArray());
 		await memoryService.WriteByteArray(
-			address: (uint)nameToWriteAddress + 4,  
+			address: (uint)nameToWriteAddress + 4,
 			dataToWrite: bytesToWrite.Skip(4).Take(4).ToArray());
 	}
 }

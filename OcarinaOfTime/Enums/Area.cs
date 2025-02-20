@@ -53,5 +53,5 @@ public enum Area
 	SpiritTemple,
 	SpiritTempleMq,
 	GanonsCastle,
-	GanonsCastleMq
+	GanonsCastleMq,
 }
