@@ -36,7 +36,7 @@ jobs:
     - name: Upload windows artifact
       uses: actions/upload-artifact@v4.6.0
       with:
-        name: Archipelago.RetroArchClient-Linux
+        name: Archipelago.RetroArchClient-Windows
         path: ./bin/Release/net8.0/win-x64/publish/
         if-no-files-found: warn
         overwrite: true
