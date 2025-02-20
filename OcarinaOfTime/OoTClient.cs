@@ -115,7 +115,7 @@ public class OoTClient
 			_archipelagoDeathLinkService.OnDeathLinkReceived += _ =>
 			{
 				_ootClientDeathLinkService.ReceiveDeathLink();
-				Console.WriteLine("DeathLink: Someone ran out of health...");
+				Console.WriteLine("DeathLink: Someone ran out of health.");
 			};
 		}
 		
