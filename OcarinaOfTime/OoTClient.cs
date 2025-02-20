@@ -25,7 +25,7 @@ public class OoTClient
 	private readonly OoTClientDeathLinkService _ootClientDeathLinkService;
 	private readonly PlayerNameService _playerNameService;
 	private readonly ReceiveItemService _receiveItemService;
-
+	
 	public OoTClient()
 	{
 		_connectionSettings = PromptForConnectionSettings();
@@ -66,10 +66,12 @@ public class OoTClient
 		var loginResult = _apSession.TryConnectAndLogin(
 			game: "Ocarina of Time",
 			name: _connectionSettings.SlotName,
-			itemsHandlingFlags: ItemsHandlingFlags.RemoteItems
+			itemsHandlingFlags: ItemsHandlingFlags.RemoteItems,
+			version: new Version(0, 5, 1),
+			tags: ["AP"]
 		);
 		_archipelagoDeathLinkService = _apSession.CreateDeathLinkService();
-
+		
 		if (!loginResult.Successful)
 		{
 			var loginFailure = (LoginFailure)loginResult;
@@ -79,6 +81,13 @@ public class OoTClient
 		}
 
 		Console.WriteLine("Connected to Archipelago");
+		Console.ForegroundColor = ConsoleColor.Red;
+		Console.WriteLine("--------NOTICE--------");
+		Console.WriteLine(
+			"Please be aware that due to technical limitations, you cannot send messages through this client to the server!");
+		Console.WriteLine("Please use the Archipelago TextClient instead to send messages to the server.");
+		Console.WriteLine("----------------------");
+		Console.ResetColor();
 	}
 
 	[DoesNotReturn]
@@ -102,9 +111,12 @@ public class OoTClient
 			_archipelagoDeathLinkService.OnDeathLinkReceived += _ =>
 			{
 				_ootClientDeathLinkService.ReceiveDeathLink();
-				Console.WriteLine("Death link received");
+				Console.WriteLine("DeathLink: Someone ran out of health.");
 			};
 		}
+		
+		// Setup message logging
+		_apSession.MessageLog.OnMessageReceived += ClientLoggerService.LogServerMessage;
 
 		await _locationCheckService.InitializeMasterQuestHandling();
 		await _locationCheckService.InitializeBigPoesRequired();
@@ -167,7 +179,7 @@ public class OoTClient
 			{
 				var deathLink = new DeathLink(_connectionSettings.SlotName);
 				_archipelagoDeathLinkService.SendDeathLink(deathLink);
-				Console.WriteLine("Death link sent.");
+				Console.WriteLine("DeathLink: Sending death to your friends...");
 			}
 
 			// Handle Game Completion
@@ -359,7 +371,6 @@ public class OoTClient
 		await playerNameService.WritePlayerName(
 			index: 255,
 			name: "APPlayer");
-		Console.WriteLine("Player names written");
 	}
 
 	private async Task<long[]> GetAllCheckedLocationIds(OoTClientSlotData slotData)
