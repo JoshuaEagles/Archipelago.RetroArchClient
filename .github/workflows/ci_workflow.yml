@@ -1,0 +1,42 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Build and Publish Build Artifacts
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Run Linux Build Script
+      run: bash ./BuildScripts/Unix/publish-linux.sh
+    - name: Run Windows Build Script
+      run: bash ./BuildScripts/Unix/publish-win.sh
+    - name: Upload linux artifact
+      uses: actions/upload-artifact@v4.6.0
+      with:
+        name: Archipelago.RetroArchClient-Linux
+        path: ./bin/Release/net8.0/linux-x64/publish/
+        if-no-files-found: warn
+        overwrite: true
+    - name: Upload windows artifact
+      uses: actions/upload-artifact@v4.6.0
+      with:
+        name: Archipelago.RetroArchClient-Linux
+        path: ./bin/Release/net8.0/win-x64/publish/
+        if-no-files-found: warn
+        overwrite: true
