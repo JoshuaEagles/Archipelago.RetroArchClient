@@ -25,7 +25,7 @@ jobs:
     - name: Run Linux Build Script
       run: bash -c "cd ./BuildScripts/Unix/ && ./publish-linux.sh"
     - name: Run Windows Build Script
-      run: bash -c "cd ./BuildScripts/Unix/ && ./BuildScripts/Unix/publish-win.sh"
+      run: bash -c "cd ./BuildScripts/Unix/ && ./publish-win.sh"
     - name: Upload linux artifact
       uses: actions/upload-artifact@v4.6.0
       with:
