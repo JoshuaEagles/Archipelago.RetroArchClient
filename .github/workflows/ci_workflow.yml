@@ -23,20 +23,20 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Run Linux Build Script
-      run: bash ./BuildScripts/Unix/publish-linux.sh
+      run: bash -c "cd ./BuildScripts/Unix/ && ./publish-linux.sh"
     - name: Run Windows Build Script
-      run: bash ./BuildScripts/Unix/publish-win.sh
+      run: bash -c "cd ./BuildScripts/Unix/ && ./publish-win.sh"
     - name: Upload linux artifact
       uses: actions/upload-artifact@v4.6.0
       with:
         name: Archipelago.RetroArchClient-Linux
-        path: ./bin/Release/net8.0/linux-x64/publish/
+        path: ./Archipelago.RetroArchClient/bin/Release/net8.0/linux-x64/publish/
         if-no-files-found: warn
         overwrite: true
     - name: Upload windows artifact
       uses: actions/upload-artifact@v4.6.0
       with:
         name: Archipelago.RetroArchClient-Windows
-        path: ./bin/Release/net8.0/win-x64/publish/
+        path: ./Archipelago.RetroArchClient/bin/Release/net8.0/win-x64/publish/
         if-no-files-found: warn
         overwrite: true
