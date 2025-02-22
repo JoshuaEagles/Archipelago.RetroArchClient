@@ -1,0 +1,61 @@
+﻿locations:
+  - name: Water Temple MQ Longshot Chest
+    type: Chest
+    offset: 0x05
+    bit_to_check: 0x00
+    area: WaterTempleMq
+  - name: Water Temple MQ Map Chest
+    type: Chest
+    offset: 0x05
+    bit_to_check: 0x02
+    area: WaterTempleMq
+  - name: Water Temple MQ Compass Chest
+    type: Chest
+    offset: 0x05
+    bit_to_check: 0x01
+    area: WaterTempleMq
+  - name: Water Temple MQ Central Pillar Chest
+    type: Chest
+    offset: 0x05
+    bit_to_check: 0x06
+    area: WaterTempleMq
+  - name: Water Temple MQ Boss Key Chest
+    type: Chest
+    offset: 0x05
+    bit_to_check: 0x05
+    area: WaterTempleMq
+  - name: Water Temple MQ Freestanding Key
+    type: GroundItem
+    offset: 0x05
+    bit_to_check: 0x01
+    area: WaterTempleMq
+  - name: Water Temple MQ GS Lizalfos Hallway
+    type: Skulltula
+    offset: 0x05
+    bit_to_check: 0x00
+    area: WaterTempleMq
+  - name: Water Temple MQ GS Before Upper Water Switch
+    type: Skulltula
+    offset: 0x05
+    bit_to_check: 0x02
+    area: WaterTempleMq
+  - name: Water Temple MQ GS River
+    type: Skulltula
+    offset: 0x05
+    bit_to_check: 0x01
+    area: WaterTempleMq
+  - name: Water Temple MQ GS Freestanding Key Area
+    type: Skulltula
+    offset: 0x05
+    bit_to_check: 0x03
+    area: WaterTempleMq
+  - name: Water Temple MQ GS Triple Wall Torch
+    type: Skulltula
+    offset: 0x05
+    bit_to_check: 0x04
+    area: WaterTempleMq
+  - name: Water Temple Morpha Heart
+    type: BossItem
+    offset: 0x16
+    bit_to_check: 0x00
+    area: WaterTempleMq

@@ -1,0 +1,96 @@
+locations:
+  - name: Forest Temple First Room Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x03
+    area: ForestTemple
+  - name: Forest Temple First Stalfos Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x00
+    area: ForestTemple
+  - name: Forest Temple Raised Island Courtyard Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x05
+    area: ForestTemple
+  - name: Forest Temple Map Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x01
+    area: ForestTemple
+  - name: Forest Temple Well Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x09
+    area: ForestTemple
+  - name: Forest Temple Eye Switch Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x04
+    area: ForestTemple
+  - name: Forest Temple Boss Key Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x0E
+    area: ForestTemple
+  - name: Forest Temple Floormaster Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x02
+    area: ForestTemple
+  - name: Forest Temple Red Poe Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x0D
+    area: ForestTemple
+  - name: Forest Temple Bow Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x0C
+    area: ForestTemple
+  - name: Forest Temple Blue Poe Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x0F
+    area: ForestTemple
+  - name: Forest Temple Falling Ceiling Room Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x07
+    area: ForestTemple
+  - name: Forest Temple Basement Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x0B
+    area: ForestTemple
+  - name: Forest Temple GS First Room
+    type: Skulltula
+    offset: 0x03
+    bit_to_check: 0x01
+    area: ForestTemple
+  - name: Forest Temple GS Lobby
+    type: Skulltula
+    offset: 0x03
+    bit_to_check: 0x03
+    area: ForestTemple
+  - name: Forest Temple GS Raised Island Courtyard
+    type: Skulltula
+    offset: 0x03
+    bit_to_check: 0x00
+    area: ForestTemple
+  - name: Forest Temple GS Level Island Courtyard
+    type: Skulltula
+    offset: 0x03
+    bit_to_check: 0x02
+    area: ForestTemple
+  - name: Forest Temple GS Basement
+    type: Skulltula
+    offset: 0x03
+    bit_to_check: 0x04
+    area: ForestTemple
+  - name: Forest Temple Phantom Ganon Heart
+    type: BossItem
+    offset: 0x14
+    bit_to_check: 0x00
+    area: ForestTemple

@@ -1,0 +1,91 @@
+locations:
+  - name: Forest Temple MQ First Room Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x03
+    area: ForestTempleMq
+  - name: Forest Temple MQ Wolfos Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x00
+    area: ForestTempleMq
+  - name: Forest Temple MQ Well Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x09
+    area: ForestTempleMq
+  - name: Forest Temple MQ Raised Island Courtyard Lower Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x01
+    area: ForestTempleMq
+  - name: Forest Temple MQ Raised Island Courtyard Upper Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x05
+    area: ForestTempleMq
+  - name: Forest Temple MQ Boss Key Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x0E
+    area: ForestTempleMq
+  - name: Forest Temple MQ Redead Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x02
+    area: ForestTempleMq
+  - name: Forest Temple MQ Map Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x0D
+    area: ForestTempleMq
+  - name: Forest Temple MQ Bow Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x0C
+    area: ForestTempleMq
+  - name: Forest Temple MQ Compass Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x0F
+    area: ForestTempleMq
+  - name: Forest Temple MQ Falling Ceiling Room Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x06
+    area: ForestTempleMq
+  - name: Forest Temple MQ Basement Chest
+    type: Chest
+    offset: 0x03
+    bit_to_check: 0x0B
+    area: ForestTempleMq
+  - name: Forest Temple MQ GS First Hallway
+    type: Skulltula
+    offset: 0x03
+    bit_to_check: 0x01
+    area: ForestTempleMq
+  - name: Forest Temple MQ GS Raised Island Courtyard
+    type: Skulltula
+    offset: 0x03
+    bit_to_check: 0x00
+    area: ForestTempleMq
+  - name: Forest Temple MQ GS Level Island Courtyard
+    type: Skulltula
+    offset: 0x03
+    bit_to_check: 0x02
+    area: ForestTempleMq
+  - name: Forest Temple MQ GS Well
+    type: Skulltula
+    offset: 0x03
+    bit_to_check: 0x03
+    area: ForestTempleMq
+  - name: Forest Temple MQ GS Block Push Room
+    type: Skulltula
+    offset: 0x03
+    bit_to_check: 0x04
+    area: ForestTempleMq
+  - name: Forest Temple Phantom Ganon Heart
+    type: BossItem
+    offset: 0x14
+    bit_to_check: 0x00
+    area: ForestTempleMq

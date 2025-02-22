@@ -1,0 +1,81 @@
+locations:
+  - name: Dodongos Cavern Map Chest
+    type: Chest
+    offset: 0x01
+    bit_to_check: 0x08
+    area: DodongosCavern
+  - name: Dodongos Cavern Compass Chest
+    type: Chest
+    offset: 0x01
+    bit_to_check: 0x05
+    area: DodongosCavern
+  - name: Dodongos Cavern Bomb Flower Platform Chest
+    type: Chest
+    offset: 0x01
+    bit_to_check: 0x06
+    area: DodongosCavern
+  - name: Dodongos Cavern Bomb Bag Chest
+    type: Chest
+    offset: 0x01
+    bit_to_check: 0x04
+    area: DodongosCavern
+  - name: Dodongos Cavern End of Bridge Chest
+    type: Chest
+    offset: 0x01
+    bit_to_check: 0x0A
+    area: DodongosCavern
+  - name: Dodongos Cavern Deku Scrub Lobby
+    type: Scrubsanity
+    offset: 0x01
+    bit_to_check: 0x05
+    area: DodongosCavern
+  - name: Dodongos Cavern Deku Scrub Side Room Near Dodongos
+    type: Scrubsanity
+    offset: 0x01
+    bit_to_check: 0x02
+    area: DodongosCavern
+  - name: Dodongos Cavern Deku Scrub Near Bomb Bag Left
+    type: Scrubsanity
+    offset: 0x01
+    bit_to_check: 0x01
+    area: DodongosCavern
+  - name: Dodongos Cavern Deku Scrub Near Bomb Bag Right
+    type: Scrubsanity
+    offset: 0x01
+    bit_to_check: 0x04
+    area: DodongosCavern
+  - name: Dodongos Cavern GS Side Room Near Lower Lizalfos
+    type: Skulltula
+    offset: 0x01
+    bit_to_check: 0x04
+    area: DodongosCavern
+  - name: Dodongos Cavern GS Scarecrow
+    type: Skulltula
+    offset: 0x01
+    bit_to_check: 0x01
+    area: DodongosCavern
+  - name: Dodongos Cavern GS Alcove Above Stairs
+    type: Skulltula
+    offset: 0x01
+    bit_to_check: 0x02
+    area: DodongosCavern
+  - name: Dodongos Cavern GS Vines Above Stairs
+    type: Skulltula
+    offset: 0x01
+    bit_to_check: 0x00
+    area: DodongosCavern
+  - name: Dodongos Cavern GS Back Room
+    type: Skulltula
+    offset: 0x01
+    bit_to_check: 0x03
+    area: DodongosCavern
+  - name: Dodongos Cavern Boss Room Chest
+    type: Chest
+    offset: 0x12
+    bit_to_check: 0x00
+    area: DodongosCavern
+  - name: Dodongos Cavern King Dodongo Heart
+    type: BossItem
+    offset: 0x12
+    bit_to_check: 0x00
+    area: DodongosCavern

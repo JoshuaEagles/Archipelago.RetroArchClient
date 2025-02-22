@@ -1,0 +1,116 @@
+locations:
+  - name: Shadow Temple Map Chest
+    type: Chest
+    offset: 0x07
+    bit_to_check: 0x01
+    area: ShadowTemple
+  - name: Shadow Temple Hover Boots Chest
+    type: Chest
+    offset: 0x07
+    bit_to_check: 0x07
+    area: ShadowTemple
+  - name: Shadow Temple Compass Chest
+    type: Chest
+    offset: 0x07
+    bit_to_check: 0x03
+    area: ShadowTemple
+  - name: Shadow Temple Early Silver Rupee Chest
+    type: Chest
+    offset: 0x07
+    bit_to_check: 0x02
+    area: ShadowTemple
+  - name: Shadow Temple Invisible Blades Visible Chest
+    type: Chest
+    offset: 0x07
+    bit_to_check: 0x0C
+    area: ShadowTemple
+  - name: Shadow Temple Invisible Blades Invisible Chest
+    type: Chest
+    offset: 0x07
+    bit_to_check: 0x16
+    area: ShadowTemple
+  - name: Shadow Temple Falling Spikes Lower Chest
+    type: Chest
+    offset: 0x07
+    bit_to_check: 0x05
+    area: ShadowTemple
+  - name: Shadow Temple Falling Spikes Upper Chest
+    type: Chest
+    offset: 0x07
+    bit_to_check: 0x06
+    area: ShadowTemple
+  - name: Shadow Temple Falling Spikes Switch Chest
+    type: Chest
+    offset: 0x07
+    bit_to_check: 0x04
+    area: ShadowTemple
+  - name: Shadow Temple Invisible Spikes Chest
+    type: Chest
+    offset: 0x07
+    bit_to_check: 0x09
+    area: ShadowTemple
+  - name: Shadow Temple Freestanding Key
+    type: GroundItem
+    offset: 0x07
+    bit_to_check: 0x01
+    area: ShadowTemple
+  - name: Shadow Temple Wind Hint Chest
+    type: Chest
+    offset: 0x07
+    bit_to_check: 0x15
+    area: ShadowTemple
+  - name: Shadow Temple After Wind Enemy Chest
+    type: Chest
+    offset: 0x07
+    bit_to_check: 0x08
+    area: ShadowTemple
+  - name: Shadow Temple After Wind Hidden Chest
+    type: Chest
+    offset: 0x07
+    bit_to_check: 0x14
+    area: ShadowTemple
+  - name: Shadow Temple Spike Walls Left Chest
+    type: Chest
+    offset: 0x07
+    bit_to_check: 0x0A
+    area: ShadowTemple
+  - name: Shadow Temple Boss Key Chest
+    type: Chest
+    offset: 0x07
+    bit_to_check: 0x0B
+    area: ShadowTemple
+  - name: Shadow Temple Invisible Floormaster Chest
+    type: Chest
+    offset: 0x07
+    bit_to_check: 0x0D
+    area: ShadowTemple
+  - name: Shadow Temple GS Invisible Blades Room
+    type: Skulltula
+    offset: 0x07
+    bit_to_check: 0x03
+    area: ShadowTemple
+  - name: Shadow Temple GS Falling Spikes Room
+    type: Skulltula
+    offset: 0x07
+    bit_to_check: 0x01
+    area: ShadowTemple
+  - name: Shadow Temple GS Single Giant Pot
+    type: Skulltula
+    offset: 0x07
+    bit_to_check: 0x00
+    area: ShadowTemple
+  - name: Shadow Temple GS Near Ship
+    type: Skulltula
+    offset: 0x07
+    bit_to_check: 0x04
+    area: ShadowTemple
+  - name: Shadow Temple GS Triple Giant Pot
+    type: Skulltula
+    offset: 0x07
+    bit_to_check: 0x02
+    area: ShadowTemple
+  - name: Shadow Temple Bongo Bongo Heart
+    type: BossItem
+    offset: 0x18
+    bit_to_check: 0x00
+    area: ShadowTemple

@@ -1,0 +1,51 @@
+﻿locations:
+  - name: Hideout 1 Torch Jail Gerudo Key
+    type: GroundItem
+    offset: 0x0C
+    bit_to_check: 0x0C
+    area: GerudoFortress
+  - name: Hideout 2 Torches Jail Gerudo Key
+    type: GroundItem
+    offset: 0x0C
+    bit_to_check: 0x0F
+    area: GerudoFortress
+  - name: Hideout 3 Torches Jail Gerudo Key
+    type: GroundItem
+    offset: 0x0C
+    bit_to_check: 0x0A
+    area: GerudoFortress
+  - name: Hideout 4 Torches Jail Gerudo Key
+    type: GroundItem
+    offset: 0x0C
+    bit_to_check: 0x0E
+    area: GerudoFortress
+  - name: Hideout Gerudo Membership Card
+    type: MembershipCardCheck
+    offset: 0x0C
+    bit_to_check: 0x02
+    area: GerudoFortress
+  - name: GF Chest
+    type: Chest
+    offset: 0x5D
+    bit_to_check: 0x00
+    area: GerudoFortress
+  - name: GF HBA 1000 Points
+    type: InfoTable
+    offset: 0x33
+    bit_to_check: 0x00
+    area: GerudoFortress
+  - name: GF HBA 1500 Points
+    type: GetInfo
+    offset: 0x00
+    bit_to_check: 0x07
+    area: GerudoFortress
+  - name: GF GS Top Floor
+    type: Skulltula
+    offset: 0x14
+    bit_to_check: 0x01
+    area: GerudoFortress
+  - name: GF GS Archery Range
+    type: Skulltula
+    offset: 0x14
+    bit_to_check: 0x00
+    area: GerudoFortress

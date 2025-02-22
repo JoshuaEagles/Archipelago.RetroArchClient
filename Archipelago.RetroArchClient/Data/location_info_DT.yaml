@@ -1,56 +1,56 @@
 locations:
-  - name: 'Deku Tree Map Chest'
+  - name: Deku Tree Map Chest
     type: Chest
     offset: 0x00
     bit_to_check: 0x03
     area: DekuTree
-  - name: 'Deku Tree Slingshot Room Side Chest'
+  - name: Deku Tree Slingshot Room Side Chest
     type: Chest
     offset: 0x00
     bit_to_check: 0x05
     area: DekuTree
-  - name: 'Deku Tree Slingshot Chest'
+  - name: Deku Tree Slingshot Chest
     type: Chest
     offset: 0x00
     bit_to_check: 0x01
     area: DekuTree
-  - name: 'Deku Tree Compass Chest'
+  - name: Deku Tree Compass Chest
     type: Chest
     offset: 0x00
     bit_to_check: 0x02
     area: DekuTree
-  - name: 'Deku Tree Compass Room Side Chest'
+  - name: Deku Tree Compass Room Side Chest
     type: Chest
     offset: 0x00
     bit_to_check: 0x06
     area: DekuTree
-  - name: 'Deku Tree Basement Chest'
+  - name: Deku Tree Basement Chest
     type: Chest
     offset: 0x00
     bit_to_check: 0x04
     area: DekuTree
-  - name: 'Deku Tree GS Compass Room'
+  - name: Deku Tree GS Compass Room
     type: Skulltula
     offset: 0x00
     bit_to_check: 0x03
     area: DekuTree
-  - name: 'Deku Tree GS Basement Vines'
+  - name: Deku Tree GS Basement Vines
     type: Skulltula
     offset: 0x00
     bit_to_check: 0x02
     area: DekuTree
-  - name: 'Deku Tree GS Basement Gate'
+  - name: Deku Tree GS Basement Gate
     type: Skulltula
     offset: 0x00
     bit_to_check: 0x01
     area: DekuTree
-  - name: 'Deku Tree GS Basement Back Room'
+  - name: Deku Tree GS Basement Back Room
     type: Skulltula
     offset: 0x00
     bit_to_check: 0x00
     area: DekuTree
-  - name: 'Deku Tree Queen Gohma Heart'
+  - name: Deku Tree Queen Gohma Heart
     type: BossItem
     offset: 0x11
-    bit_to_check: 0 # Why is this just 0? This isn't in line with the other scalars...
+    bit_to_check: 0x00
     area: DekuTree

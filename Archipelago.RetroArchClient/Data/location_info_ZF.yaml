@@ -1,0 +1,31 @@
+locations:
+  - name: ZF Great Fairy Reward
+    type: GetInfo
+    offset: 0x02
+    bit_to_check: 0x00
+    area: ZorasFountain
+  - name: ZF Iceberg Freestanding PoH
+    type: GroundItem
+    offset: 0x59
+    bit_to_check: 0x01
+    area: ZorasFountain
+  - name: ZF Bottom Freestanding PoH
+    type: GroundItem
+    offset: 0x59
+    bit_to_check: 0x14
+    area: ZorasFountain
+  - name: ZF GS Above the Log
+    type: Skulltula
+    offset: 0x11
+    bit_to_check: 0x02
+    area: ZorasFountain
+  - name: ZF GS Tree
+    type: Skulltula
+    offset: 0x11
+    bit_to_check: 0x07
+    area: ZorasFountain
+  - name: ZF GS Hidden Cave
+    type: Skulltula
+    offset: 0x11
+    bit_to_check: 0x05
+    area: ZorasFountain

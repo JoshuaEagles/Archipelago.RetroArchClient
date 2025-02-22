@@ -1,0 +1,141 @@
+﻿locations:
+  - name: Spirit Temple MQ Entrance Front Left Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x1A
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Entrance Back Right Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x1F
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Entrance Front Right Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x1B
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Entrance Back Left Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x1E
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Map Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x00
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Map Room Enemy Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x08
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Child Climb North Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x06
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Child Climb South Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x0C
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Compass Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x03
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Silver Block Hallway Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x1C
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Sun Block Room Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x01
+    area: SpiritTempleMq
+  - name: Spirit Temple Silver Gauntlets Chest
+    type: Chest
+    offset: 0x5C
+    bit_to_check: 0x0B
+    area: SpiritTemple
+  - name: Spirit Temple MQ Child Hammer Switch Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x1D
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Statue Room Lullaby Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x0F
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Statue Room Invisible Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x02
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Leever Room Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x04
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Symphony Room Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x07
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Beamos Room Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x19
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Chest Switch Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x18
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Boss Key Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x05
+    area: SpiritTempleMq
+  - name: Spirit Temple Mirror Shield Chest
+    type: Chest
+    offset: 0x5C
+    bit_to_check: 0x09
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ Mirror Puzzle Invisible Chest
+    type: Chest
+    offset: 0x06
+    bit_to_check: 0x12
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ GS Sun Block Room
+    type: Skulltula
+    offset: 0x06
+    bit_to_check: 0x00
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ GS Leever Room
+    type: Skulltula
+    offset: 0x06
+    bit_to_check: 0x01
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ GS Symphony Room
+    type: Skulltula
+    offset: 0x06
+    bit_to_check: 0x03
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ GS Nine Thrones Room West
+    type: Skulltula
+    offset: 0x06
+    bit_to_check: 0x02
+    area: SpiritTempleMq
+  - name: Spirit Temple MQ GS Nine Thrones Room North
+    type: Skulltula
+    offset: 0x06
+    bit_to_check: 0x04
+    area: SpiritTempleMq
+  - name: Spirit Temple Twinrova Heart
+    type: BossItem
+    offset: 0x17
+    bit_to_check: 0x00
+    area: SpiritTempleMq

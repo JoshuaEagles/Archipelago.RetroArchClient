@@ -1,0 +1,16 @@
+﻿locations:
+  - name: Wasteland Bombchu Salesman
+    type: BombchuSalesman
+    offset: 0x5E
+    bit_to_check: 0x01
+    area: HauntedWasteland
+  - name: Wasteland Chest
+    type: Chest
+    offset: 0x5E
+    bit_to_check: 0x00
+    area: HauntedWasteland
+  - name: Wasteland GS
+    type: Skulltula
+    offset: 0x15
+    bit_to_check: 0x01
+    area: HauntedWasteland

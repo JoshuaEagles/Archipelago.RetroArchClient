@@ -1,0 +1,101 @@
+﻿locations:
+  - name: Ganons Castle Forest Trial Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x09
+    area: GanonsCastle
+  - name: Ganons Castle Water Trial Left Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x07
+    area: GanonsCastle
+  - name: Ganons Castle Water Trial Right Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x06
+    area: GanonsCastle
+  - name: Ganons Castle Shadow Trial Front Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x08
+    area: GanonsCastle
+  - name: Ganons Castle Shadow Trial Golden Gauntlets Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x05
+    area: GanonsCastle
+  - name: Ganons Castle Light Trial First Left Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x0C
+    area: GanonsCastle
+  - name: Ganons Castle Light Trial Second Left Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x0B
+    area: GanonsCastle
+  - name: Ganons Castle Light Trial Third Left Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x0D
+    area: GanonsCastle
+  - name: Ganons Castle Light Trial First Right Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x0E
+    area: GanonsCastle
+  - name: Ganons Castle Light Trial Second Right Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x0A
+    area: GanonsCastle
+  - name: Ganons Castle Light Trial Third Right Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x0F
+    area: GanonsCastle
+  - name: Ganons Castle Light Trial Invisible Enemies Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x10
+    area: GanonsCastle
+  - name: Ganons Castle Light Trial Lullaby Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x11
+    area: GanonsCastle
+  - name: Ganons Castle Spirit Trial Crystal Switch Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x12
+    area: GanonsCastle
+  - name: Ganons Castle Spirit Trial Invisible Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x14
+    area: GanonsCastle
+  - name: Ganons Castle Deku Scrub Left
+    type: Scrubsanity
+    offset: 0x0D
+    bit_to_check: 0x09
+    area: GanonsCastle
+  - name: Ganons Castle Deku Scrub Center-Left
+    type: Scrubsanity
+    offset: 0x0D
+    bit_to_check: 0x06
+    area: GanonsCastle
+  - name: Ganons Castle Deku Scrub Center-Right
+    type: Scrubsanity
+    offset: 0x0D
+    bit_to_check: 0x04
+    area: GanonsCastle
+  - name: Ganons Castle Deku Scrub Right
+    type: Scrubsanity
+    offset: 0x0D
+    bit_to_check: 0x08
+    area: GanonsCastle
+  - name: Ganons Tower Boss Key Chest
+    type: Chest
+    offset: 0x0A
+    bit_to_check: 0x0B
+    area: GanonsCastle

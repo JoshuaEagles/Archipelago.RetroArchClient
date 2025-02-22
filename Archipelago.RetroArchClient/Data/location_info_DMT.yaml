@@ -1,0 +1,51 @@
+locations:
+  - name: DMT Freestanding PoH
+    type: GroundItem
+    offset: 0x60
+    bit_to_check: 0x1E
+    area: DeathMountainTrail
+  - name: DMT Chest
+    type: Chest
+    offset: 0x60
+    bit_to_check: 0x01
+    area: DeathMountainTrail
+  - name: DMT Storms Grotto Chest
+    type: Chest
+    offset: 0x3E
+    bit_to_check: 0x17
+    area: DeathMountainTrail
+  - name: DMT Great Fairy Reward
+    type: TrailGreatFairy
+    offset: 0x3B
+    bit_to_check: 0x18
+    area: DeathMountainTrail
+  - name: DMT Biggoron
+    type: BiggoronSword
+    offset: 0x00
+    bit_to_check: 0x00
+    area: DeathMountainTrail
+  - name: DMT Cow Grotto Cow
+    type: Cow
+    offset: 0x3E
+    bit_to_check: 0x18
+    area: DeathMountainTrail
+  - name: DMT GS Near Kak
+    type: Skulltula
+    offset: 0x0F
+    bit_to_check: 0x02
+    area: DeathMountainTrail
+  - name: DMT GS Bean Patch
+    type: Skulltula
+    offset: 0x0F
+    bit_to_check: 0x01
+    area: DeathMountainTrail
+  - name: DMT GS Above Dodongos Cavern
+    type: Skulltula
+    offset: 0x0F
+    bit_to_check: 0x03
+    area: DeathMountainTrail
+  - name: DMT GS Falling Rocks Path
+    type: Skulltula
+    offset: 0x0F
+    bit_to_check: 0x04
+    area: DeathMountainTrail

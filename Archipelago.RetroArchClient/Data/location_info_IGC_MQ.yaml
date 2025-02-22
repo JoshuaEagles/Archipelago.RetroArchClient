@@ -1,0 +1,96 @@
+﻿locations:
+  - name: Ganons Castle MQ Forest Trial Freestanding Key
+    type: GroundItem
+    offset: 0x0D
+    bit_to_check: 0x01
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Forest Trial Eye Switch Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x02
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Forest Trial Frozen Eye Switch Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x03
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Water Trial Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x01
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Shadow Trial Bomb Flower Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x00
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Shadow Trial Eye Switch Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x05
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Light Trial Lullaby Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x04
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Spirit Trial First Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x0A
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Spirit Trial Invisible Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x14
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Spirit Trial Sun Front Left Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x09
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Spirit Trial Sun Back Left Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x08
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Spirit Trial Sun Back Right Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x07
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Spirit Trial Golden Gauntlets Chest
+    type: Chest
+    offset: 0x0D
+    bit_to_check: 0x06
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Deku Scrub Left
+    type: Scrubsanity
+    offset: 0x0D
+    bit_to_check: 0x09
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Deku Scrub Center-Left
+    type: Scrubsanity
+    offset: 0x0D
+    bit_to_check: 0x06
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Deku Scrub Center
+    type: Scrubsanity
+    offset: 0x0D
+    bit_to_check: 0x04
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Deku Scrub Center-Right
+    type: Scrubsanity
+    offset: 0x0D
+    bit_to_check: 0x08
+    area: GanonsCastleMq
+  - name: Ganons Castle MQ Deku Scrub Right
+    type: Scrubsanity
+    offset: 0x0D
+    bit_to_check: 0x01
+    area: GanonsCastleMq
+  - name: Ganons Tower Boss Key Chest
+    type: Chest
+    offset: 0x0A
+    bit_to_check: 0x0B
+    area: GanonsCastleMq

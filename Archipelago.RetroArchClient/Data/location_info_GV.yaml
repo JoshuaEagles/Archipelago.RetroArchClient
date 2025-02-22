@@ -1,0 +1,51 @@
+﻿locations:
+  - name: GV Crate Freestanding PoH
+    type: GroundItem
+    offset: 0x5A
+    bit_to_check: 0x02
+    area: GerudoValley
+  - name: GV Waterfall Freestanding PoH
+    type: GroundItem
+    offset: 0x5A
+    bit_to_check: 0x01
+    area: GerudoValley
+  - name: GV Chest
+    type: Chest
+    offset: 0x5A
+    bit_to_check: 0x00
+    area: GerudoValley
+  - name: GV Deku Scrub Grotto Front
+    type: Scrubsanity
+    offset: 0x1A
+    bit_to_check: 0x09
+    area: GerudoValley
+  - name: GV Deku Scrub Grotto Rear
+    type: Scrubsanity
+    offset: 0x1A
+    bit_to_check: 0x08
+    area: GerudoValley
+  - name: GV Cow
+    type: Cow
+    offset: 0x5A
+    bit_to_check: 0x18
+    area: GerudoValley
+  - name: GV GS Small Bridge
+    type: Skulltula
+    offset: 0x13
+    bit_to_check: 0x01
+    area: GerudoValley
+  - name: GV GS Bean Patch
+    type: Skulltula
+    offset: 0x13
+    bit_to_check: 0x00
+    area: GerudoValley
+  - name: GV GS Behind Tent
+    type: Skulltula
+    offset: 0x13
+    bit_to_check: 0x03
+    area: GerudoValley
+  - name: GV GS Pillar
+    type: Skulltula
+    offset: 0x13
+    bit_to_check: 0x02
+    area: GerudoValley
