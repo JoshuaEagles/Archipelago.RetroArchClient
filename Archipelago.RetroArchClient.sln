@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archipelago.RetroArchClient", "Archipelago.RetroArchClient/Archipelago.RetroArchClient.csproj", "{228A676D-272E-4665-A821-860F7F0D22FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archipelago.RetroArchClient.AvaloniaUI", "Archipelago.RetroArchClient.AvaloniaUI\Archipelago.RetroArchClient.AvaloniaUI.csproj", "{884BCAA7-73AC-4CE0-A3A8-09065E6467A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{228A676D-272E-4665-A821-860F7F0D22FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{228A676D-272E-4665-A821-860F7F0D22FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{228A676D-272E-4665-A821-860F7F0D22FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{884BCAA7-73AC-4CE0-A3A8-09065E6467A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{884BCAA7-73AC-4CE0-A3A8-09065E6467A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{884BCAA7-73AC-4CE0-A3A8-09065E6467A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{884BCAA7-73AC-4CE0-A3A8-09065E6467A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
