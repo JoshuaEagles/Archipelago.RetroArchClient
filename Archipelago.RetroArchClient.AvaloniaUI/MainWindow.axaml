@@ -1,62 +1,56 @@
-<Window xmlns="https://github.com/avaloniaui"
+<Window xmlns="https://github.com/avaloniaui" 
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:v="clr-namespace:Archipelago.RetroArchClient.AvaloniaUI"
+        mc:Ignorable="d"
+        d:DesignWidth="800"
+        d:DesignHeight="450"
         x:Class="Archipelago.RetroArchClient.AvaloniaUI.MainWindow"
         Title="Archipelago.RetroArchClient.AvaloniaUI">
-    <Grid 
-        Margin="8"
-        RowDefinitions="Auto Auto *">
-        <Grid Grid.Row="0" ColumnDefinitions="auto auto auto" RowDefinitions="* *">
-            <TextBlock VerticalAlignment="Center">Archipelago Server Connection Status: <Span Foreground="red" Name="ArchipelagoServerConnectionStatus">Disconnected</Span></TextBlock>
-            <Button Grid.Row="0" Grid.Column="2" Name="ArchipelagoServerConnectButton">Connect</Button>
-            <!-- Idea: print out slot name, server ip, and server port here -->
-            
-            <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">RetroArch Connection Status: <Span Foreground="red" Name="EmulatorConnectionStatus">Disconnected</Span></TextBlock>
-            <Button Grid.Row="1" Grid.Column="2" Name="EmulatorConnectButton">Connect</Button>
+
+    <Grid Margin="8" RowDefinitions="Auto Auto *">
+        <Grid Grid.Row="0" ColumnDefinitions="auto auto auto *" RowDefinitions="* *">
+            <TextBlock VerticalAlignment="Center">
+                Archipelago Server Connection Status:
+                <Span Name="ArchipelagoServerConnectionStatus" Foreground="red">
+                    Disconnected
+                </Span>
+            </TextBlock>
+
+            <Button Name="ArchipelagoServerConnectButton" Grid.Row="0" Grid.Column="2">
+                Connect
+            </Button>
+
+            <TextBlock Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center">
+                EntissOOT@archipelago.gg:12345
+            </TextBlock>
+
+
+            <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">
+                RetroArch Connection Status:
+                <Span Name="EmulatorConnectionStatus" Foreground="red">Disconnected</Span>
+            </TextBlock>
+
+            <Button Name="EmulatorConnectButton" Grid.Row="1" Grid.Column="2">
+                Connect
+            </Button>
         </Grid>
-        
-        <Border
-            Grid.Row="2"
-            BorderBrush="Gray"
-            BorderThickness="4" 
-            VerticalAlignment="Stretch">
+
+        <Border Grid.Row="2" BorderBrush="Gray" BorderThickness="4" VerticalAlignment="Stretch">
             <ScrollViewer>
-                <StackPanel>
-                    <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                        <TextBlock><Span Foreground="blue">Player1</Span> received their <Span Foreground="Green">Iron Boots</Span></TextBlock>
-                    </Border>
-                    <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                        <TextBlock>Player1 received their Iron Boots</TextBlock>
-                    </Border>
-                    <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                        <TextBlock>Player1 received their Iron Boots</TextBlock>
-                    </Border>
-                    <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                        <TextBlock>Player1 received their Iron Boots</TextBlock>
-                    </Border>
-                    <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                        <TextBlock>Player1 received their Iron Boots</TextBlock>
-                    </Border>
-                    <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                        <TextBlock>Player1 received their Iron Boots</TextBlock>
-                    </Border>
-                    <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                        <TextBlock>Player1 received their Iron Boots</TextBlock>
-                    </Border>
-                    <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                        <TextBlock>Player1 received their Iron Boots</TextBlock>
-                    </Border>
-                    <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-                        <TextBlock>Player1 received their Iron Boots</TextBlock>
-                    </Border>
+                <StackPanel Name="LogDisplayStackPanel">
+                    <v:LogLine />
+                    <v:LogLine />
+                    <v:LogLine />
+                    <v:LogLine />
+                    <v:LogLine />
+                    <v:LogLine />
+                    <v:LogLine />
+                    <v:LogLine />
+                    <v:LogLine />
                 </StackPanel>
             </ScrollViewer>
         </Border>
     </Grid>
 </Window>
-
-<!-- What probably makes sense for rendering the output in the 
-client is having a component for each line, rather than using a textarea type thing
-then it'd be easy to customize it thoroughly -->
