@@ -1,86 +1,85 @@
-locations:
-  - name: Dodongos Cavern MQ Map Chest
-    type: Chest
-    offset: 0x01
-    bit_to_check: 0x00
-    area: DodongosCavernMq
-  - name: Dodongos Cavern MQ Bomb Bag Chest
-    type: Chest
-    offset: 0x01
-    bit_to_check: 0x04
-    area: DodongosCavernMq
-  - name: Dodongos Cavern MQ Torch Puzzle Room Chest
-    type: Chest
-    offset: 0x01
-    bit_to_check: 0x03
-    area: DodongosCavernMq
-  - name: Dodongos Cavern MQ Larvae Room Chest
-    type: Chest
-    offset: 0x01
-    bit_to_check: 0x02
-    area: DodongosCavernMq
-  - name: Dodongos Cavern MQ Compass Chest
-    type: Chest
-    offset: 0x01
-    bit_to_check: 0x05
-    area: DodongosCavernMq
-  - name: Dodongos Cavern MQ Under Grave Chest
-    type: Chest
-    offset: 0x01
-    bit_to_check: 0x01
-    area: DodongosCavernMq
-  - name: Dodongos Cavern MQ Deku Scrub Lobby Front
-    type: Scrubsanity
-    offset: 0x01
-    bit_to_check: 0x04
-    area: DodongosCavernMq
-  - name: Dodongos Cavern MQ Deku Scrub Lobby Rear
-    type: Scrubsanity
-    offset: 0x01
-    bit_to_check: 0x02
-    area: DodongosCavernMq
-  - name: Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos
-    type: Scrubsanity
-    offset: 0x01
-    bit_to_check: 0x08
-    area: DodongosCavernMq
-  - name: Dodongos Cavern MQ Deku Scrub Staircase
-    type: Scrubsanity
-    offset: 0x01
-    bit_to_check: 0x05
-    area: DodongosCavernMq
-  - name: Dodongos Cavern MQ GS Scrub Room
-    type: Skulltula
-    offset: 0x01
-    bit_to_check: 0x01
-    area: DodongosCavernMq
-  - name: Dodongos Cavern MQ GS Larvae Room
-    type: Skulltula
-    offset: 0x01
-    bit_to_check: 0x04
-    area: DodongosCavernMq
-  - name: Dodongos Cavern MQ GS Lizalfos Room
-    type: Skulltula
-    offset: 0x01
-    bit_to_check: 0x02
-    area: DodongosCavernMq
-  - name: Dodongos Cavern MQ GS Song of Time Block Room
-    type: Skulltula
-    offset: 0x01
-    bit_to_check: 0x03
-    area: DodongosCavernMq
-  - name: Dodongos Cavern MQ GS Back Area
-    type: Skulltula
-    offset: 0x01
-    bit_to_check: 0x00
-    area: DodongosCavernMq
-  - name: Dodongos Cavern Boss Room Chest
-    type: Chest
-    offset: 0x12
-    bit_to_check: 0x00
-    area: DodongosCavernMq
-  - name: Dodongos Cavern King Dodongo Heart
-    type: BossItem
-    offset: 0x12
-    bit_to_check: 0x00
-    area: DodongosCavernMq
+- name: Dodongos Cavern MQ Map Chest
+  type: Chest
+  offset: 0x01
+  bit_to_check: 0x00
+  area: DodongosCavernMq
+- name: Dodongos Cavern MQ Bomb Bag Chest
+  type: Chest
+  offset: 0x01
+  bit_to_check: 0x04
+  area: DodongosCavernMq
+- name: Dodongos Cavern MQ Torch Puzzle Room Chest
+  type: Chest
+  offset: 0x01
+  bit_to_check: 0x03
+  area: DodongosCavernMq
+- name: Dodongos Cavern MQ Larvae Room Chest
+  type: Chest
+  offset: 0x01
+  bit_to_check: 0x02
+  area: DodongosCavernMq
+- name: Dodongos Cavern MQ Compass Chest
+  type: Chest
+  offset: 0x01
+  bit_to_check: 0x05
+  area: DodongosCavernMq
+- name: Dodongos Cavern MQ Under Grave Chest
+  type: Chest
+  offset: 0x01
+  bit_to_check: 0x01
+  area: DodongosCavernMq
+- name: Dodongos Cavern MQ Deku Scrub Lobby Front
+  type: Scrubsanity
+  offset: 0x01
+  bit_to_check: 0x04
+  area: DodongosCavernMq
+- name: Dodongos Cavern MQ Deku Scrub Lobby Rear
+  type: Scrubsanity
+  offset: 0x01
+  bit_to_check: 0x02
+  area: DodongosCavernMq
+- name: Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos
+  type: Scrubsanity
+  offset: 0x01
+  bit_to_check: 0x08
+  area: DodongosCavernMq
+- name: Dodongos Cavern MQ Deku Scrub Staircase
+  type: Scrubsanity
+  offset: 0x01
+  bit_to_check: 0x05
+  area: DodongosCavernMq
+- name: Dodongos Cavern MQ GS Scrub Room
+  type: Skulltula
+  offset: 0x01
+  bit_to_check: 0x01
+  area: DodongosCavernMq
+- name: Dodongos Cavern MQ GS Larvae Room
+  type: Skulltula
+  offset: 0x01
+  bit_to_check: 0x04
+  area: DodongosCavernMq
+- name: Dodongos Cavern MQ GS Lizalfos Room
+  type: Skulltula
+  offset: 0x01
+  bit_to_check: 0x02
+  area: DodongosCavernMq
+- name: Dodongos Cavern MQ GS Song of Time Block Room
+  type: Skulltula
+  offset: 0x01
+  bit_to_check: 0x03
+  area: DodongosCavernMq
+- name: Dodongos Cavern MQ GS Back Area
+  type: Skulltula
+  offset: 0x01
+  bit_to_check: 0x00
+  area: DodongosCavernMq
+- name: Dodongos Cavern Boss Room Chest
+  type: Chest
+  offset: 0x12
+  bit_to_check: 0x00
+  area: DodongosCavernMq
+- name: Dodongos Cavern King Dodongo Heart
+  type: BossItem
+  offset: 0x12
+  bit_to_check: 0x00
+  area: DodongosCavernMq

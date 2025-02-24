@@ -1,86 +1,85 @@
-locations:
-  - name: Jabu Jabus Belly MQ Map Chest
-    type: Chest
-    offset: 0x02
-    bit_to_check: 0x03
-    area: JabuJabusBellyMq
-  - name: Jabu Jabus Belly MQ First Room Side Chest
-    type: Chest
-    offset: 0x02
-    bit_to_check: 0x05
-    area: JabuJabusBellyMq
-  - name: Jabu Jabus Belly MQ Second Room Lower Chest
-    type: Chest
-    offset: 0x02
-    bit_to_check: 0x02
-    area: JabuJabusBellyMq
-  - name: Jabu Jabus Belly MQ Compass Chest
-    type: Chest
-    offset: 0x02
-    bit_to_check: 0x00
-    area: JabuJabusBellyMq
-  - name: Jabu Jabus Belly MQ Basement Near Switches Chest
-    type: Chest
-    offset: 0x02
-    bit_to_check: 0x08
-    area: JabuJabusBellyMq
-  - name: Jabu Jabus Belly MQ Basement Near Vines Chest
-    type: Chest
-    offset: 0x02
-    bit_to_check: 0x04
-    area: JabuJabusBellyMq
-  - name: Jabu Jabus Belly MQ Boomerang Room Small Chest
-    type: Chest
-    offset: 0x02
-    bit_to_check: 0x01
-    area: JabuJabusBellyMq
-  - name: Jabu Jabus Belly MQ Boomerang Chest
-    type: Chest
-    offset: 0x02
-    bit_to_check: 0x06
-    area: JabuJabusBellyMq
-  - name: Jabu Jabus Belly MQ Falling Like Like Room Chest
-    type: Chest
-    offset: 0x02
-    bit_to_check: 0x09
-    area: JabuJabusBellyMq
-  - name: Jabu Jabus Belly MQ Second Room Upper Chest
-    type: Chest
-    offset: 0x02
-    bit_to_check: 0x07
-    area: JabuJabusBellyMq
-  - name: Jabu Jabus Belly MQ Near Boss Chest
-    type: Chest
-    offset: 0x02
-    bit_to_check: 0x0A
-    area: JabuJabusBellyMq
-  - name: Jabu Jabus Belly MQ Cow
-    type: Cow
-    offset: 0x02
-    bit_to_check: 0x18
-    area: JabuJabusBellyMq
-  - name: Jabu Jabus Belly MQ GS Boomerang Chest Room
-    type: Skulltula
-    offset: 0x02
-    bit_to_check: 0x00
-    area: JabuJabusBellyMq
-  - name: Jabu Jabus Belly MQ GS Tailpasaran Room
-    type: Skulltula
-    offset: 0x02
-    bit_to_check: 0x02
-    area: JabuJabusBellyMq
-  - name: Jabu Jabus Belly MQ GS Invisible Enemies Room
-    type: Skulltula
-    offset: 0x02
-    bit_to_check: 0x03
-    area: JabuJabusBellyMq
-  - name: Jabu Jabus Belly MQ GS Near Boss
-    type: Skulltula
-    offset: 0x02
-    bit_to_check: 0x01
-    area: JabuJabusBellyMq
-  - name: Jabu Jabus Belly Barinade Heart
-    type: BossItem
-    offset: 0x13
-    bit_to_check: 0x00
-    area: JabuJabusBellyMq
+- name: Jabu Jabus Belly MQ Map Chest
+  type: Chest
+  offset: 0x02
+  bit_to_check: 0x03
+  area: JabuJabusBellyMq
+- name: Jabu Jabus Belly MQ First Room Side Chest
+  type: Chest
+  offset: 0x02
+  bit_to_check: 0x05
+  area: JabuJabusBellyMq
+- name: Jabu Jabus Belly MQ Second Room Lower Chest
+  type: Chest
+  offset: 0x02
+  bit_to_check: 0x02
+  area: JabuJabusBellyMq
+- name: Jabu Jabus Belly MQ Compass Chest
+  type: Chest
+  offset: 0x02
+  bit_to_check: 0x00
+  area: JabuJabusBellyMq
+- name: Jabu Jabus Belly MQ Basement Near Switches Chest
+  type: Chest
+  offset: 0x02
+  bit_to_check: 0x08
+  area: JabuJabusBellyMq
+- name: Jabu Jabus Belly MQ Basement Near Vines Chest
+  type: Chest
+  offset: 0x02
+  bit_to_check: 0x04
+  area: JabuJabusBellyMq
+- name: Jabu Jabus Belly MQ Boomerang Room Small Chest
+  type: Chest
+  offset: 0x02
+  bit_to_check: 0x01
+  area: JabuJabusBellyMq
+- name: Jabu Jabus Belly MQ Boomerang Chest
+  type: Chest
+  offset: 0x02
+  bit_to_check: 0x06
+  area: JabuJabusBellyMq
+- name: Jabu Jabus Belly MQ Falling Like Like Room Chest
+  type: Chest
+  offset: 0x02
+  bit_to_check: 0x09
+  area: JabuJabusBellyMq
+- name: Jabu Jabus Belly MQ Second Room Upper Chest
+  type: Chest
+  offset: 0x02
+  bit_to_check: 0x07
+  area: JabuJabusBellyMq
+- name: Jabu Jabus Belly MQ Near Boss Chest
+  type: Chest
+  offset: 0x02
+  bit_to_check: 0x0A
+  area: JabuJabusBellyMq
+- name: Jabu Jabus Belly MQ Cow
+  type: Cow
+  offset: 0x02
+  bit_to_check: 0x18
+  area: JabuJabusBellyMq
+- name: Jabu Jabus Belly MQ GS Boomerang Chest Room
+  type: Skulltula
+  offset: 0x02
+  bit_to_check: 0x00
+  area: JabuJabusBellyMq
+- name: Jabu Jabus Belly MQ GS Tailpasaran Room
+  type: Skulltula
+  offset: 0x02
+  bit_to_check: 0x02
+  area: JabuJabusBellyMq
+- name: Jabu Jabus Belly MQ GS Invisible Enemies Room
+  type: Skulltula
+  offset: 0x02
+  bit_to_check: 0x03
+  area: JabuJabusBellyMq
+- name: Jabu Jabus Belly MQ GS Near Boss
+  type: Skulltula
+  offset: 0x02
+  bit_to_check: 0x01
+  area: JabuJabusBellyMq
+- name: Jabu Jabus Belly Barinade Heart
+  type: BossItem
+  offset: 0x13
+  bit_to_check: 0x00
+  area: JabuJabusBellyMq

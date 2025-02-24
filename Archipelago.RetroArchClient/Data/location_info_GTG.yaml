@@ -1,111 +1,110 @@
-﻿locations:
-  - name: Gerudo Training Ground Lobby Left Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x13
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Lobby Right Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x07
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Stalfos Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x00
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Before Heavy Block Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x11
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Heavy Block First Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x0F
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Heavy Block Second Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x0E
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Heavy Block Third Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x14
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Heavy Block Fourth Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x02
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Eye Statue Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x03
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Near Scarecrow Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x04
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Hammer Room Clear Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x12
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Hammer Room Switch Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x10
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Freestanding Key
-    type: GroundItem
-    offset: 0x0B
-    bit_to_check: 0x01
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Maze Right Central Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x05
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Maze Right Side Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x08
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Underwater Silver Rupee Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x0D
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Beamos Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x01
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Hidden Ceiling Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x0B
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Maze Path First Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x06
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Maze Path Second Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x0A
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Maze Path Third Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x09
-    area: GerudoTrainingGround
-  - name: Gerudo Training Ground Maze Path Final Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x0C
-    area: GerudoTrainingGround
+﻿- name: Gerudo Training Ground Lobby Left Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x13
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Lobby Right Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x07
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Stalfos Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x00
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Before Heavy Block Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x11
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Heavy Block First Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x0F
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Heavy Block Second Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x0E
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Heavy Block Third Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x14
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Heavy Block Fourth Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x02
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Eye Statue Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x03
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Near Scarecrow Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x04
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Hammer Room Clear Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x12
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Hammer Room Switch Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x10
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Freestanding Key
+  type: GroundItem
+  offset: 0x0B
+  bit_to_check: 0x01
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Maze Right Central Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x05
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Maze Right Side Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x08
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Underwater Silver Rupee Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x0D
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Beamos Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x01
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Hidden Ceiling Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x0B
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Maze Path First Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x06
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Maze Path Second Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x0A
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Maze Path Third Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x09
+  area: GerudoTrainingGround
+- name: Gerudo Training Ground Maze Path Final Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x0C
+  area: GerudoTrainingGround

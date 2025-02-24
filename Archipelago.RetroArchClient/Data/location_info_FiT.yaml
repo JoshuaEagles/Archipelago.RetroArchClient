@@ -1,101 +1,100 @@
-locations:
-  - name: Fire Temple Near Boss Chest
-    type: Chest
-    offset: 0x04
-    bit_to_check: 0x01
-    area: FireTemple
-  - name: Fire Temple Flare Dancer Chest
-    type: Chest
-    offset: 0x04
-    bit_to_check: 0x00
-    area: FireTemple
-  - name: Fire Temple Boss Key Chest
-    type: Chest
-    offset: 0x04
-    bit_to_check: 0x0C
-    area: FireTemple
-  - name: Fire Temple Big Lava Room Lower Open Door Chest
-    type: Chest
-    offset: 0x04
-    bit_to_check: 0x04
-    area: FireTemple
-  - name: Fire Temple Big Lava Room Blocked Door Chest
-    type: Chest
-    offset: 0x04
-    bit_to_check: 0x02
-    area: FireTemple
-  - name: Fire Temple Boulder Maze Lower Chest
-    type: Chest
-    offset: 0x04
-    bit_to_check: 0x03
-    area: FireTemple
-  - name: Fire Temple Boulder Maze Side Room Chest
-    type: Chest
-    offset: 0x04
-    bit_to_check: 0x08
-    area: FireTemple
-  - name: Fire Temple Map Chest
-    type: Chest
-    offset: 0x04
-    bit_to_check: 0x0A
-    area: FireTemple
-  - name: Fire Temple Boulder Maze Shortcut Chest
-    type: Chest
-    offset: 0x04
-    bit_to_check: 0x0B
-    area: FireTemple
-  - name: Fire Temple Boulder Maze Upper Chest
-    type: Chest
-    offset: 0x04
-    bit_to_check: 0x06
-    area: FireTemple
-  - name: Fire Temple Scarecrow Chest
-    type: Chest
-    offset: 0x04
-    bit_to_check: 0x0D
-    area: FireTemple
-  - name: Fire Temple Compass Chest
-    type: Chest
-    offset: 0x04
-    bit_to_check: 0x07
-    area: FireTemple
-  - name: Fire Temple Megaton Hammer Chest
-    type: Chest
-    offset: 0x04
-    bit_to_check: 0x05
-    area: FireTemple
-  - name: Fire Temple Highest Goron Chest
-    type: Chest
-    offset: 0x04
-    bit_to_check: 0x09
-    area: FireTemple
-  - name: Fire Temple GS Boss Key Loop
-    type: Skulltula
-    offset: 0x04
-    bit_to_check: 0x01
-    area: FireTemple
-  - name: Fire Temple GS Song of Time Room
-    type: Skulltula
-    offset: 0x04
-    bit_to_check: 0x00
-    area: FireTemple
-  - name: Fire Temple GS Boulder Maze
-    type: Skulltula
-    offset: 0x04
-    bit_to_check: 0x02
-    area: FireTemple
-  - name: Fire Temple GS Scarecrow Climb
-    type: Skulltula
-    offset: 0x04
-    bit_to_check: 0x04
-    area: FireTemple
-  - name: Fire Temple GS Scarecrow Top
-    type: Skulltula
-    offset: 0x04
-    bit_to_check: 0x03
-    area: FireTemple
-  - name: Fire Temple Volvagia Heart
-    type: BossItem
-    offset: 0x15
-    bit_to_check: 0x00
-    area: FireTemple
+- name: Fire Temple Near Boss Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x01
+  area: FireTemple
+- name: Fire Temple Flare Dancer Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x00
+  area: FireTemple
+- name: Fire Temple Boss Key Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x0C
+  area: FireTemple
+- name: Fire Temple Big Lava Room Lower Open Door Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x04
+  area: FireTemple
+- name: Fire Temple Big Lava Room Blocked Door Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x02
+  area: FireTemple
+- name: Fire Temple Boulder Maze Lower Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x03
+  area: FireTemple
+- name: Fire Temple Boulder Maze Side Room Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x08
+  area: FireTemple
+- name: Fire Temple Map Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x0A
+  area: FireTemple
+- name: Fire Temple Boulder Maze Shortcut Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x0B
+  area: FireTemple
+- name: Fire Temple Boulder Maze Upper Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x06
+  area: FireTemple
+- name: Fire Temple Scarecrow Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x0D
+  area: FireTemple
+- name: Fire Temple Compass Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x07
+  area: FireTemple
+- name: Fire Temple Megaton Hammer Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x05
+  area: FireTemple
+- name: Fire Temple Highest Goron Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x09
+  area: FireTemple
+- name: Fire Temple GS Boss Key Loop
+  type: Skulltula
+  offset: 0x04
+  bit_to_check: 0x01
+  area: FireTemple
+- name: Fire Temple GS Song of Time Room
+  type: Skulltula
+  offset: 0x04
+  bit_to_check: 0x00
+  area: FireTemple
+- name: Fire Temple GS Boulder Maze
+  type: Skulltula
+  offset: 0x04
+  bit_to_check: 0x02
+  area: FireTemple
+- name: Fire Temple GS Scarecrow Climb
+  type: Skulltula
+  offset: 0x04
+  bit_to_check: 0x04
+  area: FireTemple
+- name: Fire Temple GS Scarecrow Top
+  type: Skulltula
+  offset: 0x04
+  bit_to_check: 0x03
+  area: FireTemple
+- name: Fire Temple Volvagia Heart
+  type: BossItem
+  offset: 0x15
+  bit_to_check: 0x00
+  area: FireTemple

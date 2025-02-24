@@ -1,86 +1,85 @@
-locations:
-  - name: ZR Magic Bean Salesman
-    type: BeanSale
-    offset: 0x54
-    bit_to_check: 0x01
-    area: ZorasRiver
-  - name: ZR Open Grotto Chest
-    type: Chest
-    offset: 0x3E
-    bit_to_check: 0x09
-    area: ZorasRiver
-  - name: ZR Frogs in the Rain
-    type: Event
-    offset: 0x0D
-    bit_to_check: 0x06
-    area: ZorasRiver
-  - name: ZR Frogs Ocarina Game
-    type: Event
-    offset: 0x0D
-    bit_to_check: 0x00
-    area: ZorasRiver
-  - name: ZR Near Open Grotto Freestanding PoH
-    type: GroundItem
-    offset: 0x54
-    bit_to_check: 0x04
-    area: ZorasRiver
-  - name: ZR Near Domain Freestanding PoH
-    type: GroundItem
-    offset: 0x54
-    bit_to_check: 0x0B
-    area: ZorasRiver
-  - name: ZR Deku Scrub Grotto Front
-    type: Scrubsanity
-    offset: 0x15
-    bit_to_check: 0x09
-    area: ZorasRiver
-  - name: ZR Deku Scrub Grotto Rear
-    type: Scrubsanity
-    offset: 0x15
-    bit_to_check: 0x08
-    area: ZorasRiver
-  - name: ZR Frogs Zeldas Lullaby
-    type: Event
-    offset: 0x0D
-    bit_to_check: 0x01
-    area: ZorasRiver
-  - name: ZR Frogs Eponas Song
-    type: Event
-    offset: 0x0D
-    bit_to_check: 0x02
-    area: ZorasRiver
-  - name: ZR Frogs Suns Song
-    type: Event
-    offset: 0x0D
-    bit_to_check: 0x03
-    area: ZorasRiver
-  - name: ZR Frogs Sarias Song
-    type: Event
-    offset: 0x0D
-    bit_to_check: 0x04
-    area: ZorasRiver
-  - name: ZR Frogs Song of Time
-    type: Event
-    offset: 0x0D
-    bit_to_check: 0x05
-    area: ZorasRiver
-  - name: ZR GS Tree
-    type: Skulltula
-    offset: 0x11
-    bit_to_check: 0x01
-    area: ZorasRiver
-  - name: ZR GS Ladder
-    type: Skulltula
-    offset: 0x11
-    bit_to_check: 0x00
-    area: ZorasRiver
-  - name: ZR GS Near Raised Grottos
-    type: Skulltula
-    offset: 0x11
-    bit_to_check: 0x04
-    area: ZorasRiver
-  - name: ZR GS Above Bridge
-    type: Skulltula
-    offset: 0x11
-    bit_to_check: 0x03
-    area: ZorasRiver
+- name: ZR Magic Bean Salesman
+  type: BeanSale
+  offset: 0x54
+  bit_to_check: 0x01
+  area: ZorasRiver
+- name: ZR Open Grotto Chest
+  type: Chest
+  offset: 0x3E
+  bit_to_check: 0x09
+  area: ZorasRiver
+- name: ZR Frogs in the Rain
+  type: Event
+  offset: 0x0D
+  bit_to_check: 0x06
+  area: ZorasRiver
+- name: ZR Frogs Ocarina Game
+  type: Event
+  offset: 0x0D
+  bit_to_check: 0x00
+  area: ZorasRiver
+- name: ZR Near Open Grotto Freestanding PoH
+  type: GroundItem
+  offset: 0x54
+  bit_to_check: 0x04
+  area: ZorasRiver
+- name: ZR Near Domain Freestanding PoH
+  type: GroundItem
+  offset: 0x54
+  bit_to_check: 0x0B
+  area: ZorasRiver
+- name: ZR Deku Scrub Grotto Front
+  type: Scrubsanity
+  offset: 0x15
+  bit_to_check: 0x09
+  area: ZorasRiver
+- name: ZR Deku Scrub Grotto Rear
+  type: Scrubsanity
+  offset: 0x15
+  bit_to_check: 0x08
+  area: ZorasRiver
+- name: ZR Frogs Zeldas Lullaby
+  type: Event
+  offset: 0x0D
+  bit_to_check: 0x01
+  area: ZorasRiver
+- name: ZR Frogs Eponas Song
+  type: Event
+  offset: 0x0D
+  bit_to_check: 0x02
+  area: ZorasRiver
+- name: ZR Frogs Suns Song
+  type: Event
+  offset: 0x0D
+  bit_to_check: 0x03
+  area: ZorasRiver
+- name: ZR Frogs Sarias Song
+  type: Event
+  offset: 0x0D
+  bit_to_check: 0x04
+  area: ZorasRiver
+- name: ZR Frogs Song of Time
+  type: Event
+  offset: 0x0D
+  bit_to_check: 0x05
+  area: ZorasRiver
+- name: ZR GS Tree
+  type: Skulltula
+  offset: 0x11
+  bit_to_check: 0x01
+  area: ZorasRiver
+- name: ZR GS Ladder
+  type: Skulltula
+  offset: 0x11
+  bit_to_check: 0x00
+  area: ZorasRiver
+- name: ZR GS Near Raised Grottos
+  type: Skulltula
+  offset: 0x11
+  bit_to_check: 0x04
+  area: ZorasRiver
+- name: ZR GS Above Bridge
+  type: Skulltula
+  offset: 0x11
+  bit_to_check: 0x03
+  area: ZorasRiver

@@ -1,66 +1,65 @@
-locations:
-  - name: Deku Tree MQ Map Chest
-    type: Chest
-    offset: 0x00
-    bit_to_check: 0x03
-    area: DekuTreeMq
-  - name: Deku Tree MQ Slingshot Chest
-    type: Chest
-    offset: 0x00
-    bit_to_check: 0x06
-    area: DekuTreeMq
-  - name: Deku Tree MQ Slingshot Room Back Chest
-    type: Chest
-    offset: 0x00
-    bit_to_check: 0x02
-    area: DekuTreeMq
-  - name: Deku Tree MQ Compass Chest
-    type: Chest
-    offset: 0x00
-    bit_to_check: 0x01
-    area: DekuTreeMq
-  - name: Deku Tree MQ Basement Chest
-    type: Chest
-    offset: 0x00
-    bit_to_check: 0x04
-    area: DekuTreeMq
-  - name: Deku Tree MQ Before Spinning Log Chest
-    type: Chest
-    offset: 0x00
-    bit_to_check: 0x05
-    area: DekuTreeMq
-  - name: Deku Tree MQ After Spinning Log Chest
-    type: Chest
-    offset: 0x00
-    bit_to_check: 0x00
-    area: DekuTreeMq
-  - name: Deku Tree MQ Deku Scrub
-    type: Scrubsanity
-    offset: 0x00
-    bit_to_check: 0x05
-    area: DekuTreeMq
-  - name: Deku Tree MQ GS Lobby
-    type: Skulltula
-    offset: 0x00
-    bit_to_check: 0x01
-    area: DekuTreeMq
-  - name: Deku Tree MQ GS Compass Room
-    type: Skulltula
-    offset: 0x00
-    bit_to_check: 0x03
-    area: DekuTreeMq
-  - name: Deku Tree MQ GS Basement Graves Room
-    type: Skulltula
-    offset: 0x00
-    bit_to_check: 0x02
-    area: DekuTreeMq
-  - name: Deku Tree MQ GS Basement Back Room
-    type: Skulltula
-    offset: 0x00
-    bit_to_check: 0x00
-    area: DekuTreeMq
-  - name: Deku Tree Queen Gohma Heart
-    type: BossItem
-    offset: 0x11
-    bit_to_check: 0x00
-    area: DekuTreeMq
+- name: Deku Tree MQ Map Chest
+  type: Chest
+  offset: 0x00
+  bit_to_check: 0x03
+  area: DekuTreeMq
+- name: Deku Tree MQ Slingshot Chest
+  type: Chest
+  offset: 0x00
+  bit_to_check: 0x06
+  area: DekuTreeMq
+- name: Deku Tree MQ Slingshot Room Back Chest
+  type: Chest
+  offset: 0x00
+  bit_to_check: 0x02
+  area: DekuTreeMq
+- name: Deku Tree MQ Compass Chest
+  type: Chest
+  offset: 0x00
+  bit_to_check: 0x01
+  area: DekuTreeMq
+- name: Deku Tree MQ Basement Chest
+  type: Chest
+  offset: 0x00
+  bit_to_check: 0x04
+  area: DekuTreeMq
+- name: Deku Tree MQ Before Spinning Log Chest
+  type: Chest
+  offset: 0x00
+  bit_to_check: 0x05
+  area: DekuTreeMq
+- name: Deku Tree MQ After Spinning Log Chest
+  type: Chest
+  offset: 0x00
+  bit_to_check: 0x00
+  area: DekuTreeMq
+- name: Deku Tree MQ Deku Scrub
+  type: Scrubsanity
+  offset: 0x00
+  bit_to_check: 0x05
+  area: DekuTreeMq
+- name: Deku Tree MQ GS Lobby
+  type: Skulltula
+  offset: 0x00
+  bit_to_check: 0x01
+  area: DekuTreeMq
+- name: Deku Tree MQ GS Compass Room
+  type: Skulltula
+  offset: 0x00
+  bit_to_check: 0x03
+  area: DekuTreeMq
+- name: Deku Tree MQ GS Basement Graves Room
+  type: Skulltula
+  offset: 0x00
+  bit_to_check: 0x02
+  area: DekuTreeMq
+- name: Deku Tree MQ GS Basement Back Room
+  type: Skulltula
+  offset: 0x00
+  bit_to_check: 0x00
+  area: DekuTreeMq
+- name: Deku Tree Queen Gohma Heart
+  type: BossItem
+  offset: 0x11
+  bit_to_check: 0x00
+  area: DekuTreeMq

@@ -1,131 +1,130 @@
-locations:
-  - name: Shadow Temple MQ Early Gibdos Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x03
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Map Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x02
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Near Ship Invisible Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x0E
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Compass Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x01
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Hover Boots Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x07
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Invisible Blades Invisible Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x16
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Invisible Blades Visible Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x0C
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Beamos Silver Rupees Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x0F
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Falling Spikes Lower Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x05
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Falling Spikes Upper Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x06
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Falling Spikes Switch Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x04
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Invisible Spikes Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x09
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Stalfos Room Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x10
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Wind Hint Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x15
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ After Wind Hidden Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x14
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ After Wind Enemy Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x08
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Boss Key Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x0B
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Spike Walls Left Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x0A
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Freestanding Key
-    type: GroundItem
-    offset: 0x07
-    bit_to_check: 0x06
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ Bomb Flower Chest
-    type: Chest
-    offset: 0x07
-    bit_to_check: 0x0D
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ GS Falling Spikes Room
-    type: Skulltula
-    offset: 0x07
-    bit_to_check: 0x01
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ GS Wind Hint Room
-    type: Skulltula
-    offset: 0x07
-    bit_to_check: 0x00
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ GS After Wind
-    type: Skulltula
-    offset: 0x07
-    bit_to_check: 0x03
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ GS After Ship
-    type: Skulltula
-    offset: 0x07
-    bit_to_check: 0x04
-    area: ShadowTempleMq
-  - name: Shadow Temple MQ GS Near Boss
-    type: Skulltula
-    offset: 0x07
-    bit_to_check: 0x02
-    area: ShadowTempleMq
-  - name: Shadow Temple Bongo Bongo Heart
-    type: BossItem
-    offset: 0x18
-    bit_to_check: 0x00
-    area: ShadowTempleMq
+- name: Shadow Temple MQ Early Gibdos Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x03
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Map Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x02
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Near Ship Invisible Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x0E
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Compass Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x01
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Hover Boots Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x07
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Invisible Blades Invisible Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x16
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Invisible Blades Visible Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x0C
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Beamos Silver Rupees Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x0F
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Falling Spikes Lower Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x05
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Falling Spikes Upper Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x06
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Falling Spikes Switch Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x04
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Invisible Spikes Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x09
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Stalfos Room Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x10
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Wind Hint Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x15
+  area: ShadowTempleMq
+- name: Shadow Temple MQ After Wind Hidden Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x14
+  area: ShadowTempleMq
+- name: Shadow Temple MQ After Wind Enemy Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x08
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Boss Key Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x0B
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Spike Walls Left Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x0A
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Freestanding Key
+  type: GroundItem
+  offset: 0x07
+  bit_to_check: 0x06
+  area: ShadowTempleMq
+- name: Shadow Temple MQ Bomb Flower Chest
+  type: Chest
+  offset: 0x07
+  bit_to_check: 0x0D
+  area: ShadowTempleMq
+- name: Shadow Temple MQ GS Falling Spikes Room
+  type: Skulltula
+  offset: 0x07
+  bit_to_check: 0x01
+  area: ShadowTempleMq
+- name: Shadow Temple MQ GS Wind Hint Room
+  type: Skulltula
+  offset: 0x07
+  bit_to_check: 0x00
+  area: ShadowTempleMq
+- name: Shadow Temple MQ GS After Wind
+  type: Skulltula
+  offset: 0x07
+  bit_to_check: 0x03
+  area: ShadowTempleMq
+- name: Shadow Temple MQ GS After Ship
+  type: Skulltula
+  offset: 0x07
+  bit_to_check: 0x04
+  area: ShadowTempleMq
+- name: Shadow Temple MQ GS Near Boss
+  type: Skulltula
+  offset: 0x07
+  bit_to_check: 0x02
+  area: ShadowTempleMq
+- name: Shadow Temple Bongo Bongo Heart
+  type: BossItem
+  offset: 0x18
+  bit_to_check: 0x00
+  area: ShadowTempleMq

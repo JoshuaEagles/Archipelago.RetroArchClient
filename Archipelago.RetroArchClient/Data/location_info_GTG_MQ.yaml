@@ -1,86 +1,85 @@
-﻿locations:
-  - name: Gerudo Training Ground MQ Lobby Left Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x13
-    area: GerudoTrainingGroundMq
-  - name: Gerudo Training Ground MQ Lobby Right Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x07
-    area: GerudoTrainingGroundMq
-  - name: Gerudo Training Ground MQ First Iron Knuckle Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x00
-    area: GerudoTrainingGroundMq
-  - name: Gerudo Training Ground MQ Before Heavy Block Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x11
-    area: GerudoTrainingGroundMq
-  - name: Gerudo Training Ground MQ Heavy Block Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x02
-    area: GerudoTrainingGroundMq
-  - name: Gerudo Training Ground MQ Eye Statue Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x03
-    area: GerudoTrainingGroundMq
-  - name: Gerudo Training Ground MQ Ice Arrows Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x04
-    area: GerudoTrainingGroundMq
-  - name: Gerudo Training Ground MQ Second Iron Knuckle Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x12
-    area: GerudoTrainingGroundMq
-  - name: Gerudo Training Ground MQ Flame Circle Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x0E
-    area: GerudoTrainingGroundMq
-  - name: Gerudo Training Ground MQ Maze Right Central Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x05
-    area: GerudoTrainingGroundMq
-  - name: Gerudo Training Ground MQ Maze Right Side Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x08
-    area: GerudoTrainingGroundMq
-  - name: Gerudo Training Ground MQ Underwater Silver Rupee Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x0D
-    area: GerudoTrainingGroundMq
-  - name: Gerudo Training Ground MQ Dinolfos Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x01
-    area: GerudoTrainingGroundMq
-  - name: Gerudo Training Ground MQ Hidden Ceiling Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x0B
-    area: GerudoTrainingGroundMq
-  - name: Gerudo Training Ground MQ Maze Path First Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x06
-    area: GerudoTrainingGroundMq
-  - name: Gerudo Training Ground MQ Maze Path Second Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x0A
-    area: GerudoTrainingGroundMq
-  - name: Gerudo Training Ground MQ Maze Path Third Chest
-    type: Chest
-    offset: 0x0B
-    bit_to_check: 0x09
-    area: GerudoTrainingGroundMq
+﻿- name: Gerudo Training Ground MQ Lobby Left Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x13
+  area: GerudoTrainingGroundMq
+- name: Gerudo Training Ground MQ Lobby Right Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x07
+  area: GerudoTrainingGroundMq
+- name: Gerudo Training Ground MQ First Iron Knuckle Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x00
+  area: GerudoTrainingGroundMq
+- name: Gerudo Training Ground MQ Before Heavy Block Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x11
+  area: GerudoTrainingGroundMq
+- name: Gerudo Training Ground MQ Heavy Block Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x02
+  area: GerudoTrainingGroundMq
+- name: Gerudo Training Ground MQ Eye Statue Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x03
+  area: GerudoTrainingGroundMq
+- name: Gerudo Training Ground MQ Ice Arrows Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x04
+  area: GerudoTrainingGroundMq
+- name: Gerudo Training Ground MQ Second Iron Knuckle Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x12
+  area: GerudoTrainingGroundMq
+- name: Gerudo Training Ground MQ Flame Circle Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x0E
+  area: GerudoTrainingGroundMq
+- name: Gerudo Training Ground MQ Maze Right Central Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x05
+  area: GerudoTrainingGroundMq
+- name: Gerudo Training Ground MQ Maze Right Side Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x08
+  area: GerudoTrainingGroundMq
+- name: Gerudo Training Ground MQ Underwater Silver Rupee Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x0D
+  area: GerudoTrainingGroundMq
+- name: Gerudo Training Ground MQ Dinolfos Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x01
+  area: GerudoTrainingGroundMq
+- name: Gerudo Training Ground MQ Hidden Ceiling Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x0B
+  area: GerudoTrainingGroundMq
+- name: Gerudo Training Ground MQ Maze Path First Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x06
+  area: GerudoTrainingGroundMq
+- name: Gerudo Training Ground MQ Maze Path Second Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x0A
+  area: GerudoTrainingGroundMq
+- name: Gerudo Training Ground MQ Maze Path Third Chest
+  type: Chest
+  offset: 0x0B
+  bit_to_check: 0x09
+  area: GerudoTrainingGroundMq

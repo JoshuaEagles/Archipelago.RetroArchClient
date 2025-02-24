@@ -92,7 +92,7 @@ public class LocationCheckService(IMemoryService memoryService, GameModeService 
 
 		var locationsToCheck
 			= AllLocationInformation
-				.AllLocations
+				.AllLocations!
 				.Where(location => !_areasToSkipChecking.Contains(location.Area))
 				// Only include scrubsanity checks if it's enabled
 				.Where(location => location.Type != LocationType.Scrubsanity || ootClientSlotData.ShuffleScrubs)

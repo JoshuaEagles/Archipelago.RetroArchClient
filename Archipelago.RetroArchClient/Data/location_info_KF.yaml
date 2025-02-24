@@ -1,76 +1,75 @@
-locations:
-  - name: KF Midos Top Left Chest
-    type: Chest
-    offset: 0x28
-    bit_to_check: 0x00
-    area: KokiriForest
-  - name: KF Midos Top Right Chest
-    type: Chest
-    offset: 0x28
-    bit_to_check: 0x01
-    area: KokiriForest
-  - name: KF Midos Bottom Left Chest
-    type: Chest
-    offset: 0x28
-    bit_to_check: 0x02
-    area: KokiriForest
-  - name: KF Midos Bottom Right Chest
-    type: Chest
-    offset: 0x28
-    bit_to_check: 0x03
-    area: KokiriForest
-  - name: KF Kokiri Sword Chest
-    type: Chest
-    offset: 0x55
-    bit_to_check: 0x00
-    area: KokiriForest
-  - name: KF Storms Grotto Chest
-    type: Chest
-    offset: 0x3E
-    bit_to_check: 0x0C
-    area: KokiriForest
-  - name: KF Links House Cow
-    type: Cow
-    offset: 0x34
-    bit_to_check: 0x18
-    area: KokiriForest
-  - name: KF GS Know It All House
-    type: Skulltula
-    offset: 0x0C
-    bit_to_check: 0x01
-    area: KokiriForest
-  - name: KF GS Bean Patch
-    type: Skulltula
-    offset: 0x0C
-    bit_to_check: 0x00
-    area: KokiriForest
-  - name: KF GS House of Twins
-    type: Skulltula
-    offset: 0x0C
-    bit_to_check: 0x02
-    area: KokiriForest
-  - name: KF Shop Item 5
-    type: Shop
-    offset: 0x06
-    bit_to_check: 0x00
-    area: KokiriForest
-  - name: KF Shop Item 6
-    type: Shop
-    offset: 0x06
-    bit_to_check: 0x01
-    area: KokiriForest
-  - name: KF Shop Item 7
-    type: Shop
-    offset: 0x06
-    bit_to_check: 0x02
-    area: KokiriForest
-  - name: KF Shop Item 8
-    type: Shop
-    offset: 0x06
-    bit_to_check: 0x03
-    area: KokiriForest
-  - name: KF Shop Blue Rupee
-    type: GroundItem
-    offset: 0x2D
-    bit_to_check: 0x01
-    area: KokiriForest
+- name: KF Midos Top Left Chest
+  type: Chest
+  offset: 0x28
+  bit_to_check: 0x00
+  area: KokiriForest
+- name: KF Midos Top Right Chest
+  type: Chest
+  offset: 0x28
+  bit_to_check: 0x01
+  area: KokiriForest
+- name: KF Midos Bottom Left Chest
+  type: Chest
+  offset: 0x28
+  bit_to_check: 0x02
+  area: KokiriForest
+- name: KF Midos Bottom Right Chest
+  type: Chest
+  offset: 0x28
+  bit_to_check: 0x03
+  area: KokiriForest
+- name: KF Kokiri Sword Chest
+  type: Chest
+  offset: 0x55
+  bit_to_check: 0x00
+  area: KokiriForest
+- name: KF Storms Grotto Chest
+  type: Chest
+  offset: 0x3E
+  bit_to_check: 0x0C
+  area: KokiriForest
+- name: KF Links House Cow
+  type: Cow
+  offset: 0x34
+  bit_to_check: 0x18
+  area: KokiriForest
+- name: KF GS Know It All House
+  type: Skulltula
+  offset: 0x0C
+  bit_to_check: 0x01
+  area: KokiriForest
+- name: KF GS Bean Patch
+  type: Skulltula
+  offset: 0x0C
+  bit_to_check: 0x00
+  area: KokiriForest
+- name: KF GS House of Twins
+  type: Skulltula
+  offset: 0x0C
+  bit_to_check: 0x02
+  area: KokiriForest
+- name: KF Shop Item 5
+  type: Shop
+  offset: 0x06
+  bit_to_check: 0x00
+  area: KokiriForest
+- name: KF Shop Item 6
+  type: Shop
+  offset: 0x06
+  bit_to_check: 0x01
+  area: KokiriForest
+- name: KF Shop Item 7
+  type: Shop
+  offset: 0x06
+  bit_to_check: 0x02
+  area: KokiriForest
+- name: KF Shop Item 8
+  type: Shop
+  offset: 0x06
+  bit_to_check: 0x03
+  area: KokiriForest
+- name: KF Shop Blue Rupee
+  type: GroundItem
+  offset: 0x2D
+  bit_to_check: 0x01
+  area: KokiriForest

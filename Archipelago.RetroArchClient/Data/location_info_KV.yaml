@@ -1,151 +1,150 @@
-locations:
-  - name: Kak Anju as Child
-    type: GetInfo
-    offset: 0x00
-    bit_to_check: 0x04
-    area: KakarikoVillage
-  - name: Kak Anju as Adult
-    type: GetInfo
-    offset: 0x04
-    bit_to_check: 0x04
-    area: KakarikoVillage
-  - name: Kak Impas House Freestanding PoH
-    type: GroundItem
-    offset: 0x37
-    bit_to_check: 0x01
-    area: KakarikoVillage
-  - name: Kak Windmill Freestanding PoH
-    type: GroundItem
-    offset: 0x48
-    bit_to_check: 0x01
-    area: KakarikoVillage
-  - name: Kak Man on Roof
-    type: GetInfo
-    offset: 0x03
-    bit_to_check: 0x05
-    area: KakarikoVillage
-  - name: Kak Open Grotto Chest
-    type: Chest
-    offset: 0x3E
-    bit_to_check: 0x08
-    area: KakarikoVillage
-  - name: Kak Redead Grotto Chest
-    type: Chest
-    offset: 0x3E
-    bit_to_check: 0x0A
-    area: KakarikoVillage
-  - name: Kak Shooting Gallery Reward
-    type: GetInfo
-    offset: 0x00
-    bit_to_check: 0x06
-    area: KakarikoVillage
-  - name: Kak 10 Gold Skulltula Reward
-    type: Event
-    offset: 0x0D
-    bit_to_check: 0x0A
-    area: KakarikoVillage
-  - name: Kak 20 Gold Skulltula Reward
-    type: Event
-    offset: 0x0D
-    bit_to_check: 0x0B
-    area: KakarikoVillage
-  - name: Kak 30 Gold Skulltula Reward
-    type: Event
-    offset: 0x0D
-    bit_to_check: 0x0C
-    area: KakarikoVillage
-  - name: Kak 40 Gold Skulltula Reward
-    type: Event
-    offset: 0x0D
-    bit_to_check: 0x0D
-    area: KakarikoVillage
-  - name: Kak 50 Gold Skulltula Reward
-    type: Event
-    offset: 0x0D
-    bit_to_check: 0x0E
-    area: KakarikoVillage
-  - name: Kak Impas House Cow
-    type: Cow
-    offset: 0x37
-    bit_to_check: 0x18
-    area: KakarikoVillage
-  - name: Song from Windmill
-    type: Event
-    offset: 0x05
-    bit_to_check: 0x0B
-    area: KakarikoVillage
-  - name: Sheik in Kakariko
-    type: Event
-    offset: 0x05
-    bit_to_check: 0x04
-    area: KakarikoVillage
-  - name: Kak GS Tree
-    type: Skulltula
-    offset: 0x10
-    bit_to_check: 0x05
-    area: KakarikoVillage
-  - name: Kak GS Near Gate Guard
-    type: Skulltula
-    offset: 0x10
-    bit_to_check: 0x01
-    area: KakarikoVillage
-  - name: Kak GS Watchtower
-    type: Skulltula
-    offset: 0x10
-    bit_to_check: 0x02
-    area: KakarikoVillage
-  - name: Kak GS Skulltula House
-    type: Skulltula
-    offset: 0x10
-    bit_to_check: 0x04
-    area: KakarikoVillage
-  - name: Kak GS House Under Construction
-    type: Skulltula
-    offset: 0x10
-    bit_to_check: 0x03
-    area: KakarikoVillage
-  - name: Kak GS Above Impas House
-    type: Skulltula
-    offset: 0x10
-    bit_to_check: 0x06
-    area: KakarikoVillage
-  - name: Kak Bazaar Item 5
-    type: Shop
-    offset: 0x07
-    bit_to_check: 0x00
-    area: KakarikoVillage
-  - name: Kak Bazaar Item 6
-    type: Shop
-    offset: 0x07
-    bit_to_check: 0x01
-    area: KakarikoVillage
-  - name: Kak Bazaar Item 7
-    type: Shop
-    offset: 0x07
-    bit_to_check: 0x02
-    area: KakarikoVillage
-  - name: Kak Bazaar Item 8
-    type: Shop
-    offset: 0x07
-    bit_to_check: 0x03
-    area: KakarikoVillage
-  - name: Kak Potion Shop Item 5
-    type: Shop
-    offset: 0x03
-    bit_to_check: 0x00
-    area: KakarikoVillage
-  - name: Kak Potion Shop Item 6
-    type: Shop
-    offset: 0x03
-    bit_to_check: 0x01
-    area: KakarikoVillage
-  - name: Kak Potion Shop Item 7
-    type: Shop
-    offset: 0x03
-    bit_to_check: 0x02
-    area: KakarikoVillage
-  - name: Kak Potion Shop Item 8
-    type: Shop
-    offset: 0x03
-    bit_to_check: 0x03
-    area: KakarikoVillage
+- name: Kak Anju as Child
+  type: GetInfo
+  offset: 0x00
+  bit_to_check: 0x04
+  area: KakarikoVillage
+- name: Kak Anju as Adult
+  type: GetInfo
+  offset: 0x04
+  bit_to_check: 0x04
+  area: KakarikoVillage
+- name: Kak Impas House Freestanding PoH
+  type: GroundItem
+  offset: 0x37
+  bit_to_check: 0x01
+  area: KakarikoVillage
+- name: Kak Windmill Freestanding PoH
+  type: GroundItem
+  offset: 0x48
+  bit_to_check: 0x01
+  area: KakarikoVillage
+- name: Kak Man on Roof
+  type: GetInfo
+  offset: 0x03
+  bit_to_check: 0x05
+  area: KakarikoVillage
+- name: Kak Open Grotto Chest
+  type: Chest
+  offset: 0x3E
+  bit_to_check: 0x08
+  area: KakarikoVillage
+- name: Kak Redead Grotto Chest
+  type: Chest
+  offset: 0x3E
+  bit_to_check: 0x0A
+  area: KakarikoVillage
+- name: Kak Shooting Gallery Reward
+  type: GetInfo
+  offset: 0x00
+  bit_to_check: 0x06
+  area: KakarikoVillage
+- name: Kak 10 Gold Skulltula Reward
+  type: Event
+  offset: 0x0D
+  bit_to_check: 0x0A
+  area: KakarikoVillage
+- name: Kak 20 Gold Skulltula Reward
+  type: Event
+  offset: 0x0D
+  bit_to_check: 0x0B
+  area: KakarikoVillage
+- name: Kak 30 Gold Skulltula Reward
+  type: Event
+  offset: 0x0D
+  bit_to_check: 0x0C
+  area: KakarikoVillage
+- name: Kak 40 Gold Skulltula Reward
+  type: Event
+  offset: 0x0D
+  bit_to_check: 0x0D
+  area: KakarikoVillage
+- name: Kak 50 Gold Skulltula Reward
+  type: Event
+  offset: 0x0D
+  bit_to_check: 0x0E
+  area: KakarikoVillage
+- name: Kak Impas House Cow
+  type: Cow
+  offset: 0x37
+  bit_to_check: 0x18
+  area: KakarikoVillage
+- name: Song from Windmill
+  type: Event
+  offset: 0x05
+  bit_to_check: 0x0B
+  area: KakarikoVillage
+- name: Sheik in Kakariko
+  type: Event
+  offset: 0x05
+  bit_to_check: 0x04
+  area: KakarikoVillage
+- name: Kak GS Tree
+  type: Skulltula
+  offset: 0x10
+  bit_to_check: 0x05
+  area: KakarikoVillage
+- name: Kak GS Near Gate Guard
+  type: Skulltula
+  offset: 0x10
+  bit_to_check: 0x01
+  area: KakarikoVillage
+- name: Kak GS Watchtower
+  type: Skulltula
+  offset: 0x10
+  bit_to_check: 0x02
+  area: KakarikoVillage
+- name: Kak GS Skulltula House
+  type: Skulltula
+  offset: 0x10
+  bit_to_check: 0x04
+  area: KakarikoVillage
+- name: Kak GS House Under Construction
+  type: Skulltula
+  offset: 0x10
+  bit_to_check: 0x03
+  area: KakarikoVillage
+- name: Kak GS Above Impas House
+  type: Skulltula
+  offset: 0x10
+  bit_to_check: 0x06
+  area: KakarikoVillage
+- name: Kak Bazaar Item 5
+  type: Shop
+  offset: 0x07
+  bit_to_check: 0x00
+  area: KakarikoVillage
+- name: Kak Bazaar Item 6
+  type: Shop
+  offset: 0x07
+  bit_to_check: 0x01
+  area: KakarikoVillage
+- name: Kak Bazaar Item 7
+  type: Shop
+  offset: 0x07
+  bit_to_check: 0x02
+  area: KakarikoVillage
+- name: Kak Bazaar Item 8
+  type: Shop
+  offset: 0x07
+  bit_to_check: 0x03
+  area: KakarikoVillage
+- name: Kak Potion Shop Item 5
+  type: Shop
+  offset: 0x03
+  bit_to_check: 0x00
+  area: KakarikoVillage
+- name: Kak Potion Shop Item 6
+  type: Shop
+  offset: 0x03
+  bit_to_check: 0x01
+  area: KakarikoVillage
+- name: Kak Potion Shop Item 7
+  type: Shop
+  offset: 0x03
+  bit_to_check: 0x02
+  area: KakarikoVillage
+- name: Kak Potion Shop Item 8
+  type: Shop
+  offset: 0x03
+  bit_to_check: 0x03
+  area: KakarikoVillage
