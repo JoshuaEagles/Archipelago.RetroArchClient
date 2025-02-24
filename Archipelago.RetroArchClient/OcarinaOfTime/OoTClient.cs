@@ -409,7 +409,7 @@ public class OoTClient
 			.ToArray();
 	}
 
-	private void ReadAndParseAllLocations()
+	private static void ReadAndParseAllLocations()
 	{
 		var deserializer = new DeserializerBuilder()
 			.WithNamingConvention(UnderscoredNamingConvention.Instance)
