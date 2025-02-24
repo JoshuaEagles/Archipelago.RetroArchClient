@@ -419,9 +419,12 @@ public class OoTClient
 		// This is super convoluted, but god forbid me to be able to use our LocationInformation object directly.
 		// However, I tested this, and it reads every file without issue and creates respective location information
 		// objects without skipping a single location.
-		foreach (var file in Directory.GetFiles(".\\Data"))
+		foreach (var file in Directory.GetFiles("./Data"))
 		{
-			Console.WriteLine($"Reading {file}...");
+			// Screw windows with using backslashes for paths.
+			var sanitizedFile = file.Replace("\\", "/");
+			
+			Console.WriteLine($"Reading {sanitizedFile}...");
 			var fileContent = File.ReadAllText(file);
 
 			var parsedData = deserializer.Deserialize<List<object>>(fileContent);
