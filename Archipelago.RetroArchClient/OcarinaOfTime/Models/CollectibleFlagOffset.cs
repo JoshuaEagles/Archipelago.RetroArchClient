@@ -6,7 +6,7 @@ namespace Archipelago.RetroArchClient.OcarinaOfTime.Models;
 // See Enums.GameModes for example on how this could be achieved.
 public record CollectibleFlagOffset
 {
-	public required long ItemId { get; init; }
-	public required long Offset { get; init; }
-	public required long Flag { get; init; }
+    public required long ItemId { get; init; }
+    public required long Offset { get; init; }
+    public required long Flag { get; init; }
 }
