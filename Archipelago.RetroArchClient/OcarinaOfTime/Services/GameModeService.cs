@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Archipelago.RetroArchClient.OcarinaOfTime.Data;
 using Archipelago.RetroArchClient.OcarinaOfTime.Enums;
 using Archipelago.RetroArchClient.OcarinaOfTime.Models;
@@ -10,89 +7,89 @@ namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 
 public class GameModeService(IMemoryService memoryService)
 {
-	public async Task<GameMode> GetCurrentGameMode()
-	{
-		var logoState = await GetLogoState();
-		
-		if (logoState is 0x802C5880 or 0)
-		{
-			return AvailableGameModes[GameModes.N64Logo];
-		}
+    public async Task<GameMode> GetCurrentGameMode()
+    {
+        var logoState = await GetLogoState();
 
-		var mainState = await GetMainState();
-		
-		switch (mainState)
-		{
-			case 1:
-				return AvailableGameModes[GameModes.TitleScreen];
-			case 2:
-				return AvailableGameModes[GameModes.FileSelect];
-		}
+        if (logoState is 0x802C5880 or 0)
+        {
+            return AvailableGameModes[GameModes.N64Logo];
+        }
 
-		var menuState = await GetMenuState();
-		
-		switch (menuState)
-		{
-			case 0:
-			{
-				var isLinkDying = await GetLinkIsDying();
-				
-				if (isLinkDying)
-				{
-					return AvailableGameModes[GameModes.Dying];
-				}
+        var mainState = await GetMainState();
 
-				var subState = await GetSubState();
-				
-				return subState == 4 
-					? AvailableGameModes[GameModes.Cutscene] 
-					: AvailableGameModes[GameModes.NormalGameplay];
-			}
-			case < 9 or 13 or 18 or 19:
-				return AvailableGameModes[GameModes.Paused];
-			case 9 or 0xB:
-				return AvailableGameModes[GameModes.DyingMenuStart];
-			default:
-				return AvailableGameModes[GameModes.Dead];
-		}
-	}
+        switch (mainState)
+        {
+            case 1:
+                return AvailableGameModes[GameModes.TitleScreen];
+            case 2:
+                return AvailableGameModes[GameModes.FileSelect];
+        }
 
-	private async Task<byte> GetMainState()
-	 => await memoryService.Read8(
-		 address: AddressConstants.MainStateOffset);
+        var menuState = await GetMenuState();
 
-	private async Task<byte> GetSubState()
-		=> await memoryService.Read8(
-			address: AddressConstants.SubStateOffset);
+        switch (menuState)
+        {
+            case 0:
+            {
+                var isLinkDying = await GetLinkIsDying();
 
-	private async Task<byte> GetMenuState()
-		=> await memoryService.Read8(
-			address: AddressConstants.MenuStateOffset);
+                if (isLinkDying)
+                {
+                    return AvailableGameModes[GameModes.Dying];
+                }
 
-	private async Task<uint> GetLogoState()
-		=> await memoryService.Read32(
-			address: AddressConstants.LogoStateOffset);
+                var subState = await GetSubState();
 
-	private async Task<bool> GetLinkIsDying()
-	{
-		var linkState = await memoryService.Read32(
-			address: AddressConstants.LinkStateOffset);
-		var linkHealth = await memoryService.Read16(
-			address: AddressConstants.LinkHealthOffset);
+                return subState == 4
+                    ? AvailableGameModes[GameModes.Cutscene]
+                    : AvailableGameModes[GameModes.NormalGameplay];
+            }
+            case < 9 or 13 or 18 or 19:
+                return AvailableGameModes[GameModes.Paused];
+            case 9 or 0xB:
+                return AvailableGameModes[GameModes.DyingMenuStart];
+            default:
+                return AvailableGameModes[GameModes.Dead];
+        }
+    }
 
-		return (linkState & 0x00000080) > 0 && linkHealth == 0;
-	}
-	
-	private static readonly Dictionary<GameModes, GameMode> AvailableGameModes = new GameMode[]
-	{
-		new() { CurrentGameMode = GameModes.N64Logo, IsInGame = false },
-		new() { CurrentGameMode = GameModes.TitleScreen, IsInGame = false },
-		new() { CurrentGameMode = GameModes.FileSelect, IsInGame = false },
-		new() { CurrentGameMode = GameModes.Dying, IsInGame = true },
-		new() { CurrentGameMode = GameModes.Cutscene, IsInGame = true },
-		new() { CurrentGameMode = GameModes.NormalGameplay, IsInGame = true },
-		new() { CurrentGameMode = GameModes.Paused, IsInGame = true },
-		new() { CurrentGameMode = GameModes.DyingMenuStart, IsInGame = false },
-		new() { CurrentGameMode = GameModes.Dead, IsInGame = false },
-	}.ToDictionary(gameMode => gameMode.CurrentGameMode);
+    private async Task<byte> GetMainState()
+        => await memoryService.Read8(
+            address: AddressConstants.MainStateOffset);
+
+    private async Task<byte> GetSubState()
+        => await memoryService.Read8(
+            address: AddressConstants.SubStateOffset);
+
+    private async Task<byte> GetMenuState()
+        => await memoryService.Read8(
+            address: AddressConstants.MenuStateOffset);
+
+    private async Task<uint> GetLogoState()
+        => await memoryService.Read32(
+            address: AddressConstants.LogoStateOffset);
+
+    private async Task<bool> GetLinkIsDying()
+    {
+        var linkState = await memoryService.Read32(
+            address: AddressConstants.LinkStateOffset);
+        var linkHealth = await memoryService.Read16(
+            address: AddressConstants.LinkHealthOffset);
+
+        return (linkState & 0x00000080) > 0 && linkHealth == 0;
+    }
+
+    private static readonly Dictionary<GameModes, GameMode> AvailableGameModes = new GameMode[]
+    {
+        new() { CurrentGameMode = GameModes.N64Logo, IsInGame = false },
+        new() { CurrentGameMode = GameModes.TitleScreen, IsInGame = false },
+        new() { CurrentGameMode = GameModes.FileSelect, IsInGame = false },
+        new() { CurrentGameMode = GameModes.Dying, IsInGame = true },
+        new() { CurrentGameMode = GameModes.Cutscene, IsInGame = true },
+        new() { CurrentGameMode = GameModes.NormalGameplay, IsInGame = true },
+        new() { CurrentGameMode = GameModes.Paused, IsInGame = true },
+        new() { CurrentGameMode = GameModes.DyingMenuStart, IsInGame = false },
+        new() { CurrentGameMode = GameModes.Dead, IsInGame = false },
+    }.ToDictionary(gameMode => gameMode.CurrentGameMode);
 }

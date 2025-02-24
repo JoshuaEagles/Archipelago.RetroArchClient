@@ -8,6 +8,6 @@ namespace Archipelago.RetroArchClient.OcarinaOfTime.Models;
 // See Enums.GameModes for example on how this could be achieved.
 public record GameMode
 {
-	public required GameModes CurrentGameMode { get; init; }
-	public required bool IsInGame { get; init; }
+    public required GameModes CurrentGameMode { get; init; }
+    public required bool IsInGame { get; init; }
 }

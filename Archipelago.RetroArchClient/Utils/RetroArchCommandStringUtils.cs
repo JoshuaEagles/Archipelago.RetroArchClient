@@ -1,5 +1,4 @@
 using System.Globalization;
-using System.Linq;
 
 namespace Archipelago.RetroArchClient.Utils;
 
@@ -14,55 +13,55 @@ namespace Archipelago.RetroArchClient.Utils;
 // See OcarinaOfTime.Enums.GameModes for example on how this could be achieved.
 public static class RetroArchCommandStringUtils
 {
-	public static long ParseAddress(string receivedString)
-	{
-		var address = receivedString.Trim().Split(' ').Skip(1).Take(1).Single();
+    public static long ParseAddress(string receivedString)
+    {
+        var address = receivedString.Trim().Split(' ').Skip(1).Take(1).Single();
 
-		return long.Parse(address, style: NumberStyles.HexNumber);
-	}
+        return long.Parse(address, style: NumberStyles.HexNumber);
+    }
 
-	public static int ParseNumberOfBytes(string receivedString)
-	{
-		var numberOfBytes = receivedString.Trim().Split(' ').Skip(2).Count();
+    public static int ParseNumberOfBytes(string receivedString)
+    {
+        var numberOfBytes = receivedString.Trim().Split(' ').Skip(2).Count();
 
-		return numberOfBytes;
-	}
+        return numberOfBytes;
+    }
 
-	public static long ParseReadMemoryToLong(string receivedString, bool isBigEndian)
-	{
-		var bytes = ParseReadMemoryToArray(receivedString, isBigEndian);
+    public static long ParseReadMemoryToLong(string receivedString, bool isBigEndian)
+    {
+        var bytes = ParseReadMemoryToArray(receivedString, isBigEndian);
 
-		var outputNumber = 0L;
+        var outputNumber = 0L;
 
-		var byteOffset = 0;
-		foreach (var dataByte in bytes.Reverse())
-		{
-			outputNumber |= (uint)dataByte << byteOffset;
+        var byteOffset = 0;
+        foreach (var dataByte in bytes.Reverse())
+        {
+            outputNumber |= (uint)dataByte << byteOffset;
 
-			byteOffset += 8;
-		}
+            byteOffset += 8;
+        }
 
-		return outputNumber;
-	}
+        return outputNumber;
+    }
 
-	public static byte[] ParseReadMemoryToArray(string receivedString, bool isBigEndian)
-	{
-		var byteStrings = receivedString.Trim().Split(' ').Skip(2);
+    public static byte[] ParseReadMemoryToArray(string receivedString, bool isBigEndian)
+    {
+        var byteStrings = receivedString.Trim().Split(' ').Skip(2);
 
-		if (isBigEndian)
-		{
-			byteStrings = byteStrings.Reverse();
-		}
+        if (isBigEndian)
+        {
+            byteStrings = byteStrings.Reverse();
+        }
 
-		return byteStrings
-			.Select((s) => byte.Parse(s, NumberStyles.HexNumber))
-			.ToArray();
-	}
+        return byteStrings
+            .Select(s => byte.Parse(s, NumberStyles.HexNumber))
+            .ToArray();
+    }
 
-	public static int ParseWriteMemoryBytesWritten(string receivedString)
-	{
-		var bytesWrittenString = receivedString.Trim().Split(' ')[2];
+    public static int ParseWriteMemoryBytesWritten(string receivedString)
+    {
+        var bytesWrittenString = receivedString.Trim().Split(' ')[2];
 
-		return int.Parse(bytesWrittenString);
-	}
+        return int.Parse(bytesWrittenString);
+    }
 }

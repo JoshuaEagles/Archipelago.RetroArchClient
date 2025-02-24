@@ -1,8 +1,8 @@
 ﻿namespace Archipelago.RetroArchClient.OcarinaOfTime.Data;
 
 /// <summary>
-/// Contains all constant addresses, pointers and offsets that are being used
-/// throughout the client.
+///     Contains all constant addresses, pointers and offsets that are being used
+///     throughout the client.
 /// </summary>
 public class AddressConstants
 {
@@ -19,11 +19,11 @@ public class AddressConstants
     public const uint LocalReceivedItemsCountAddress = 0xA011A660;
     public const uint IncomingPlayerAddress = 0xA0400026;
     public const uint IncomingItemAddress = 0xA0400028;
-    
+
     // Pointers
     public const long TriforceHuntCompleteCreditsCutscenePointer = 0x80383C10;
     public const long GanonDefeatedCutscenePointer = 0x80382720;
-    
+
     // Offsets
     public const long MainStateOffset = 0xA011B92F;
     public const long SubStateOffset = 0xA011B933;

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Archipelago.RetroArchClient.OcarinaOfTime.Models;
 
 // Maybe add documentation detailing what this model record is for, what it represents, etc.
@@ -8,7 +6,7 @@ namespace Archipelago.RetroArchClient.OcarinaOfTime.Models;
 // See Enums.GameModes for example on how this could be achieved.
 public record OoTClientSlotData
 {
-	public required bool ShuffleScrubs { get; init; }
-	public required uint CollectibleOverridesFlagsAddress { get; init; }
-	public required List<CollectibleFlagOffset> CollectibleFlagOffsets { get; init; }
+    public required bool ShuffleScrubs { get; init; }
+    public required uint CollectibleOverridesFlagsAddress { get; init; }
+    public required List<CollectibleFlagOffset> CollectibleFlagOffsets { get; init; }
 }

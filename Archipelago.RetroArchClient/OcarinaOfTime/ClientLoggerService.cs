@@ -14,20 +14,22 @@ public static class ClientLoggerService
             case HintItemSendLogMessage hintItemSendLogMessage:
                 WriteColoredText(hintItemSendLogMessage.Receiver.Name, ConsoleColor.Cyan);
                 Console.Write("'s ");
-                WriteColoredText(hintItemSendLogMessage.Item.ItemName, GetItemClassColor(hintItemSendLogMessage.Item.Flags));
+                WriteColoredText(hintItemSendLogMessage.Item.ItemName,
+                    GetItemClassColor(hintItemSendLogMessage.Item.Flags));
                 Console.Write(" is in ");
                 WriteColoredText(hintItemSendLogMessage.Sender.Name, ConsoleColor.Cyan);
                 Console.Write("'s World (");
                 WriteColoredText(hintItemSendLogMessage.Item.LocationName, ConsoleColor.Magenta);
                 Console.Write(") [");
-                WriteColoredText(hintItemSendLogMessage.IsFound ? "Found" : "Not found", hintItemSendLogMessage.IsFound ? ConsoleColor.Green : ConsoleColor.Red);
+                WriteColoredText(hintItemSendLogMessage.IsFound ? "Found" : "Not found",
+                    hintItemSendLogMessage.IsFound ? ConsoleColor.Green : ConsoleColor.Red);
                 Console.Write("]\n");
 
                 break;
             case ItemSendLogMessage itemSendLogMessage:
                 var sender = itemSendLogMessage.Sender;
                 var receiver = itemSendLogMessage.Receiver;
-                
+
                 if (sender == receiver)
                 {
                     WriteColoredText(sender.Name, ConsoleColor.Cyan);
@@ -81,7 +83,7 @@ public static class ClientLoggerService
         ItemFlags.Trap => ConsoleColor.Red,
         ItemFlags.NeverExclude => ConsoleColor.DarkYellow,
         ItemFlags.None => ConsoleColor.Gray,
-        _ => Console.ForegroundColor
+        _ => Console.ForegroundColor,
     };
 
     private static void HandleJoinTags(JoinLogMessage joinLogMessage)
@@ -97,7 +99,7 @@ public static class ClientLoggerService
             Console.Write(" tracking ");
             return;
         }
-        
+
         Console.Write(" playing ");
     }
 }
