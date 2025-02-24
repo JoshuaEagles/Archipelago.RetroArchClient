@@ -15,139 +15,139 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Update="Data\location_info_BotW.yaml">
+        <None Update="Data\location_info_BottomOfTheWell.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_BotW_MQ.yaml">
+        <None Update="Data\location_info_BottomOfTheWell_MQ.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_COL.yaml">
+        <None Update="Data\location_info_DesertColossus.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_DC.yaml">
+        <None Update="Data\location_info_DodongosCavern.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_DC_MQ.yaml">
+        <None Update="Data\location_info_DodongosCavern_MQ.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_DMC.yaml">
+        <None Update="Data\location_info_DeathMountainCrater.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_DMT.yaml">
+        <None Update="Data\location_info_DeathMountainTrail.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_DT.yaml">
+        <None Update="Data\location_info_DekuTree.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_DT_MQ.yaml">
+        <None Update="Data\location_info_DekuTree_MQ.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_FiT.yaml">
+        <None Update="Data\location_info_FireTemple.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_FiT_MQ.yaml">
+        <None Update="Data\location_info_FireTemple_MQ.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_FoT.yaml">
+        <None Update="Data\location_info_ForestTemple.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_FoT_MQ.yaml">
+        <None Update="Data\location_info_ForestTemple_MQ.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_GC.yaml">
+        <None Update="Data\location_info_GoronCity.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_GF.yaml">
+        <None Update="Data\location_info_GerudosFortress.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_GTG.yaml">
+        <None Update="Data\location_info_GerudoTrainingGround.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_GTG_MQ.yaml">
+        <None Update="Data\location_info_GerudoTrainingGround_MQ.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_GV.yaml">
+        <None Update="Data\location_info_GerudoValley.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_GY.yaml">
+        <None Update="Data\location_info_Graveyard.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_HC.yaml">
+        <None Update="Data\location_info_HyruleCastle.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_HF.yaml">
+        <None Update="Data\location_info_HyruleField.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_HW.yaml">
+        <None Update="Data\location_info_HauntedWasteland.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_IC.yaml">
+        <None Update="Data\location_info_IceCavern.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_IC_MQ.yaml">
+        <None Update="Data\location_info_IceCavern_MQ.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_IGC.yaml">
+        <None Update="Data\location_info_GanonsCastle.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_IGC_MQ.yaml">
+        <None Update="Data\location_info_GanonsCastle_MQ.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_JJB.yaml">
+        <None Update="Data\location_info_JabuJabusBelly.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_JJB_MQ.yaml">
+        <None Update="Data\location_info_JabuJabusBelly_MQ.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_KF.yaml">
+        <None Update="Data\location_info_KokiriForest.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_KV.yaml">
+        <None Update="Data\location_info_KakarikoVillage.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_LH.yaml">
+        <None Update="Data\location_info_LakeHylia.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_LLR.yaml">
+        <None Update="Data\location_info_LonLonRanch.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_LW.yaml">
+        <None Update="Data\location_info_LostWoods.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_MRKT.yaml">
+        <None Update="Data\location_info_Market.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_OGC.yaml">
+        <None Update="Data\location_info_OutsideGanonsCastle.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_SFM.yaml">
+        <None Update="Data\location_info_SacredForestMeadow.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_ShT.yaml">
+        <None Update="Data\location_info_ShadowTemple.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_ShT_MQ.yaml">
+        <None Update="Data\location_info_ShadowTemple_MQ.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_SpT.yaml">
+        <None Update="Data\location_info_SpiritTemple.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_SpT_MQ.yaml">
+        <None Update="Data\location_info_SpiritTemple_MQ.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_WT.yaml">
+        <None Update="Data\location_info_WaterTemple.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_WT_MQ.yaml">
+        <None Update="Data\location_info_WaterTemple_MQ.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_ZD.yaml">
+        <None Update="Data\location_info_ZorasDomain.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_ZF.yaml">
+        <None Update="Data\location_info_ZorasFountain.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Data\location_info_ZR.yaml">
+        <None Update="Data\location_info_ZorasRiver.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>

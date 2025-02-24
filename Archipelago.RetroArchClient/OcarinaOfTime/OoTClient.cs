@@ -410,13 +410,11 @@ public class OoTClient
             .WithNamingConvention(UnderscoredNamingConvention.Instance)
             .WithTypeConverter(new ByteToHexConverter())
             .Build();
-
-        // This is super convoluted, but god forbid me to be able to use our LocationInformation object directly.
-        // However, I tested this, and it reads every file without issue and creates respective location information
-        // objects without skipping a single location.
+        
         foreach (var file in Directory.GetFiles("./Data"))
         {
             // Screw windows with using backslashes for paths.
+            // Sanitizing this to make things look pretty on all platforms.
             var sanitizedFile = file.Replace("\\", "/");
 
             Console.WriteLine($"Reading {sanitizedFile}...");
@@ -434,8 +432,7 @@ public class OoTClient
 
                 if (!nameExists || !typeExists || !offsetExists || !bitExists || !areaExists)
                 {
-                    Console.WriteLine("Skipping location due to unreadable data...");
-                    continue;
+                    throw new Exception($"Cannot parse location due to unreadable data in file {sanitizedFile}");
                 }
 
                 var name = nameValue?.ToString();
@@ -446,7 +443,7 @@ public class OoTClient
 
                 var location = new LocationInformation(name!, type, offset, bitToCheck, area);
 
-                AllLocationInformation.AllLocations?.Add(location);
+                AllLocationInformation.AllLocations.Add(location);
             }
         }
     }
