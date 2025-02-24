@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Archipelago.RetroArchClient.OcarinaOfTime.Models;
 
 // Maybe add documentation detailing what this model record is for, what it represents, etc.

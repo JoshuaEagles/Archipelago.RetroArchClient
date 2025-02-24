@@ -1,21 +1,16 @@
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Net.Sockets;
-using System.Threading.Tasks;
 using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.RetroArchClient.OcarinaOfTime.Data;
 using Archipelago.RetroArchClient.OcarinaOfTime.Enums;
-using Newtonsoft.Json.Linq;
 using Archipelago.RetroArchClient.OcarinaOfTime.Models;
 using Archipelago.RetroArchClient.OcarinaOfTime.Services;
 using Archipelago.RetroArchClient.Services;
 using Archipelago.RetroArchClient.Services.Interfaces;
 using Archipelago.RetroArchClient.Utils;
-using YamlDotNet.Core;
+using Newtonsoft.Json.Linq;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 using Version = System.Version;
@@ -36,7 +31,7 @@ public class OoTClient
 	private readonly OoTClientDeathLinkService _ootClientDeathLinkService;
 	private readonly PlayerNameService _playerNameService;
 	private readonly ReceiveItemService _receiveItemService;
-	
+
 	public OoTClient()
 	{
 		_connectionSettings = PromptForConnectionSettings();
@@ -82,7 +77,7 @@ public class OoTClient
 			tags: ["AP"]
 		);
 		_archipelagoDeathLinkService = _apSession.CreateDeathLinkService();
-		
+
 		if (!loginResult.Successful)
 		{
 			var loginFailure = (LoginFailure)loginResult;
@@ -111,15 +106,15 @@ public class OoTClient
 		var slotData = await GetSlotData();
 
 		await WritePlayerNames(
-			apSession: _apSession, 
+			apSession: _apSession,
 			playerNameService: _playerNameService);
 
 		// Setup DeathLink
 		await _ootClientDeathLinkService.StoreDeathLinkEnabledFromMemory();
 		var deathLinkEnabled = _ootClientDeathLinkService.DeathLinkEnabled;
-		
+
 		Console.WriteLine($"DeathLink {(deathLinkEnabled ? "is" : "is not")} enabled.");
-		
+
 		if (deathLinkEnabled)
 		{
 			_archipelagoDeathLinkService.EnableDeathLink();
@@ -129,7 +124,7 @@ public class OoTClient
 				Console.WriteLine("DeathLink: Someone ran out of health.");
 			};
 		}
-		
+
 		// Setup message logging
 		_apSession.MessageLog.OnMessageReceived += ClientLoggerService.LogServerMessage;
 
@@ -146,7 +141,7 @@ public class OoTClient
 
 			// Handle detecting resets and reinitialization
 			var currentGameMode = await _gameModeService.GetCurrentGameMode();
-			
+
 			if (!currentGameMode.IsInGame)
 			{
 				wasPreviouslyInGame = false;
@@ -166,18 +161,18 @@ public class OoTClient
 
 			// Receive Items
 			var gameReceivedItemsCount = await _receiveItemService.GetLocalReceivedItemIndex();
-			
+
 			if (gameReceivedItemsCount > clientSideReceivedItemsCount)
 			{
 				currentGameMode = await _gameModeService.GetCurrentGameMode();
-				
+
 				if (!currentGameMode.IsInGame)
 				{
 					continue;
 				}
 
 				var canReceiveItem = await _receiveItemService.CanReceiveItem();
-				
+
 				if (canReceiveItem && _apSession.Items.Index > gameReceivedItemsCount)
 				{
 					clientSideReceivedItemsCount = gameReceivedItemsCount;
@@ -189,7 +184,7 @@ public class OoTClient
 
 			// Handle DeathLink
 			var shouldSendDeathLink = await _ootClientDeathLinkService.ProcessDeathLink();
-			
+
 			if (shouldSendDeathLink)
 			{
 				var deathLink = new DeathLink(_connectionSettings.SlotName);
@@ -203,13 +198,13 @@ public class OoTClient
 				// Skip further code execution once complete flag has been sent.
 				continue;
 			}
-			
+
 			// Get complete flag.
 			var isGameComplete = await _gameCompleteService.IsGameComplete();
 
 			// Get current game mode.
 			currentGameMode = await _gameModeService.GetCurrentGameMode();
-			
+
 			if (!currentGameMode.IsInGame)
 			{
 				// If the current game mode is not "In Game"
@@ -222,7 +217,7 @@ public class OoTClient
 				// If game is not complete, then skip further code execution.
 				continue;
 			}
-			
+
 			// Notify the session that the goal has been completed.
 			// Set the complete sent flag to true and notify the user that they met their goal.
 			_apSession.SetGoalAchieved();
@@ -248,7 +243,7 @@ public class OoTClient
 	{
 		Console.WriteLine("Enter the Archipelago Server Hostname, default: archipelago.gg");
 		var apHostname = Console.ReadLine();
-		
+
 		if (string.IsNullOrWhiteSpace(apHostname))
 		{
 			apHostname = "archipelago.gg";
@@ -265,7 +260,7 @@ public class OoTClient
 
 		Console.WriteLine("Enter the Slot Name, default: Player");
 		var slotName = Console.ReadLine();
-		
+
 		if (string.IsNullOrEmpty(slotName))
 		{
 			slotName = "Player";
@@ -273,7 +268,7 @@ public class OoTClient
 
 		Console.WriteLine("Enter the RetroArch Hostname, default: localhost");
 		var retroArchHostname = Console.ReadLine();
-		
+
 		if (string.IsNullOrEmpty(retroArchHostname))
 		{
 			retroArchHostname = "localhost";
@@ -367,9 +362,9 @@ public class OoTClient
 		var playerNames = apSession.Players.AllPlayers
 			.Skip(1)
 			.Select(x => x.Name);
-		
+
 		var nameIndex = 1; // the names are 1 indexed, nothing is stored at index 0
-		
+
 		foreach (var name in playerNames)
 		{
 			if (nameIndex >= 255)
@@ -378,13 +373,13 @@ public class OoTClient
 			}
 
 			await playerNameService.WritePlayerName(
-				index: (byte)nameIndex, 
+				index: (byte)nameIndex,
 				name: name);
 			nameIndex++;
 		}
 
 		await playerNameService.WritePlayerName(
-			index: 255, 
+			index: 255,
 			name: "APPlayer");
 	}
 
@@ -423,7 +418,7 @@ public class OoTClient
 		{
 			// Screw windows with using backslashes for paths.
 			var sanitizedFile = file.Replace("\\", "/");
-			
+
 			Console.WriteLine($"Reading {sanitizedFile}...");
 			var fileContent = File.ReadAllText(file);
 
@@ -442,15 +437,15 @@ public class OoTClient
 					Console.WriteLine("Skipping location due to unreadable data...");
 					continue;
 				}
-				
+
 				var name = nameValue?.ToString();
 				var type = (LocationType)Enum.Parse(typeof(LocationType), typeValue?.ToString() ?? "Unknown");
 				var offset = Convert.ToByte(offsetValue?.ToString() ?? "0", 16);
 				var bitToCheck = Convert.ToByte(bitValue?.ToString() ?? "0", 16);
 				var area = (Area)Enum.Parse(typeof(Area), areaValue?.ToString() ?? "Unknown");
-					
+
 				var location = new LocationInformation(name!, type, offset, bitToCheck, area);
-				
+
 				AllLocationInformation.AllLocations?.Add(location);
 			}
 		}

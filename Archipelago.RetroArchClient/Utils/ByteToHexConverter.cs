@@ -19,7 +19,7 @@ public class ByteToHexConverter : IYamlTypeConverter
 		}
 
 		parser.MoveNext();
-        
+
 		return Convert.ToByte(scalar.Value, 16);
 	}
 
