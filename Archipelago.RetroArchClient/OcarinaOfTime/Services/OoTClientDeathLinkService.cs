@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Archipelago.RetroArchClient.OcarinaOfTime.Enums;
 using Archipelago.RetroArchClient.Services.Interfaces;
 
@@ -12,7 +10,8 @@ namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 public class OoTClientDeathLinkService(
 	IMemoryService memoryService,
 	GameModeService gameModeService,
-	CurrentSceneService currentSceneService)
+	CurrentSceneService currentSceneService
+)
 {
 	public bool DeathLinkEnabled { get; private set; }
 
@@ -30,9 +29,9 @@ public class OoTClientDeathLinkService(
 	}
 
 	/// <summary>
-	/// Returns immediately if death link is not enabled.
-	/// If death link is enabled, handles the logic for killing Link if a death link is queued,
-	/// and sending out death link when link dies.
+	///     Returns immediately if death link is not enabled.
+	///     If death link is enabled, handles the logic for killing Link if a death link is queued,
+	///     and sending out death link when link dies.
 	/// </summary>
 	/// <returns>Bool of whether to send a death link out</returns>
 	public async Task<bool> ProcessDeathLink()
@@ -60,7 +59,7 @@ public class OoTClientDeathLinkService(
 		{
 			return ShouldSendDeathLink();
 		}
-		
+
 		var currentScene = await currentSceneService.GetCurrentScene();
 
 		if (DeathCrashScenes.Contains(currentScene))
@@ -90,10 +89,9 @@ public class OoTClientDeathLinkService(
 		{
 			return false;
 		}
-		
+
 		_deathLinkSent = true;
 		return true;
-
 	}
 
 	// As it currently is due to how the current version of the AP Rando works,

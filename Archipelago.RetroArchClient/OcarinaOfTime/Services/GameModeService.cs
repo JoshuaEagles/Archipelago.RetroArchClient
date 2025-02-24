@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Archipelago.RetroArchClient.OcarinaOfTime.Data;
 using Archipelago.RetroArchClient.OcarinaOfTime.Enums;
 using Archipelago.RetroArchClient.OcarinaOfTime.Models;
@@ -13,14 +10,14 @@ public class GameModeService(IMemoryService memoryService)
 	public async Task<GameMode> GetCurrentGameMode()
 	{
 		var logoState = await GetLogoState();
-		
+
 		if (logoState is 0x802C5880 or 0)
 		{
 			return AvailableGameModes[GameModes.N64Logo];
 		}
 
 		var mainState = await GetMainState();
-		
+
 		switch (mainState)
 		{
 			case 1:
@@ -30,22 +27,22 @@ public class GameModeService(IMemoryService memoryService)
 		}
 
 		var menuState = await GetMenuState();
-		
+
 		switch (menuState)
 		{
 			case 0:
 			{
 				var isLinkDying = await GetLinkIsDying();
-				
+
 				if (isLinkDying)
 				{
 					return AvailableGameModes[GameModes.Dying];
 				}
 
 				var subState = await GetSubState();
-				
-				return subState == 4 
-					? AvailableGameModes[GameModes.Cutscene] 
+
+				return subState == 4
+					? AvailableGameModes[GameModes.Cutscene]
 					: AvailableGameModes[GameModes.NormalGameplay];
 			}
 			case < 9 or 13 or 18 or 19:
@@ -58,8 +55,8 @@ public class GameModeService(IMemoryService memoryService)
 	}
 
 	private async Task<byte> GetMainState()
-	 => await memoryService.Read8(
-		 address: AddressConstants.MainStateOffset);
+		=> await memoryService.Read8(
+			address: AddressConstants.MainStateOffset);
 
 	private async Task<byte> GetSubState()
 		=> await memoryService.Read8(
@@ -82,7 +79,7 @@ public class GameModeService(IMemoryService memoryService)
 
 		return (linkState & 0x00000080) > 0 && linkHealth == 0;
 	}
-	
+
 	private static readonly Dictionary<GameModes, GameMode> AvailableGameModes = new GameMode[]
 	{
 		new() { CurrentGameMode = GameModes.N64Logo, IsInGame = false },
