@@ -5,6 +5,8 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Archipelago.RetroArchClient.AvaloniaUI.LogLine">
     <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-        <TextBlock><Span Foreground="blue">Player1</Span> received their <Span Foreground="Green">Iron Boots</Span></TextBlock>
+        <TextBlock>
+            <Span Foreground="blue">Player1</Span> received their <Span Foreground="Green">Iron Boots</Span>
+        </TextBlock>
     </Border>
 </UserControl>
