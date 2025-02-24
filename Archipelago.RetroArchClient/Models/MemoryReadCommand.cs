@@ -6,6 +6,6 @@ namespace Archipelago.RetroArchClient.Models;
 // See OcarinaOfTime.Enums.GameModes for example on how this could be achieved.
 public record MemoryReadCommand
 {
-	public required long Address { get; init; }
-	public required int NumberOfBytes { get; init; }
+    public required long Address { get; init; }
+    public required int NumberOfBytes { get; init; }
 }

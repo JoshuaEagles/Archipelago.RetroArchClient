@@ -8,93 +8,93 @@ namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 
 // See Enums.GameModes for example on how this could be achieved.
 public class OoTClientDeathLinkService(
-	IMemoryService memoryService,
-	GameModeService gameModeService,
-	CurrentSceneService currentSceneService
+    IMemoryService memoryService,
+    GameModeService gameModeService,
+    CurrentSceneService currentSceneService
 )
 {
-	public bool DeathLinkEnabled { get; private set; }
+    public bool DeathLinkEnabled { get; private set; }
 
-	private bool _hasDied;
-	private bool _receivedDeathLinkQueued;
-	private bool _deathLinkSent;
+    private bool _hasDied;
+    private bool _receivedDeathLinkQueued;
+    private bool _deathLinkSent;
 
-	public async Task StoreDeathLinkEnabledFromMemory()
-	{
-		const uint deathLinkEnabledFlagAddress = 0xA040002B;
+    public async Task StoreDeathLinkEnabledFromMemory()
+    {
+        const uint deathLinkEnabledFlagAddress = 0xA040002B;
 
-		var deathLinkEnabledFlag = await memoryService.Read8(deathLinkEnabledFlagAddress);
+        var deathLinkEnabledFlag = await memoryService.Read8(deathLinkEnabledFlagAddress);
 
-		DeathLinkEnabled = deathLinkEnabledFlag > 0;
-	}
+        DeathLinkEnabled = deathLinkEnabledFlag > 0;
+    }
 
-	/// <summary>
-	///     Returns immediately if death link is not enabled.
-	///     If death link is enabled, handles the logic for killing Link if a death link is queued,
-	///     and sending out death link when link dies.
-	/// </summary>
-	/// <returns>Bool of whether to send a death link out</returns>
-	public async Task<bool> ProcessDeathLink()
-	{
-		if (!DeathLinkEnabled)
-		{
-			return false;
-		}
+    /// <summary>
+    ///     Returns immediately if death link is not enabled.
+    ///     If death link is enabled, handles the logic for killing Link if a death link is queued,
+    ///     and sending out death link when link dies.
+    /// </summary>
+    /// <returns>Bool of whether to send a death link out</returns>
+    public async Task<bool> ProcessDeathLink()
+    {
+        if (!DeathLinkEnabled)
+        {
+            return false;
+        }
 
-		var currentGameMode = await gameModeService.GetCurrentGameMode();
+        var currentGameMode = await gameModeService.GetCurrentGameMode();
 
-		if (!_hasDied && currentGameMode.CurrentGameMode == GameModes.Dying)
-		{
-			_hasDied = true;
-		}
+        if (!_hasDied && currentGameMode.CurrentGameMode == GameModes.Dying)
+        {
+            _hasDied = true;
+        }
 
-		if (_hasDied && currentGameMode.CurrentGameMode == GameModes.NormalGameplay)
-		{
-			_receivedDeathLinkQueued = false;
-			_deathLinkSent = false;
-			_hasDied = false;
-		}
+        if (_hasDied && currentGameMode.CurrentGameMode == GameModes.NormalGameplay)
+        {
+            _receivedDeathLinkQueued = false;
+            _deathLinkSent = false;
+            _hasDied = false;
+        }
 
-		if (!_receivedDeathLinkQueued || _hasDied || currentGameMode.CurrentGameMode != GameModes.NormalGameplay)
-		{
-			return ShouldSendDeathLink();
-		}
+        if (!_receivedDeathLinkQueued || _hasDied || currentGameMode.CurrentGameMode != GameModes.NormalGameplay)
+        {
+            return ShouldSendDeathLink();
+        }
 
-		var currentScene = await currentSceneService.GetCurrentScene();
+        var currentScene = await currentSceneService.GetCurrentScene();
 
-		if (DeathCrashScenes.Contains(currentScene))
-		{
-			return false;
-		}
+        if (DeathCrashScenes.Contains(currentScene))
+        {
+            return false;
+        }
 
-		const uint linkHealthAddress = 0xA011A600;
-		await memoryService.Write16(address: linkHealthAddress, dataToWrite: 0);
+        const uint linkHealthAddress = 0xA011A600;
+        await memoryService.Write16(address: linkHealthAddress, dataToWrite: 0);
 
-		return ShouldSendDeathLink();
-	}
+        return ShouldSendDeathLink();
+    }
 
-	public void ReceiveDeathLink()
-	{
-		_receivedDeathLinkQueued = true;
-	}
+    public void ReceiveDeathLink()
+    {
+        _receivedDeathLinkQueued = true;
+    }
 
-	private bool ShouldSendDeathLink()
-	{
-		if (_deathLinkSent)
-		{
-			return false;
-		}
+    private bool ShouldSendDeathLink()
+    {
+        if (_deathLinkSent)
+        {
+            return false;
+        }
 
-		if (_receivedDeathLinkQueued || !_hasDied)
-		{
-			return false;
-		}
+        if (_receivedDeathLinkQueued || !_hasDied)
+        {
+            return false;
+        }
 
-		_deathLinkSent = true;
-		return true;
-	}
+        _deathLinkSent = true;
+        return true;
+    }
 
-	// As it currently is due to how the current version of the AP Rando works,
-	// the game crashes in scenes like the Market entrance or outside Temple of Time
-	private static readonly HashSet<ushort> DeathCrashScenes = [27, 28, 29, 35, 36, 37];
+    // As it currently is due to how the current version of the AP Rando works,
+    // the game crashes in scenes like the Market entrance or outside Temple of Time
+    private static readonly HashSet<ushort> DeathCrashScenes = [27, 28, 29, 35, 36, 37];
 }

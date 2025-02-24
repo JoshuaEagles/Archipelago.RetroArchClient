@@ -6,10 +6,10 @@ namespace Archipelago.RetroArchClient.OcarinaOfTime.Models;
 // See Enums.GameModes for example on how this could be achieved.
 public record OoTClientConnectionSettings
 {
-	public required string ArchipelagoHostName { get; init; }
-	public required int ArchipelagoPort { get; init; }
-	public required string SlotName { get; init; }
+    public required string ArchipelagoHostName { get; init; }
+    public required int ArchipelagoPort { get; init; }
+    public required string SlotName { get; init; }
 
-	public required string RetroArchHostName { get; init; }
-	public required int RetroArchPort { get; init; }
+    public required string RetroArchHostName { get; init; }
+    public required int RetroArchPort { get; init; }
 }

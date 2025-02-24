@@ -8,9 +8,9 @@ namespace Archipelago.RetroArchClient.OcarinaOfTime.Models;
 // See Enums.GameModes for example on how this could be achieved.
 public class LocationInformation(string name, LocationType type, byte offset, byte bitToCheck, Area area)
 {
-	public string Name { get; } = name;
-	public LocationType Type { get; } = type;
-	public byte Offset { get; } = offset;
-	public byte BitToCheck { get; } = bitToCheck;
-	public Area Area { get; } = area;
+    public string Name { get; } = name;
+    public LocationType Type { get; } = type;
+    public byte Offset { get; } = offset;
+    public byte BitToCheck { get; } = bitToCheck;
+    public Area Area { get; } = area;
 }
