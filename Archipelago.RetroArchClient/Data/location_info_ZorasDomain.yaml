@@ -1,0 +1,40 @@
+- name: ZD Diving Minigame
+  type: Event
+  offset: 0x03
+  bit_to_check: 0x08
+  area: ZorasDomain
+- name: ZD Chest
+  type: Chest
+  offset: 0x58
+  bit_to_check: 0x00
+  area: ZorasDomain
+- name: ZD King Zora Thawed
+  type: InfoTable
+  offset: 0x26
+  bit_to_check: 0x01
+  area: ZorasDomain
+- name: ZD GS Frozen Waterfall
+  type: Skulltula
+  offset: 0x11
+  bit_to_check: 0x06
+  area: ZorasDomain
+- name: ZD Shop Item 5
+  type: Shop
+  offset: 0x02
+  bit_to_check: 0x00
+  area: ZorasDomain
+- name: ZD Shop Item 6
+  type: Shop
+  offset: 0x02
+  bit_to_check: 0x01
+  area: ZorasDomain
+- name: ZD Shop Item 7
+  type: Shop
+  offset: 0x02
+  bit_to_check: 0x02
+  area: ZorasDomain
+- name: ZD Shop Item 8
+  type: Shop
+  offset: 0x02
+  bit_to_check: 0x03
+  area: ZorasDomain

@@ -1,0 +1,125 @@
+﻿- name: Spirit Temple Child Bridge Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x08
+  area: SpiritTemple
+- name: Spirit Temple Child Early Torches Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x00
+  area: SpiritTemple
+- name: Spirit Temple Child Climb North Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x06
+  area: SpiritTemple
+- name: Spirit Temple Child Climb East Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x0C
+  area: SpiritTemple
+- name: Spirit Temple Map Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x03
+  area: SpiritTemple
+- name: Spirit Temple Sun Block Room Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x01
+  area: SpiritTemple
+- name: Spirit Temple Silver Gauntlets Chest
+  type: Chest
+  offset: 0x5C
+  bit_to_check: 0x0B
+  area: SpiritTemple
+- name: Spirit Temple Compass Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x04
+  area: SpiritTemple
+- name: Spirit Temple Early Adult Right Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x07
+  area: SpiritTemple
+- name: Spirit Temple First Mirror Left Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x0D
+  area: SpiritTemple
+- name: Spirit Temple First Mirror Right Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x0E
+  area: SpiritTemple
+- name: Spirit Temple Statue Room Northeast Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x0F
+  area: SpiritTemple
+- name: Spirit Temple Statue Room Hand Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x02
+  area: SpiritTemple
+- name: Spirit Temple Near Four Armos Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x05
+  area: SpiritTemple
+- name: Spirit Temple Hallway Right Invisible Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x14
+  area: SpiritTemple
+- name: Spirit Temple Hallway Left Invisible Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x15
+  area: SpiritTemple
+- name: Spirit Temple Mirror Shield Chest
+  type: Chest
+  offset: 0x5C
+  bit_to_check: 0x09
+  area: SpiritTemple
+- name: Spirit Temple Boss Key Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x0A
+  area: SpiritTemple
+- name: Spirit Temple Topmost Chest
+  type: Chest
+  offset: 0x06
+  bit_to_check: 0x12
+  area: SpiritTemple
+- name: Spirit Temple GS Metal Fence
+  type: Skulltula
+  offset: 0x06
+  bit_to_check: 0x04
+  area: SpiritTemple
+- name: Spirit Temple GS Sun on Floor Room
+  type: Skulltula
+  offset: 0x06
+  bit_to_check: 0x03
+  area: SpiritTemple
+- name: Spirit Temple GS Hall After Sun Block Room
+  type: Skulltula
+  offset: 0x06
+  bit_to_check: 0x00
+  area: SpiritTemple
+- name: Spirit Temple GS Lobby
+  type: Skulltula
+  offset: 0x06
+  bit_to_check: 0x02
+  area: SpiritTemple
+- name: Spirit Temple GS Boulder Room
+  type: Skulltula
+  offset: 0x06
+  bit_to_check: 0x01
+  area: SpiritTemple
+- name: Spirit Temple Twinrova Heart
+  type: BossItem
+  offset: 0x17
+  bit_to_check: 0x00
+  area: SpiritTemple

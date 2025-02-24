@@ -3,11 +3,17 @@ using System.Net.Sockets;
 using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
+using Archipelago.RetroArchClient.OcarinaOfTime.Data;
+using Archipelago.RetroArchClient.OcarinaOfTime.Enums;
 using Archipelago.RetroArchClient.OcarinaOfTime.Models;
 using Archipelago.RetroArchClient.OcarinaOfTime.Services;
 using Archipelago.RetroArchClient.Services;
 using Archipelago.RetroArchClient.Services.Interfaces;
+using Archipelago.RetroArchClient.Utils;
 using Newtonsoft.Json.Linq;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
+using Version = System.Version;
 
 namespace Archipelago.RetroArchClient.OcarinaOfTime;
 
@@ -80,6 +86,10 @@ public class OoTClient
             );
         }
 
+        Console.WriteLine("Reading location infos...");
+        ReadAndParseAllLocations();
+        Console.WriteLine("Location infos read and processed.");
+        Console.WriteLine();
         Console.WriteLine("Connected to Archipelago");
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("--------NOTICE--------");
@@ -392,5 +402,49 @@ public class OoTClient
 
         return checkedLocationIds.Concat(checkedCollectibleIds)
             .ToArray();
+    }
+
+    private static void ReadAndParseAllLocations()
+    {
+        var deserializer = new DeserializerBuilder()
+            .WithNamingConvention(UnderscoredNamingConvention.Instance)
+            .WithTypeConverter(new ByteToHexConverter())
+            .Build();
+        
+        foreach (var file in Directory.GetFiles("./Data"))
+        {
+            // Screw windows with using backslashes for paths.
+            // Sanitizing this to make things look pretty on all platforms.
+            var sanitizedFile = file.Replace("\\", "/");
+
+            Console.WriteLine($"Reading {sanitizedFile}...");
+            var fileContent = File.ReadAllText(file);
+
+            var parsedData = deserializer.Deserialize<List<object>>(fileContent);
+
+            foreach (Dictionary<object, object> data in parsedData)
+            {
+                var nameExists = data.TryGetValue("name", out var nameValue);
+                var typeExists = data.TryGetValue("type", out var typeValue);
+                var offsetExists = data.TryGetValue("offset", out var offsetValue);
+                var bitExists = data.TryGetValue("bit_to_check", out var bitValue);
+                var areaExists = data.TryGetValue("area", out var areaValue);
+
+                if (!nameExists || !typeExists || !offsetExists || !bitExists || !areaExists)
+                {
+                    throw new Exception($"Cannot parse location due to unreadable data in file {sanitizedFile}");
+                }
+
+                var name = nameValue?.ToString();
+                var type = (LocationType)Enum.Parse(typeof(LocationType), typeValue?.ToString() ?? "Unknown");
+                var offset = Convert.ToByte(offsetValue?.ToString() ?? "0", 16);
+                var bitToCheck = Convert.ToByte(bitValue?.ToString() ?? "0", 16);
+                var area = (Area)Enum.Parse(typeof(Area), areaValue?.ToString() ?? "Unknown");
+
+                var location = new LocationInformation(name!, type, offset, bitToCheck, area);
+
+                AllLocationInformation.AllLocations.Add(location);
+            }
+        }
     }
 }

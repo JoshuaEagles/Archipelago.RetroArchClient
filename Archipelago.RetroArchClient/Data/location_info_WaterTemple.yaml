@@ -1,0 +1,80 @@
+﻿- name: Water Temple Compass Chest
+  type: Chest
+  offset: 0x05
+  bit_to_check: 0x09
+  area: WaterTemple
+- name: Water Temple Map Chest
+  type: Chest
+  offset: 0x05
+  bit_to_check: 0x02
+  area: WaterTemple
+- name: Water Temple Cracked Wall Chest
+  type: Chest
+  offset: 0x05
+  bit_to_check: 0x00
+  area: WaterTemple
+- name: Water Temple Torches Chest
+  type: Chest
+  offset: 0x05
+  bit_to_check: 0x01
+  area: WaterTemple
+- name: Water Temple Boss Key Chest
+  type: Chest
+  offset: 0x05
+  bit_to_check: 0x05
+  area: WaterTemple
+- name: Water Temple Central Pillar Chest
+  type: Chest
+  offset: 0x05
+  bit_to_check: 0x06
+  area: WaterTemple
+- name: Water Temple Central Bow Target Chest
+  type: Chest
+  offset: 0x05
+  bit_to_check: 0x08
+  area: WaterTemple
+- name: Water Temple Longshot Chest
+  type: Chest
+  offset: 0x05
+  bit_to_check: 0x07
+  area: WaterTemple
+- name: Water Temple River Chest
+  type: Chest
+  offset: 0x05
+  bit_to_check: 0x03
+  area: WaterTemple
+- name: Water Temple Dragon Chest
+  type: Chest
+  offset: 0x05
+  bit_to_check: 0x0A
+  area: WaterTemple
+- name: Water Temple GS Behind Gate
+  type: Skulltula
+  offset: 0x05
+  bit_to_check: 0x00
+  area: WaterTemple
+- name: Water Temple GS Near Boss Key Chest
+  type: Skulltula
+  offset: 0x05
+  bit_to_check: 0x03
+  area: WaterTemple
+- name: Water Temple GS Central Pillar
+  type: Skulltula
+  offset: 0x05
+  bit_to_check: 0x02
+  area: WaterTemple
+- name: Water Temple GS Falling Platform Room
+  type: Skulltula
+  offset: 0x05
+  bit_to_check: 0x01
+  area: WaterTemple
+- name: Water Temple GS River
+  type: Skulltula
+  offset: 0x05
+  bit_to_check: 0x04
+  area: WaterTemple
+- name: Water Temple Morpha Heart
+  type: BossItem
+  offset: 0x16
+  bit_to_check: 0x00
+  area: WaterTemple

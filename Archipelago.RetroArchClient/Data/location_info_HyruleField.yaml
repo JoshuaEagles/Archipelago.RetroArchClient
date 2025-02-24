@@ -1,0 +1,55 @@
+- name: HF Ocarina of Time Item
+  type: Event
+  offset: 0x04
+  bit_to_check: 0x03
+  area: HyruleField
+- name: HF Near Market Grotto Chest
+  type: Chest
+  offset: 0x3E
+  bit_to_check: 0x00
+  area: HyruleField
+- name: HF Tektite Grotto Freestanding PoH
+  type: GroundItem
+  offset: 0x3E
+  bit_to_check: 0x01
+  area: HyruleField
+- name: HF Southeast Grotto Chest
+  type: Chest
+  offset: 0x3E
+  bit_to_check: 0x02
+  area: HyruleField
+- name: HF Open Grotto Chest
+  type: Chest
+  offset: 0x3E
+  bit_to_check: 0x03
+  area: HyruleField
+- name: HF Cow Grotto Cow
+  type: Cow
+  offset: 0x3E
+  bit_to_check: 0x19
+  area: HyruleField
+- name: Song from Ocarina of Time
+  type: Event
+  offset: 0x0A
+  bit_to_check: 0x09
+  area: HyruleField
+- name: HF Deku Scrub Grotto
+  type: GetInfo
+  offset: 0x00
+  bit_to_check: 0x03
+  area: HyruleField
+- name: HF Deku Scrub Grotto
+  type: Scrubsanity
+  offset: 0x10
+  bit_to_check: 0x03
+  area: HyruleField
+- name: HF GS Cow Grotto
+  type: Skulltula
+  offset: 0x0A
+  bit_to_check: 0x00
+  area: HyruleField
+- name: HF GS Near Kak Grotto
+  type: Skulltula
+  offset: 0x0A
+  bit_to_check: 0x01
+  area: HyruleField
