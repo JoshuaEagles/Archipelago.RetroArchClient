@@ -13,7 +13,7 @@
         <Grid Grid.Row="0" ColumnDefinitions="auto auto auto *" RowDefinitions="* *">
             <TextBlock VerticalAlignment="Center">
                 Archipelago Server Connection Status:
-                <Span Name="ArchipelagoServerConnectionStatus" Foreground="red">
+                <Span Name="ArchipelagoServerConnectionStatus" Foreground="{DynamicResource SystemErrorTextColor}">
                     Disconnected
                 </Span>
             </TextBlock>
@@ -29,7 +29,7 @@
 
             <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">
                 RetroArch Connection Status:
-                <Span Name="EmulatorConnectionStatus" Foreground="red">Disconnected</Span>
+                <Span Name="EmulatorConnectionStatus" Foreground="{DynamicResource SystemErrorTextColor}">Disconnected</Span>
             </TextBlock>
 
             <Button Name="EmulatorConnectButton" Grid.Row="1" Grid.Column="2">
