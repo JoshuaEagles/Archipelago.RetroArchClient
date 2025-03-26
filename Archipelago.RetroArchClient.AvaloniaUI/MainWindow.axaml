@@ -8,8 +8,8 @@
         d:DesignHeight="450"
         x:Class="Archipelago.RetroArchClient.AvaloniaUI.MainWindow"
         Title="Archipelago.RetroArchClient.AvaloniaUI">
-
-    <Grid Margin="8" RowDefinitions="Auto Auto *">
+    
+    <Grid Margin="8" RowDefinitions="Auto Auto * Auto">
         <Grid Grid.Row="0" ColumnDefinitions="auto auto auto *" RowDefinitions="* *">
             <TextBlock VerticalAlignment="Center">
                 Archipelago Server Connection Status:
@@ -52,5 +52,10 @@
                 </StackPanel>
             </ScrollViewer>
         </Border>
+        
+        <Grid Grid.Row="3" ColumnDefinitions="* Auto">
+            <TextBox Name="CommandEntryTextBox" Grid.Column="0"></TextBox>
+            <Button Name="CommandEntrySubmitButton" Grid.Column="1">Submit</Button>
+        </Grid>
     </Grid>
 </Window>
