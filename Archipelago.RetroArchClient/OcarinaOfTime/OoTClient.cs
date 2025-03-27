@@ -3,10 +3,12 @@ using System.Net.Sockets;
 using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
+using Archipelago.RetroArchClient.Configuration;
 using Archipelago.RetroArchClient.OcarinaOfTime.Models;
 using Archipelago.RetroArchClient.OcarinaOfTime.Services;
 using Archipelago.RetroArchClient.Services;
 using Archipelago.RetroArchClient.Services.Interfaces;
+using Archipelago.RetroArchClient.Utils;
 using Newtonsoft.Json.Linq;
 
 namespace Archipelago.RetroArchClient.OcarinaOfTime;
@@ -18,6 +20,7 @@ public class OoTClient
     private readonly CollectibleCheckService _collectibleCheckService;
 
     private readonly OoTClientConnectionSettings _connectionSettings;
+    private readonly ConfigurationSettings _configurationSettings;
     private readonly GameCompleteService _gameCompleteService;
     private readonly GameModeService _gameModeService;
     private readonly LocationCheckService _locationCheckService;
@@ -26,9 +29,13 @@ public class OoTClient
     private readonly PlayerNameService _playerNameService;
     private readonly ReceiveItemService _receiveItemService;
 
+    //TODO: move this constant to a central location
+    protected const string ExpectedConfigFileName = "config.json";
+
     public OoTClient()
     {
-        _connectionSettings = PromptForConnectionSettings();
+        _configurationSettings = LoadConfigurationSettings();
+        _connectionSettings = LoadOoTClientConnectionSettings();
 
         var udpClient = new UdpClient();
         udpClient.Connect(hostname: _connectionSettings.RetroArchHostName, port: _connectionSettings.RetroArchPort);
@@ -216,6 +223,66 @@ public class OoTClient
         }
     }
 
+    private ConfigurationSettings LoadConfigurationSettings()
+    {
+        var defaultSettings = new ConfigurationSettings();
+        var currentDirectory = System.Environment.CurrentDirectory;
+        if (string.IsNullOrWhiteSpace(currentDirectory))
+        {
+            Console.WriteLine("Could not determine current directory.");
+            return defaultSettings;
+        }
+
+        var defaultFilePath = Path.Combine(currentDirectory, ExpectedConfigFileName);
+        Console.WriteLine($"Enter path to config file, or leave empty for default {defaultFilePath}: ");
+        var filePath = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(filePath))
+        {
+            filePath = defaultFilePath;
+        }
+
+        if (!FileUtils.TryLoadJsonFile<ConfigurationSettings>(filePath, out var configFile))
+        {
+            Console.WriteLine("Configuration file could not be loaded.");
+            return defaultSettings;
+        }
+
+        return configFile;
+    }
+
+    private OoTClientConnectionSettings LoadOoTClientConnectionSettings()
+    {
+        var settings = new OoTClientConnectionSettings() 
+        {
+            ArchipelagoHostName = _configurationSettings.ArchipelagoServer.Address,
+            ArchipelagoPort = _configurationSettings.ArchipelagoServer.Port,
+            SlotName = _configurationSettings.ArchipelagoServer.SlotName,
+            RetroArchHostName = _configurationSettings.RetroArch.Address,
+            RetroArchPort = _configurationSettings.RetroArch.Port,
+        };
+
+        // TODO: Make this output pretty
+        Console.WriteLine($"Current settings: {settings}");
+
+        var shouldPromptManually = PromptForConnectionPreferences();
+
+        if (!shouldPromptManually)
+        {
+            return settings;
+        }
+
+        return PromptForConnectionSettings(settings);
+    }
+
+    private static bool PromptForConnectionPreferences()
+    {
+        Console.WriteLine($"Would you like to update connection details manually? (y/N): ");
+        var answer = Console.ReadLine();
+
+        return !string.IsNullOrWhiteSpace(answer) 
+            && answer.ToLowerInvariant().StartsWith('y');
+    }
+
     // performance improvement idea:
     // only check save context for locations on area changes, otherwise only use the temp context checks
     // should do this skip inside the function for each check type, so that checks that don't have temp context still get checked for
@@ -229,14 +296,16 @@ public class OoTClient
     // if the location is marked as checked there then that means we don't give the item, if it's not marked as checked then we do give the item
     // this would avoid giving duplicate items but mean we can receive local items when making a new save file
 
-    private static OoTClientConnectionSettings PromptForConnectionSettings()
+    private static OoTClientConnectionSettings PromptForConnectionSettings(OoTClientConnectionSettings defaultSettings)
     {
-        Console.WriteLine("Enter the Archipelago Server Hostname, default: archipelago.gg");
+
+        var defaultApHostname = defaultSettings.ArchipelagoHostName;
+        Console.WriteLine($"Enter the Archipelago Server Hostname, default: {defaultApHostname}");
         var apHostname = Console.ReadLine();
 
         if (string.IsNullOrWhiteSpace(apHostname))
         {
-            apHostname = "archipelago.gg";
+            apHostname = defaultApHostname;
         }
 
         // 38281 is the port where Archipelago runs if locally hosted.
@@ -244,29 +313,33 @@ public class OoTClient
         // However, on the long run, it might be better to have this be configurable
         // through a config file and make it so the client can select the port
         // on its own through this.
-        Console.WriteLine("Enter the Archipelago Server port, default: 38281");
+        var defaultApPort = defaultSettings.ArchipelagoPort;
+        Console.WriteLine($"Enter the Archipelago Server port, default: {defaultApPort}");
         var apPortString = Console.ReadLine();
-        var apPort = string.IsNullOrWhiteSpace(apPortString) ? 38281 : int.Parse(apPortString);
+        var apPort = string.IsNullOrWhiteSpace(apPortString) ? defaultApPort : int.Parse(apPortString);
 
-        Console.WriteLine("Enter the Slot Name, default: Player");
+        var defaultSlotName = defaultSettings.SlotName;
+        Console.WriteLine($"Enter the Slot Name, default: {defaultSlotName}");
         var slotName = Console.ReadLine();
 
         if (string.IsNullOrEmpty(slotName))
         {
-            slotName = "Player";
+            slotName = defaultSlotName;
         }
 
-        Console.WriteLine("Enter the RetroArch Hostname, default: localhost");
+        var defaultRetroArchHostName = defaultSettings.RetroArchHostName;
+        Console.WriteLine($"Enter the RetroArch Hostname, default: {defaultRetroArchHostName}");
         var retroArchHostname = Console.ReadLine();
 
         if (string.IsNullOrEmpty(retroArchHostname))
         {
-            retroArchHostname = "localhost";
+            retroArchHostname = defaultRetroArchHostName;
         }
 
-        Console.WriteLine("Enter the RetroArch Port, default: 55355");
+        var defaultRetroArchPort = defaultSettings.RetroArchPort;
+        Console.WriteLine($"Enter the RetroArch Port, default: {defaultRetroArchPort}");
         var retroArchPortString = Console.ReadLine();
-        var retroArchPort = string.IsNullOrWhiteSpace(retroArchPortString) ? 55355 : int.Parse(retroArchPortString);
+        var retroArchPort = string.IsNullOrWhiteSpace(retroArchPortString) ? defaultRetroArchPort : int.Parse(retroArchPortString);
 
         return new OoTClientConnectionSettings
         {
