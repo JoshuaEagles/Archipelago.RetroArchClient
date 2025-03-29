@@ -15,11 +15,11 @@ public record ConfigurationSettings
         : this(new ArchipelagoServer(), new RetroArch(), new Output()) { }
 
     [JsonProperty("archipelago_server")]
-    public ArchipelagoServer ArchipelagoServer { get; init; }
+    public ArchipelagoServer ArchipelagoServer { get; private init; }
 
     [property: JsonProperty("retroarch")]
-    public RetroArch RetroArch { get; init; }
+    public RetroArch RetroArch { get; private init; }
 
     [property: JsonProperty("output")]
-    public Output Output { get; init; }
+    public Output Output { get; private init; }
 }

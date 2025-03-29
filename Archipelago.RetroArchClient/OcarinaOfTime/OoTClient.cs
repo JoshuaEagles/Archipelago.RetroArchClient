@@ -73,6 +73,7 @@ public class OoTClient
         var loginResult = _apSession.TryConnectAndLogin(
             game: "Ocarina of Time",
             name: _connectionSettings.SlotName,
+            password: _connectionSettings.Password,
             itemsHandlingFlags: ItemsHandlingFlags.RemoteItems,
             version: new Version(0, 5, 1),
             tags: ["AP"]
@@ -256,6 +257,7 @@ public class OoTClient
         {
             ArchipelagoHostName = _configurationSettings.ArchipelagoServer.Address,
             ArchipelagoPort = _configurationSettings.ArchipelagoServer.Port,
+            Password = _configurationSettings.ArchipelagoServer.Password,
             SlotName = _configurationSettings.ArchipelagoServer.SlotName,
             RetroArchHostName = _configurationSettings.RetroArch.Address,
             RetroArchPort = _configurationSettings.RetroArch.Port,
@@ -300,7 +302,7 @@ public class OoTClient
     {
 
         var defaultApHostname = defaultSettings.ArchipelagoHostName;
-        Console.WriteLine($"Enter the Archipelago Server Hostname, default: {defaultApHostname}");
+        Console.WriteLine($"Enter the Archipelago Server Hostname, default: \"{defaultApHostname}\"");
         var apHostname = Console.ReadLine();
 
         if (string.IsNullOrWhiteSpace(apHostname))
@@ -327,6 +329,15 @@ public class OoTClient
             slotName = defaultSlotName;
         }
 
+        var defaultPassword = defaultSettings.Password;
+        Console.WriteLine($"Enter the Password, default: {defaultPassword}");
+        var password = Console.ReadLine();
+
+        if (string.IsNullOrEmpty(password))
+        {
+            password = defaultSlotName;
+        }
+
         var defaultRetroArchHostName = defaultSettings.RetroArchHostName;
         Console.WriteLine($"Enter the RetroArch Hostname, default: {defaultRetroArchHostName}");
         var retroArchHostname = Console.ReadLine();
@@ -346,6 +357,7 @@ public class OoTClient
             ArchipelagoHostName = apHostname,
             ArchipelagoPort = apPort,
             SlotName = slotName,
+            Password = password,
             RetroArchHostName = retroArchHostname,
             RetroArchPort = retroArchPort,
         };
