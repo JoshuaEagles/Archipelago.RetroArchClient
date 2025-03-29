@@ -4,22 +4,18 @@ namespace Archipelago.RetroArchClient.Configuration;
 
 public record ConfigurationSettings
 {
-    public ConfigurationSettings(ArchipelagoServer archipelagoServer, RetroArch retroArch, Output output)
+    public ConfigurationSettings(ArchipelagoServer archipelagoServer, RetroArch retroArch)
     {
         ArchipelagoServer = archipelagoServer;
         RetroArch = retroArch;
-        Output = output;
     }
 
     public ConfigurationSettings()
-        : this(new ArchipelagoServer(), new RetroArch(), new Output()) { }
+        : this(new ArchipelagoServer(), new RetroArch()) { }
 
     [JsonProperty("archipelago_server")]
     public ArchipelagoServer ArchipelagoServer { get; private init; }
 
     [property: JsonProperty("retroarch")]
     public RetroArch RetroArch { get; private init; }
-
-    [property: JsonProperty("output")]
-    public Output Output { get; private init; }
 }
