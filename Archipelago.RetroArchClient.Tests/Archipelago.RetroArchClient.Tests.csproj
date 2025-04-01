@@ -38,16 +38,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TestFiles Include="Utils\TestFiles\config.valid.1.json" />
+    <TestFiles Include="Utils\TestFiles\*.json" />
   </ItemGroup>
 
-<Target Name="CopyFiles" AfterTargets="Build">
-    <Message Text="CopyFiles task" Importance="High" />
+<Target Name="CopyTestFiles" AfterTargets="Build">
+    <Message Text="CopyTestFiles Task" Importance="High" />
 
     <Copy
       SourceFiles="@(TestFiles)"
       DestinationFolder="$(TargetDir)\TestFiles" />
 
-    <Message Text="Copied build files" Importance="High" />
+    <Message Text="Copied Test files" Importance="High" />
   </Target>
 </Project>

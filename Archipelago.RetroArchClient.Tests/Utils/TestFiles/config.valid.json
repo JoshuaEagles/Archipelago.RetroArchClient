@@ -2,8 +2,8 @@
   "archipelago_server": {
     "address": "archipelago.gg",
     "port": 38281,
-    "slot_name": "",
-    "password": "",
+    "slot_name": "123",
+    "password": "456",
   },
   "retroarch": {
     "address": "localhost",
