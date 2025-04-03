@@ -28,6 +28,7 @@ public class OoTClient
     private readonly OoTClientDeathLinkService _ootClientDeathLinkService;
     private readonly PlayerNameService _playerNameService;
     private readonly ReceiveItemService _receiveItemService;
+	private readonly IUserPromptService _userPromptService;
 
     //TODO: move this constant to a central location
     protected const string ExpectedConfigFileName = "config.json";
@@ -36,6 +37,7 @@ public class OoTClient
     {
         _configurationSettings = LoadConfigurationSettings();
         _connectionSettings = LoadOoTClientConnectionSettings();
+		_userPromptService = new UserPromptService();
 
         var udpClient = new UdpClient();
         udpClient.Connect(hostname: _connectionSettings.RetroArchHostName, port: _connectionSettings.RetroArchPort);
@@ -310,11 +312,6 @@ public class OoTClient
             apHostname = defaultApHostname;
         }
 
-        // 38281 is the port where Archipelago runs if locally hosted.
-        // This is useful for testing the client on a local server.
-        // However, on the long run, it might be better to have this be configurable
-        // through a config file and make it so the client can select the port
-        // on its own through this.
         var defaultApPort = defaultSettings.ArchipelagoPort;
         Console.WriteLine($"Enter the Archipelago Server port, default: {defaultApPort}");
         var apPortString = Console.ReadLine();
