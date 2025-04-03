@@ -6,9 +6,9 @@ using Archipelago.MultiClient.Net.Enums;
 using Archipelago.RetroArchClient.Configuration;
 using Archipelago.RetroArchClient.OcarinaOfTime.Models;
 using Archipelago.RetroArchClient.OcarinaOfTime.Services;
+using Archipelago.RetroArchClient.OcarinaOfTime.Services.Interfaces;
 using Archipelago.RetroArchClient.Services;
 using Archipelago.RetroArchClient.Services.Interfaces;
-using Archipelago.RetroArchClient.Utils;
 using Newtonsoft.Json.Linq;
 
 namespace Archipelago.RetroArchClient.OcarinaOfTime;
@@ -18,9 +18,6 @@ public class OoTClient
     private readonly ArchipelagoSession _apSession;
     private readonly DeathLinkService _archipelagoDeathLinkService;
     private readonly CollectibleCheckService _collectibleCheckService;
-
-    private readonly OoTClientConnectionSettings _connectionSettings;
-    private readonly ConfigurationSettings _configurationSettings;
     private readonly GameCompleteService _gameCompleteService;
     private readonly GameModeService _gameModeService;
     private readonly LocationCheckService _locationCheckService;
@@ -29,15 +26,21 @@ public class OoTClient
     private readonly PlayerNameService _playerNameService;
     private readonly ReceiveItemService _receiveItemService;
 	private readonly IUserPromptService _userPromptService;
+	private readonly IConfigurationService _configurationService;
+	private readonly IConnectionService _connectionService;
 
-    //TODO: move this constant to a central location
-    protected const string ExpectedConfigFileName = "config.json";
+    private readonly OoTClientConnectionSettings _connectionSettings;
+    private readonly ConfigurationSettings _configurationSettings;
 
     public OoTClient()
     {
-        _configurationSettings = LoadConfigurationSettings();
-        _connectionSettings = LoadOoTClientConnectionSettings();
+		// TODO: Set up DI
 		_userPromptService = new UserPromptService();
+		_configurationService = new ConfigurationService(_userPromptService);
+		_connectionService = new ConnectionService(_userPromptService);
+
+        _configurationSettings = _configurationService.LoadConfigurationSettings();
+        _connectionSettings = _connectionService.LoadOoTClientConnectionSettings(_configurationSettings);
 
         var udpClient = new UdpClient();
         udpClient.Connect(hostname: _connectionSettings.RetroArchHostName, port: _connectionSettings.RetroArchPort);
@@ -224,140 +227,6 @@ public class OoTClient
             isGameCompletionSent = true;
             Console.WriteLine("Game completed");
         }
-    }
-
-    private ConfigurationSettings LoadConfigurationSettings()
-    {
-        var defaultSettings = new ConfigurationSettings();
-        var currentDirectory = System.Environment.CurrentDirectory;
-        if (string.IsNullOrWhiteSpace(currentDirectory))
-        {
-            Console.WriteLine("Could not determine current directory.");
-            return defaultSettings;
-        }
-
-        var defaultFilePath = Path.Combine(currentDirectory, ExpectedConfigFileName);
-        Console.WriteLine($"Enter path to config file, or leave empty for default {defaultFilePath}: ");
-        var filePath = Console.ReadLine();
-        if (string.IsNullOrWhiteSpace(filePath))
-        {
-            filePath = defaultFilePath;
-        }
-
-        if (!FileUtils.TryLoadJsonFile<ConfigurationSettings>(filePath, out var configFile))
-        {
-            Console.WriteLine("Configuration file could not be loaded.");
-            return defaultSettings;
-        }
-
-        return configFile;
-    }
-
-    private OoTClientConnectionSettings LoadOoTClientConnectionSettings()
-    {
-        var settings = new OoTClientConnectionSettings() 
-        {
-            ArchipelagoHostName = _configurationSettings.ArchipelagoServer.Address,
-            ArchipelagoPort = _configurationSettings.ArchipelagoServer.Port,
-            Password = _configurationSettings.ArchipelagoServer.Password,
-            SlotName = _configurationSettings.ArchipelagoServer.SlotName,
-            RetroArchHostName = _configurationSettings.RetroArch.Address,
-            RetroArchPort = _configurationSettings.RetroArch.Port,
-        };
-
-        // TODO: Make this output pretty
-        Console.WriteLine($"Current settings: {settings}");
-
-        var shouldPromptManually = PromptForConnectionPreferences();
-
-        if (!shouldPromptManually)
-        {
-            return settings;
-        }
-
-        return PromptForConnectionSettings(settings);
-    }
-
-    private static bool PromptForConnectionPreferences()
-    {
-        Console.WriteLine($"Would you like to update connection details manually? (y/N): ");
-        var answer = Console.ReadLine();
-
-        return !string.IsNullOrWhiteSpace(answer) 
-            && answer.ToLowerInvariant().StartsWith('y');
-    }
-
-    // performance improvement idea:
-    // only check save context for locations on area changes, otherwise only use the temp context checks
-    // should do this skip inside the function for each check type, so that checks that don't have temp context still get checked for
-    // with how fast it is now, this would only be worth it for battery usage reasons
-
-    // idea for receiving local items:
-    // could have a sort of local database of checked locations, might want that anyway for performance reasons
-    // any location in the local save file that is checked would be in there, but if you make a new save then there
-    // could be locations checked in the multiworld that aren't marked as checked in the local database
-    // the idea would be that when processing the item queue, we can check against the local database,
-    // if the location is marked as checked there then that means we don't give the item, if it's not marked as checked then we do give the item
-    // this would avoid giving duplicate items but mean we can receive local items when making a new save file
-
-    private static OoTClientConnectionSettings PromptForConnectionSettings(OoTClientConnectionSettings defaultSettings)
-    {
-
-        var defaultApHostname = defaultSettings.ArchipelagoHostName;
-        Console.WriteLine($"Enter the Archipelago Server Hostname, default: \"{defaultApHostname}\"");
-        var apHostname = Console.ReadLine();
-
-        if (string.IsNullOrWhiteSpace(apHostname))
-        {
-            apHostname = defaultApHostname;
-        }
-
-        var defaultApPort = defaultSettings.ArchipelagoPort;
-        Console.WriteLine($"Enter the Archipelago Server port, default: {defaultApPort}");
-        var apPortString = Console.ReadLine();
-        var apPort = string.IsNullOrWhiteSpace(apPortString) ? defaultApPort : int.Parse(apPortString);
-
-        var defaultSlotName = defaultSettings.SlotName;
-        Console.WriteLine($"Enter the Slot Name, default: {defaultSlotName}");
-        var slotName = Console.ReadLine();
-
-        if (string.IsNullOrEmpty(slotName))
-        {
-            slotName = defaultSlotName;
-        }
-
-        var defaultPassword = defaultSettings.Password;
-        Console.WriteLine($"Enter the Password, default: {defaultPassword}");
-        var password = Console.ReadLine();
-
-        if (string.IsNullOrEmpty(password))
-        {
-            password = defaultSlotName;
-        }
-
-        var defaultRetroArchHostName = defaultSettings.RetroArchHostName;
-        Console.WriteLine($"Enter the RetroArch Hostname, default: {defaultRetroArchHostName}");
-        var retroArchHostname = Console.ReadLine();
-
-        if (string.IsNullOrEmpty(retroArchHostname))
-        {
-            retroArchHostname = defaultRetroArchHostName;
-        }
-
-        var defaultRetroArchPort = defaultSettings.RetroArchPort;
-        Console.WriteLine($"Enter the RetroArch Port, default: {defaultRetroArchPort}");
-        var retroArchPortString = Console.ReadLine();
-        var retroArchPort = string.IsNullOrWhiteSpace(retroArchPortString) ? defaultRetroArchPort : int.Parse(retroArchPortString);
-
-        return new OoTClientConnectionSettings
-        {
-            ArchipelagoHostName = apHostname,
-            ArchipelagoPort = apPort,
-            SlotName = slotName,
-            Password = password,
-            RetroArchHostName = retroArchHostname,
-            RetroArchPort = retroArchPort,
-        };
     }
 
     private async Task<OoTClientSlotData> GetSlotData()

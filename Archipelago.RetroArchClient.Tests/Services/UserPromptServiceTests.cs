@@ -1,7 +1,7 @@
 using Archipelago.RetroArchClient.Services;
 using Archipelago.RetroArchClient.Services.Interfaces;
 
-namespace Archipelago.RetroArchClient.Tests.OcarinaOfTime.Services
+namespace Archipelago.RetroArchClient.Tests.Services
 {
 	public class UserPromptServiceTests
 	{
