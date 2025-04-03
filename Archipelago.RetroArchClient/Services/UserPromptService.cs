@@ -4,10 +4,10 @@ namespace Archipelago.RetroArchClient.Services;
 
 public class UserPromptService : IUserPromptService
 {
-	/// <inheritdoc/>
+    /// <inheritdoc/>
     public string PromptForInput(string name, string defaultValue)
     {
-		var message = $"Enter the {name}, default: {defaultValue}: ";
+		var message = $"Enter the {name}, or leave blank and press enter to use: \"{defaultValue}\": ";
 		Console.WriteLine(message);
 		var userResponse = Console.ReadLine();
 		return string.IsNullOrWhiteSpace(userResponse) ? defaultValue : userResponse;

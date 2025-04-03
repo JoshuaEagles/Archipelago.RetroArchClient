@@ -15,7 +15,8 @@ public interface IUserPromptService
 
 	/// <summary>
 	/// Similar to <see cref="PromptForInput(string, string)" />,
-	/// except any prompt may be sent to the user.
+	/// except the standard prompt is fully replaced with provided 
+	/// <paramref name="prompt"/> instead.
 	/// </summary>
 	/// <param name="prompt">The prompt to send the user.</param> 
 	/// <param name="defaultValue">The default value to return if the user does not enter a value.</param>
