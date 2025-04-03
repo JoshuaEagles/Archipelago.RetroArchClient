@@ -16,6 +16,6 @@ public record ConfigurationSettings
     [JsonProperty("archipelago_server")]
     public ArchipelagoServer ArchipelagoServer { get; private init; }
 
-    [property: JsonProperty("retroarch")]
+    [JsonProperty("retroarch")]
     public RetroArch RetroArch { get; private init; }
 }
