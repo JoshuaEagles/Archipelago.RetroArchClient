@@ -28,6 +28,7 @@ public class OoTClient
 	private readonly IUserPromptService _userPromptService;
 	private readonly IConfigurationService _configurationService;
 	private readonly IConnectionService _connectionService;
+	private readonly IFileService _fileService;
 
     private readonly OoTClientConnectionSettings _connectionSettings;
     private readonly ConfigurationSettings _configurationSettings;
@@ -36,7 +37,8 @@ public class OoTClient
     {
 		// TODO: Set up DI
 		_userPromptService = new UserPromptService();
-		_configurationService = new ConfigurationService(_userPromptService);
+		_fileService = new FileService();
+		_configurationService = new ConfigurationService(_userPromptService, _fileService);
 		_connectionService = new ConnectionService(_userPromptService);
 
         _configurationSettings = _configurationService.LoadConfigurationSettings();

@@ -15,7 +15,7 @@ public class ConnectionService : IConnectionService
 
     public OoTClientConnectionSettings LoadOoTClientConnectionSettings(ConfigurationSettings configurationSettings)
 	{
-
+		// AutoMapper would be nice here.
         var settings = new OoTClientConnectionSettings() 
         {
             ArchipelagoHostName = configurationSettings.ArchipelagoServer.Address,

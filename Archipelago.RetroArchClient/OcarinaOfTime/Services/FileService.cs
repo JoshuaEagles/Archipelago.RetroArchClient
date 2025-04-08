@@ -1,14 +1,16 @@
+using Archipelago.RetroArchClient.OcarinaOfTime.Services.Interfaces;
 using Newtonsoft.Json;
 
-namespace Archipelago.RetroArchClient.Utils;
+namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 
-public class FileUtils 
+public class FileService : IFileService
 {
+    /// <inheritdoc/>
+    public string GetFilePathAtCurrentDirectory(string fileName) =>
+		Path.Combine(System.Environment.CurrentDirectory, fileName);
 
-    /// <summary>
-    /// Attempt to load a JSON file and deserialize it to the declared type.
-    /// </summary>
-    public static bool TryLoadJsonFile<T>(string path, out T result)
+    /// <inheritdoc/>
+    public bool TryLoadJsonFile<T>(string path, out T result)
         where T : class, new()
     {
         // May want an async version at some point?

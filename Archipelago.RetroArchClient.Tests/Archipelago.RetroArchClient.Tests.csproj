@@ -28,7 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="8.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+    <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="xunit.v3" Version="2.0.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.0.2" />
   </ItemGroup>
@@ -44,9 +46,7 @@
 <Target Name="CopyTestFiles" AfterTargets="Build">
     <Message Text="CopyTestFiles Task" Importance="High" />
 
-    <Copy
-      SourceFiles="@(TestFiles)"
-      DestinationFolder="$(TargetDir)\TestFiles" />
+    <Copy SourceFiles="@(TestFiles)" DestinationFolder="$(TargetDir)\TestFiles" />
 
     <Message Text="Copied Test files" Importance="High" />
   </Target>

@@ -1,10 +1,12 @@
-﻿using Archipelago.RetroArchClient.Configuration;
-using Archipelago.RetroArchClient.Utils;
+using Archipelago.RetroArchClient.Configuration;
+using Archipelago.RetroArchClient.OcarinaOfTime.Services;
+using FluentAssertions;
 
-namespace Archipelago.RetroArchClient.Tests.Utils;
+namespace Archipelago.RetroArchClient.Tests.Services;
 
-public class FileUtilsTests
+public class FileServiceTests
 {
+
     private const string TestFileFolderName = "TestFiles";
 
 	// Mapping of test file name to its expected result
@@ -38,11 +40,17 @@ public class FileUtilsTests
 	[MemberData(nameof(Data))]
     public void TryLoadJsonFile_LoadsConfigurationFile(string fileName, ConfigurationSettings expected)
     {
-        var path = Path.Combine(Environment.CurrentDirectory, TestFileFolderName, fileName);
-        var success = FileUtils.TryLoadJsonFile(path, out ConfigurationSettings result);
+		//Given
+		var fileService = new FileService();
+		var currentDir = System.Environment.CurrentDirectory;
+        var path = Path.Combine(currentDir, TestFileFolderName, fileName);
 
-        Assert.True(success);
-        Assert.Equal(expected, result);
+		//When
+        var fileLoadedSuccessfully = fileService.TryLoadJsonFile(path, out ConfigurationSettings result);
+
+		//Then
+		fileLoadedSuccessfully.Should().BeTrue();
+		expected.Should().BeEquivalentTo(result);
     }
 
 }

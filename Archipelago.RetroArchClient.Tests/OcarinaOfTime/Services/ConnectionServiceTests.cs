@@ -1,16 +1,27 @@
-namespace Archipelago.RetroArchClient.Tests.OcarinaOfTime.Services
+using FluentAssertions;
+using Archipelago.RetroArchClient.Configuration;
+using Archipelago.RetroArchClient.OcarinaOfTime.Services;
+using Archipelago.RetroArchClient.Services.Interfaces;
+using Moq;
+using Archipelago.RetroArchClient.OcarinaOfTime.Services.Interfaces;
+
+namespace Archipelago.RetroArchClient.Tests.OcarinaOfTime.Services;
+public class ConnectionServiceTests
 {
-  public class ConnectionServiceTests
-  {
-	  [Fact]
-	  public void TestName()
-	  {
-		  //Given
+	private Mock<IUserPromptService> _mockUserPromptService;
 
-		  //When
+	public ConnectionServiceTests()
+	{
+		_mockUserPromptService = new Mock<IUserPromptService>();
+	}
 
-		  //Then
-	  }
-  }
+	[Fact]
+	public void LoadOoTClientConnectionSettings_NoPrompt_LoadsSettings()
+	{
+		//Given
+
+		//When
+
+		//Then
+	}
 }
- 

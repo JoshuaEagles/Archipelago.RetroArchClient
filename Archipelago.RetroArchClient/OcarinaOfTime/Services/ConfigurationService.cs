@@ -1,41 +1,49 @@
 using Archipelago.RetroArchClient.Configuration;
 using Archipelago.RetroArchClient.OcarinaOfTime.Services.Interfaces;
 using Archipelago.RetroArchClient.Services.Interfaces;
-using Archipelago.RetroArchClient.Utils;
 
 namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 
 public class ConfigurationService : IConfigurationService
 {
 	private readonly IUserPromptService _userPromptService;
+	private readonly IFileService _fileService;
 
-    protected const string ExpectedConfigFileName = "config.json";
+	// Could potentially make this configurable as well? 
+    public const string DefaultConfigFileName = "config.json";
 
-    public ConfigurationService(IUserPromptService userPromptService)
+	public ConfigurationSettings DefaultConfigurationSettings 
+	{
+		get => new ConfigurationSettings(new ArchipelagoServer(), new RetroArch());
+	}
+
+    public ConfigurationService(IUserPromptService userPromptService, 
+		IFileService fileService)
     {
-		_userPromptService = userPromptService;
+        _userPromptService = userPromptService;
+        _fileService = fileService;
     }
 
+	/// <inheritdoc/>
     public ConfigurationSettings LoadConfigurationSettings()
     {
-        var defaultSettings = new ConfigurationSettings();
-        var currentDirectory = System.Environment.CurrentDirectory;
-        if (string.IsNullOrWhiteSpace(currentDirectory))
-        {
-            Console.WriteLine("Could not determine current directory.");
-            return defaultSettings;
-        }
+		try 
+		{
+			var defaultFilePath = _fileService.GetFilePathAtCurrentDirectory(DefaultConfigFileName);
+			var filePath = _userPromptService.PromptForInput("path to config file", defaultFilePath);
 
-        var defaultFilePath = Path.Combine(currentDirectory, ExpectedConfigFileName);
-		var filePath = _userPromptService.PromptForInput("path to config file", defaultFilePath);
+			if (!_fileService.TryLoadJsonFile<ConfigurationSettings>(filePath, out var configFile))
+			{
+				Console.WriteLine("Configuration file could not be loaded.");
+				return DefaultConfigurationSettings;
+			}
 
-        if (!FileUtils.TryLoadJsonFile<ConfigurationSettings>(filePath, out var configFile))
-        {
-            Console.WriteLine("Configuration file could not be loaded.");
-            return defaultSettings;
-        }
-
-        return configFile;
+			return configFile;
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Failed to load configuration file with exception: {ex}");
+			return DefaultConfigurationSettings;
+		}
     }
-
 }
