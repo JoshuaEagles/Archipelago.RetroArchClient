@@ -8,6 +8,13 @@ public class ConnectionService : IConnectionService
 {
 	private readonly IUserPromptService _userPromptService;
 
+	internal const string PromptArchipelagoHostname = "Archipelago Server Hostname";
+	internal const string PromptArchipelagoPort = "Archipelago Server port";
+	internal const string PromptArchipelagoSlotname = "Slot name";
+	internal const string PromptArchipelagoPassword = "Password";
+	internal const string PromptRetroArchHostname = "RetroArch Hostname";
+	internal const string PromptRetroArchPort = "RetroArch port";
+
     public ConnectionService(IUserPromptService userPromptService)
     {
         _userPromptService = userPromptService;
@@ -55,23 +62,23 @@ public class ConnectionService : IConnectionService
     private OoTClientConnectionSettings PromptForConnectionSettings(OoTClientConnectionSettings defaultSettings)
     {
         var defaultApHostname = defaultSettings.ArchipelagoHostName;
-		var apHostName = _userPromptService.PromptForInput("Archipelago Server Hostname", defaultApHostname);
+		var apHostName = _userPromptService.PromptForInput(PromptArchipelagoHostname, defaultApHostname);
 
         var defaultApPort = defaultSettings.ArchipelagoPort;
-        var apPortString = _userPromptService.PromptForInput("Archipelago Server port", defaultApPort.ToString());
+        var apPortString = _userPromptService.PromptForInput(PromptArchipelagoPort, defaultApPort.ToString());
         var apPort = string.IsNullOrWhiteSpace(apPortString) ? defaultApPort : int.Parse(apPortString);
 
         var defaultSlotName = defaultSettings.SlotName;
-        var slotName = _userPromptService.PromptForInput("Slot Name", defaultSlotName);
+        var slotName = _userPromptService.PromptForInput(PromptArchipelagoSlotname, defaultSlotName);
 
         var defaultPassword = defaultSettings.Password;
-        var password = _userPromptService.PromptForInput("Password", defaultPassword);
+        var password = _userPromptService.PromptForInput(PromptArchipelagoPassword, defaultPassword);
 
         var defaultRetroArchHostName = defaultSettings.RetroArchHostName;
-        var retroArchHostname = _userPromptService.PromptForInput("RetroArch Hostname", defaultRetroArchHostName);
+        var retroArchHostname = _userPromptService.PromptForInput(PromptRetroArchHostname, defaultRetroArchHostName);
 
         var defaultRetroArchPort = defaultSettings.RetroArchPort;
-        var retroArchPortString = _userPromptService.PromptForInput("RetroArch Port", defaultRetroArchPort.ToString());
+        var retroArchPortString = _userPromptService.PromptForInput(PromptRetroArchPort, defaultRetroArchPort.ToString());
         var retroArchPort = string.IsNullOrWhiteSpace(retroArchPortString) ? defaultRetroArchPort : int.Parse(retroArchPortString);
 
         return new OoTClientConnectionSettings
