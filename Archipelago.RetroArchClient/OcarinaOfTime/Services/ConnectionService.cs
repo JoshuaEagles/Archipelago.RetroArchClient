@@ -4,26 +4,24 @@ using Archipelago.RetroArchClient.OcarinaOfTime.Services.Interfaces;
 using Archipelago.RetroArchClient.Services.Interfaces;
 
 namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
+
 public class ConnectionService : IConnectionService
 {
-	private readonly IUserPromptService _userPromptService;
+    private readonly IUserPromptService _userPromptService;
 
-	internal const string PromptArchipelagoHostname = "Archipelago Server Hostname";
-	internal const string PromptArchipelagoPort = "Archipelago Server port";
-	internal const string PromptArchipelagoSlotname = "Slot name";
-	internal const string PromptArchipelagoPassword = "Password";
-	internal const string PromptRetroArchHostname = "RetroArch Hostname";
-	internal const string PromptRetroArchPort = "RetroArch port";
+    internal const string PromptArchipelagoHostname = "Archipelago Server Hostname";
+    internal const string PromptArchipelagoPort = "Archipelago Server port";
+    internal const string PromptArchipelagoSlotname = "Slot name";
+    internal const string PromptArchipelagoPassword = "Password";
+    internal const string PromptRetroArchHostname = "RetroArch Hostname";
+    internal const string PromptRetroArchPort = "RetroArch port";
 
-    public ConnectionService(IUserPromptService userPromptService)
-    {
-        _userPromptService = userPromptService;
-    }
+    public ConnectionService(IUserPromptService userPromptService) => _userPromptService = userPromptService;
 
     public OoTClientConnectionSettings LoadOoTClientConnectionSettings(ConfigurationSettings configurationSettings)
-	{
-		// AutoMapper would be nice here.
-        var settings = new OoTClientConnectionSettings() 
+    {
+        // AutoMapper would be nice here.
+        var settings = new OoTClientConnectionSettings
         {
             ArchipelagoHostName = configurationSettings.ArchipelagoServer.Address,
             ArchipelagoPort = configurationSettings.ArchipelagoServer.Port,
@@ -36,7 +34,8 @@ public class ConnectionService : IConnectionService
         // TODO: Make this output pretty
         Console.WriteLine($"Current settings: {settings}");
 
-        var shouldPromptManually = _userPromptService.PromptForBool("Would you like to update connection details manually?", false);
+        var shouldPromptManually =
+            _userPromptService.PromptForBool("Would you like to update connection details manually?", false);
 
         if (!shouldPromptManually)
         {
@@ -44,7 +43,7 @@ public class ConnectionService : IConnectionService
         }
 
         return PromptForConnectionSettings(settings);
-	}
+    }
 
     // performance improvement idea:
     // only check save context for locations on area changes, otherwise only use the temp context checks
@@ -62,7 +61,7 @@ public class ConnectionService : IConnectionService
     private OoTClientConnectionSettings PromptForConnectionSettings(OoTClientConnectionSettings defaultSettings)
     {
         var defaultApHostname = defaultSettings.ArchipelagoHostName;
-		var apHostName = _userPromptService.PromptForInput(PromptArchipelagoHostname, defaultApHostname);
+        var apHostName = _userPromptService.PromptForInput(PromptArchipelagoHostname, defaultApHostname);
 
         var defaultApPort = defaultSettings.ArchipelagoPort;
         var apPortString = _userPromptService.PromptForInput(PromptArchipelagoPort, defaultApPort.ToString());
@@ -78,8 +77,11 @@ public class ConnectionService : IConnectionService
         var retroArchHostname = _userPromptService.PromptForInput(PromptRetroArchHostname, defaultRetroArchHostName);
 
         var defaultRetroArchPort = defaultSettings.RetroArchPort;
-        var retroArchPortString = _userPromptService.PromptForInput(PromptRetroArchPort, defaultRetroArchPort.ToString());
-        var retroArchPort = string.IsNullOrWhiteSpace(retroArchPortString) ? defaultRetroArchPort : int.Parse(retroArchPortString);
+        var retroArchPortString =
+            _userPromptService.PromptForInput(PromptRetroArchPort, defaultRetroArchPort.ToString());
+        var retroArchPort = string.IsNullOrWhiteSpace(retroArchPortString)
+            ? defaultRetroArchPort
+            : int.Parse(retroArchPortString);
 
         return new OoTClientConnectionSettings
         {
@@ -92,4 +94,3 @@ public class ConnectionService : IConnectionService
         };
     }
 }
-

@@ -5,25 +5,25 @@ namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
 
 public class FileService : IFileService
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public string GetFilePathAtCurrentDirectory(string fileName) =>
-		Path.Combine(System.Environment.CurrentDirectory, fileName);
+        Path.Combine(Environment.CurrentDirectory, fileName);
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public bool TryLoadJsonFile<T>(string path, out T result)
         where T : class, new()
     {
         // May want an async version at some point?
         result = new T();
-        try 
+        try
         {
-            if(!File.Exists(path))
+            if (!File.Exists(path))
             {
                 Console.WriteLine($"File not found at path: {path} ");
                 return false;
             }
 
-            string jsonText = File.ReadAllText(path);
+            var jsonText = File.ReadAllText(path);
             if (string.IsNullOrWhiteSpace(jsonText))
             {
                 Console.WriteLine("File was empty.");

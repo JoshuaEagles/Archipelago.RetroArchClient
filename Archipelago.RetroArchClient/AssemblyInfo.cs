@@ -1,3 +1,3 @@
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("Archipelago.RetroArchClient.Tests")] 
+[assembly: InternalsVisibleTo("Archipelago.RetroArchClient.Tests")]

@@ -11,11 +11,11 @@ public record ConfigurationSettings
     }
 
     public ConfigurationSettings()
-        : this(new ArchipelagoServer(), new RetroArch()) { }
+        : this(new ArchipelagoServer(), new RetroArch())
+    {
+    }
 
-    [JsonProperty("archipelago_server")]
-    public ArchipelagoServer ArchipelagoServer { get; private init; }
+    [JsonProperty("archipelago_server")] public ArchipelagoServer ArchipelagoServer { get; private init; }
 
-    [JsonProperty("retroarch")]
-    public RetroArch RetroArch { get; private init; }
+    [JsonProperty("retroarch")] public RetroArch RetroArch { get; private init; }
 }

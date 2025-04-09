@@ -25,21 +25,21 @@ public class OoTClient
     private readonly OoTClientDeathLinkService _ootClientDeathLinkService;
     private readonly PlayerNameService _playerNameService;
     private readonly ReceiveItemService _receiveItemService;
-	private readonly IUserPromptService _userPromptService;
-	private readonly IConfigurationService _configurationService;
-	private readonly IConnectionService _connectionService;
-	private readonly IFileService _fileService;
+    private readonly IUserPromptService _userPromptService;
+    private readonly IConfigurationService _configurationService;
+    private readonly IConnectionService _connectionService;
+    private readonly IFileService _fileService;
 
     private readonly OoTClientConnectionSettings _connectionSettings;
     private readonly ConfigurationSettings _configurationSettings;
 
     public OoTClient()
     {
-		// TODO: Set up DI
-		_userPromptService = new UserPromptService();
-		_fileService = new FileService();
-		_configurationService = new ConfigurationService(_userPromptService, _fileService);
-		_connectionService = new ConnectionService(_userPromptService);
+        // TODO: Set up DI
+        _userPromptService = new UserPromptService();
+        _fileService = new FileService();
+        _configurationService = new ConfigurationService(_userPromptService, _fileService);
+        _connectionService = new ConnectionService(_userPromptService);
 
         _configurationSettings = _configurationService.LoadConfigurationSettings();
         _connectionSettings = _connectionService.LoadOoTClientConnectionSettings(_configurationSettings);
