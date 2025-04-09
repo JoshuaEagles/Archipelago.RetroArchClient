@@ -1,6 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archipelago.RetroArchClient", "Archipelago.RetroArchClient/Archipelago.RetroArchClient.csproj", "{228A676D-272E-4665-A821-860F7F0D22FC}"
+# 
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archipelago.RetroArchClient", "Archipelago.RetroArchClient\Archipelago.RetroArchClient.csproj", "{228A676D-272E-4665-A821-860F7F0D22FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archipelago.RetroArchClient.Tests", "Archipelago.RetroArchClient.Tests\Archipelago.RetroArchClient.Tests.csproj", "{E2036E26-E909-491F-88C8-A47C5D0F827D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +15,9 @@ Global
 		{228A676D-272E-4665-A821-860F7F0D22FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{228A676D-272E-4665-A821-860F7F0D22FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{228A676D-272E-4665-A821-860F7F0D22FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2036E26-E909-491F-88C8-A47C5D0F827D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2036E26-E909-491F-88C8-A47C5D0F827D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2036E26-E909-491F-88C8-A47C5D0F827D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2036E26-E909-491F-88C8-A47C5D0F827D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

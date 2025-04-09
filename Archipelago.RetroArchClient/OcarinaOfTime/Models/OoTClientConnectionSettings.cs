@@ -9,6 +9,7 @@ public record OoTClientConnectionSettings
     public required string ArchipelagoHostName { get; init; }
     public required int ArchipelagoPort { get; init; }
     public required string SlotName { get; init; }
+    public required string Password { get; init; }
 
     public required string RetroArchHostName { get; init; }
     public required int RetroArchPort { get; init; }
