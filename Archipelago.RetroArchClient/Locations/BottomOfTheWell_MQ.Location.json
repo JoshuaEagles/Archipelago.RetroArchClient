@@ -1,0 +1,57 @@
+﻿{
+  "area": "BottomOfTheWellMq",
+  "locations": {
+    "chests": {
+      "entries": [
+        {
+          "name": "Bottom of the Well MQ Map Chest",
+          "offset": "0x08",
+          "bitToCheck": "0x03"
+        },
+        {
+          "name": "Bottom of the Well MQ Compass Chest",
+          "offset": "0x08",
+          "bitToCheck": "0x02"
+        },
+        {
+          "name": "Bottom of the Well MQ Lens of Truth Chest",
+          "offset": "0x08",
+          "bitToCheck": "0x01"
+        }
+      ]
+    },
+    "groundItems": {
+      "entries": [
+        {
+          "name": "Bottom of the Well MQ East Inner Freestanding Key",
+          "offset": "0x08",
+          "bitToCheck": "0x01"
+        },
+        {
+          "name": "Bottom of the Well MQ Dead Hand Freestanding Key",
+          "offset": "0x08",
+          "bitToCheck": "0x02"
+        }
+      ]
+    },
+    "skulltulas": {
+      "entries": [
+        {
+          "name": "Bottom of the Well MQ GS Coffin Room",
+          "offset": "0x08",
+          "bitToCheck": "0x02"
+        },
+        {
+          "name": "Bottom of the Well MQ GS West Inner Room",
+          "offset": "0x08",
+          "bitToCheck": "0x01"
+        },
+        {
+          "name": "Bottom of the Well MQ GS Basement",
+          "offset": "0x08",
+          "bitToCheck": "0x00"
+        }
+      ]
+    }
+  }
+}

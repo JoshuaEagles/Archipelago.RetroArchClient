@@ -1,0 +1,90 @@
+- name: Fire Temple MQ Map Room Side Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x02
+  area: FireTempleMq
+- name: Fire Temple MQ Megaton Hammer Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x00
+  area: FireTempleMq
+- name: Fire Temple MQ Map Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x0C
+  area: FireTempleMq
+- name: Fire Temple MQ Near Boss Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x07
+  area: FireTempleMq
+- name: Fire Temple MQ Big Lava Room Blocked Door Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x01
+  area: FireTempleMq
+- name: Fire Temple MQ Boss Key Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x04
+  area: FireTempleMq
+- name: Fire Temple MQ Lizalfos Maze Side Room Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x08
+  area: FireTempleMq
+- name: Fire Temple MQ Compass Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x0B
+  area: FireTempleMq
+- name: Fire Temple MQ Lizalfos Maze Upper Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x06
+  area: FireTempleMq
+- name: Fire Temple MQ Lizalfos Maze Lower Chest
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x03
+  area: FireTempleMq
+- name: Fire Temple MQ Freestanding Key
+  type: GroundItem
+  offset: 0x04
+  bit_to_check: 0x1C
+  area: FireTempleMq
+- name: Fire Temple MQ Chest On Fire
+  type: Chest
+  offset: 0x04
+  bit_to_check: 0x05
+  area: FireTempleMq
+- name: Fire Temple MQ GS Big Lava Room Open Door
+  type: Skulltula
+  offset: 0x04
+  bit_to_check: 0x00
+  area: FireTempleMq
+- name: Fire Temple MQ GS Skull On Fire
+  type: Skulltula
+  offset: 0x04
+  bit_to_check: 0x02
+  area: FireTempleMq
+- name: Fire Temple MQ GS Flame Maze Center
+  type: Skulltula
+  offset: 0x04
+  bit_to_check: 0x03
+  area: FireTempleMq
+- name: Fire Temple MQ GS Flame Maze Side Room
+  type: Skulltula
+  offset: 0x04
+  bit_to_check: 0x04
+  area: FireTempleMq
+- name: Fire Temple MQ GS Above Flame Maze
+  type: Skulltula
+  offset: 0x04
+  bit_to_check: 0x01
+  area: FireTempleMq
+- name: Fire Temple Volvagia Heart
+  type: BossItem
+  offset: 0x15
+  bit_to_check: 0x00
+  area: FireTempleMq

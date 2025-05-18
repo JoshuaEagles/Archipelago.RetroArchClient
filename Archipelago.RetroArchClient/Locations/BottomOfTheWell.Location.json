@@ -1,0 +1,102 @@
+{
+  "area": "BottomOfTheWell",
+  "locations": {
+    "chests": {
+      "entries": [
+        {
+          "name": "Bottom of the Well Front Left Fake Wall Chest",
+          "offset": "0x08",
+          "bitToCheck": "0x08"
+        },
+        {
+          "name": "Bottom of the Well Front Center Bombable Chest",
+          "offset": "0x08",
+          "bitToCheck": "0x02"
+        },
+        {
+          "name": "Bottom of the Well Back Left Bombable Chest",
+          "offset": "0x08",
+          "bitToCheck": "0x04"
+        },
+        {
+          "name": "Bottom of the Well Underwater Left Chest",
+          "offset": "0x08",
+          "bitToCheck": "0x09"
+        },
+        {
+          "name": "Bottom of the Well Compass Chest",
+          "offset": "0x08",
+          "bitToCheck": "0x01"
+        },
+        {
+          "name": "Bottom of the Well Center Skulltula Chest",
+          "offset": "0x08",
+          "bitToCheck": "0x0E"
+        },
+        {
+          "name": "Bottom of the Well Right Bottom Fake Wall Chest",
+          "offset": "0x08",
+          "bitToCheck": "0x05"
+        },
+        {
+          "name": "Bottom of the Well Fire Keese Chest",
+          "offset": "0x08",
+          "bitToCheck": "0x0A"
+        },
+        {
+          "name": "Bottom of the Well Like Like Chest",
+          "offset": "0x08",
+          "bitToCheck": "0x0C"
+        },
+        {
+          "name": "Bottom of the Well Map Chest",
+          "offset": "0x08",
+          "bitToCheck": "0x07"
+        },
+        {
+          "name": "Bottom of the Well Underwater Front Chest",
+          "offset": "0x08",
+          "bitToCheck": "0x10"
+        },
+        {
+          "name": "Bottom of the Well Invisible Chest",
+          "offset": "0x08",
+          "bitToCheck": "0x14"
+        },
+        {
+          "name": "Bottom of the Well Lens of Truth Chest",
+          "offset": "0x08",
+          "bitToCheck": "0x03"
+        }
+      ]
+    },
+    "groundItems": {
+      "entries": [
+        {
+          "name": "Bottom of the Well Freestanding Key",
+          "offset": "0x08",
+          "bitToCheck": "0x01"
+        }
+      ]
+    },
+    "skulltulas": {
+      "entries": [
+        {
+          "name": "Bottom of the Well GS West Inner Room",
+          "offset": "0x08",
+          "bitToCheck": "0x02"
+        },
+        {
+          "name": "Bottom of the Well GS East Inner Room",
+          "offset": "0x08",
+          "bitToCheck": "0x01"
+        },
+        {
+          "name": "Bottom of the Well GS Like Like Cage",
+          "offset": "0x08",
+          "bitToCheck": "0x00"
+        }
+      ]
+    }
+  }
+}

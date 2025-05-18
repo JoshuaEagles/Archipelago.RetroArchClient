@@ -1,0 +1,72 @@
+﻿{
+  "area": "DekuTree",
+  "locations": {
+    "chests": {
+      "entries": [
+        {
+          "name": "Deku Tree Map Chest",
+          "offset": "0x00",
+          "bitToCheck": "0x03"
+        },
+        {
+          "name": "Deku Tree Slingshot Room Side Chest",
+          "offset": "0x00",
+          "bitToCheck": "0x05"
+        },
+        {
+          "name": "Deku Tree Slingshot Chest",
+          "offset": "0x00",
+          "bitToCheck": "0x01"
+        },
+        {
+          "name": "Deku Tree Compass Chest",
+          "offset": "0x00",
+          "bitToCheck": "0x02"
+        },
+        {
+          "name": "Deku Tree Compass Room Side Chest",
+          "offset": "0x00",
+          "bitToCheck": "0x06"
+        },
+        {
+          "name": "Deku Tree Basement Chest",
+          "offset": "0x00",
+          "bitToCheck": "0x04"
+        }
+      ]
+    },
+    "skulltulas": {
+      "entries": [
+        {
+          "name": "Deku Tree GS Compass Room",
+          "offset": "0x00",
+          "bitToCheck": "0x03"
+        },
+        {
+          "name": "Deku Tree GS Basement Vines",
+          "offset": "0x00",
+          "bitToCheck": "0x02"
+        },
+        {
+          "name": "Deku Tree GS Basement Gate",
+          "offset": "0x00",
+          "bitToCheck": "0x01"
+        },
+        {
+          "name": "Deku Tree GS Basement Back Room",
+          "offset": "0x00",
+          "bitToCheck": "0x00"
+        }
+      ]
+    },
+    "bossItems": {
+      "entries": [
+        {
+          "name": "Deku Tree Queen Gohma Heart",
+          "offset": "0x11",
+          "bitToCheck": "0x00"
+        }
+      ]
+    }
+  }
+}

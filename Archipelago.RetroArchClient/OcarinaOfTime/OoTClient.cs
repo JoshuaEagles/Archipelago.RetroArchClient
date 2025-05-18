@@ -3,11 +3,17 @@ using System.Net.Sockets;
 using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
+using Archipelago.RetroArchClient.OcarinaOfTime.Data;
+using Archipelago.RetroArchClient.OcarinaOfTime.Enums;
 using Archipelago.RetroArchClient.OcarinaOfTime.Models;
 using Archipelago.RetroArchClient.OcarinaOfTime.Services;
 using Archipelago.RetroArchClient.Services;
 using Archipelago.RetroArchClient.Services.Interfaces;
+using Archipelago.RetroArchClient.Utils;
 using Newtonsoft.Json.Linq;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
+using Version = System.Version;
 
 namespace Archipelago.RetroArchClient.OcarinaOfTime;
 
@@ -25,6 +31,7 @@ public class OoTClient
     private readonly OoTClientDeathLinkService _ootClientDeathLinkService;
     private readonly PlayerNameService _playerNameService;
     private readonly ReceiveItemService _receiveItemService;
+    private readonly JsonParserService _jsonParserService;
 
     public OoTClient()
     {
@@ -43,6 +50,7 @@ public class OoTClient
             memoryService: _memoryService,
             currentSceneService: currentSceneService
         );
+        _jsonParserService = new JsonParserService();
         _gameModeService = new GameModeService(
             memoryService: _memoryService);
         _locationCheckService = new LocationCheckService(
@@ -67,7 +75,7 @@ public class OoTClient
             game: "Ocarina of Time",
             name: _connectionSettings.SlotName,
             itemsHandlingFlags: ItemsHandlingFlags.RemoteItems,
-            version: new Version(0, 5, 1),
+            version: new Version(0, 6, 1),
             tags: ["AP"]
         );
         _archipelagoDeathLinkService = _apSession.CreateDeathLinkService();
@@ -80,6 +88,10 @@ public class OoTClient
             );
         }
 
+        Console.WriteLine("Reading location infos...");
+        _jsonParserService.ReadJsonFiles();
+        Console.WriteLine("Location infos read and processed.");
+        Console.WriteLine();
         Console.WriteLine("Connected to Archipelago");
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("--------NOTICE--------");
