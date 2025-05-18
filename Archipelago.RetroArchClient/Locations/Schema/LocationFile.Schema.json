@@ -1,0 +1,606 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Location File Schema",
+  "type": "object",
+  "properties": {
+    "area": {
+      "type": "string",
+      "description": "The internal identifier of an area"
+    },
+    "locations": {
+      "type": "object",
+      "description": "All checkable locations within an area, listed by type",
+      "properties": {
+        "chests": {
+          "type": "object",
+          "description": "Chests that can be checked",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "cows": {
+          "type": "object",
+          "description": "Cows that can be checked",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "skulltulas": {
+          "type": "object",
+          "description": "Golden Skulltulas that can be checked",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "groundItems": {
+          "type": "object",
+          "description": "Freestanding Items that can be checked",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "events": {
+          "type": "object",
+          "description": "Events that give a reward",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "getInfos": {
+          "type": "object",
+          "description": "TODO: Specify what this is for",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "infoTables": {
+          "type": "object",
+          "description": "TODO: Specify what this is for",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "scrubsanity": {
+          "type": "object",
+          "description": "Deku Scrubs that can be checked",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "bossItems": {
+          "type": "object",
+          "description": "Items that you get as a reward for defeating a boss",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "bigPoeBottle": {
+          "type": "object",
+          "description": "The reward you get for completing the Big Poe Quest (?)",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "greatFairies": {
+          "type": "object",
+          "description": "The reward you get from visiting a great fairy",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "trailGreatFairy": {
+          "type": "object",
+          "description": "The reward you get from visiting the great fairy on DMT",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "craterGreatFairy": {
+          "type": "object",
+          "description": "The reward you get from visitng the great fairy in DMC",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "medigoron": {
+          "type": "object",
+          "description": "The reward you get from visiting Medigoron in GC",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "biggoronSword": {
+          "type": "object",
+          "description": "The reward you get from showing Biggoron the Claim Check in DMT",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "beanSale": {
+          "type": "object",
+          "description": "The reward you get from buying an item from the Bean Salesman in ZR",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "fishingChild": {
+          "type": "object",
+          "description": "The reward for setting a new fishing record as child Link",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "fishingAdult": {
+          "type": "object",
+          "description": "The reward for setting a new fishing record as adult Link",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "fireArrows": {
+          "type": "object",
+          "description": "The reward for shooting an arrow into the sun in LH",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "membershipCardCheck": {
+          "type": "object",
+          "description": "TODO: Specify what this is for",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        },
+        "bombchuSalesman": {
+          "type": "object",
+          "description": "The reward you get from buying an item from the Bombchu Salesman in HW",
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the location"
+                  },
+                  "offset": {
+                    "type": "string",
+                    "description": "The offset where the location resides in memory"
+                  },
+                  "bitToCheck": {
+                    "type": "string",
+                    "description": "The bit that needs to be checked for this location"
+                  }
+                },
+                "required": ["name", "offset", "bitToCheck"]
+              }
+            }
+          },
+          "required": ["entries"]
+        }
+      }
+    }
+  },
+  "required": ["area", "locations"]
+}

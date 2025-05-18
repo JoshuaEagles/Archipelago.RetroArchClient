@@ -1,0 +1,82 @@
+﻿{
+  "area": "DeathMountainCrater",
+  "locations": {
+    "groundItems": {
+      "entries": [
+        {
+          "name": "DMC Volcano Freestanding PoH",
+          "offset": "0x61",
+          "bitToCheck": "0x08"
+        },
+        {
+          "name": "DMC Wall Freestanding PoH",
+          "offset": "0x61",
+          "bitToChecK": "0x02"
+        }
+      ],
+      "chest": [
+        {
+          "name": "DMC Upper Grotto Chest",
+          "offset": "0x3E",
+          "bitToCheck": "0x02"
+        }
+      ]
+    },
+    "craterGreatFairy": {
+      "entries": [
+        {
+          "name": "DMC Great Fairy Reward",
+          "offset": "0x3B",
+          "bitToCheck": "0x10"
+        }
+      ]
+    },
+    "events": {
+      "entries": [
+        {
+          "name": "Sheik in Crater",
+          "offset": "0x05",
+          "bitToCheck": "0x01"
+        }
+      ]
+    },
+    "scrubsanity": {
+      "entries": [
+        {
+          "name": "DMC Deku Scrub",
+          "offset": "0x61",
+          "bitToCheck": "0x06"
+        },
+        {
+          "name": "DMC Deku Scrub Grotto Left",
+          "offset": "0x23",
+          "bitToCheck": "0x01"
+        },
+        {
+          "name": "DMC Deku Scrub Grotto Center",
+          "offset": "0x23",
+          "bitToCheck": "0x04"
+        },
+        {
+          "name": "DMC Deku Scrub Grotto Right",
+          "offset": "0x23",
+          "bitToCheck": "0x06"
+        }
+      ]
+    },
+    "skulltulas": {
+      "entries": [
+        {
+          "name": "DMC GS Crate",
+          "offset": "0x23",
+          "bitToCheck": "0x06"
+        },
+        {
+          "name": "DMC GS Bean Patch",
+          "offset": "0x0F",
+          "bitToCheck": "0x00"
+        }
+      ]
+    }
+  }
+}

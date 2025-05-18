@@ -1,0 +1,86 @@
+﻿{
+  "area": "DekuTreeMq",
+  "locations": {
+    "chests": {
+      "entries": [
+        {
+          "name": "Deku Tree MQ Map Chest",
+          "offset": "0x00",
+          "bitToCheck": "0x03"
+        },
+        {
+          "name": "Deku Tree MQ Slingshot Chest",
+          "offset": "0x00",
+          "bitToCheck": "0x06"
+        },
+        {
+          "name": "Deku Tree MQ Slingshot Room Back Chest",
+          "offset": "0x00",
+          "bitToCheck": "0x02"
+        },
+        {
+          "name": "Deku Tree MQ Compass Chest",
+          "offset": "0x00",
+          "bitToCheck": "0x01"
+        },
+        {
+          "name": "Deku Tree MQ Basement Chest",
+          "offset": "0x00",
+          "bitToCheck": "0x04"
+        },
+        {
+          "name": "Deku Tree MQ Before Spinning Log Chest",
+          "offset": "0x00",
+          "bitToCheck": "0x05"
+        },
+        {
+          "name": "Deku Tree MQ After Spinning Log Chest",
+          "offset": "0x00",
+          "bitToCheck": "0x00"
+        }
+      ]
+    },
+    "scrubsanity": {
+      "entries": [
+        {
+          "name": "Deku Tree MQ Deku Scrub",
+          "offset": "0x00",
+          "bitToCheck": "0x05"
+        }
+      ]
+    },
+    "skulltulas": {
+      "entries": [
+        {
+          "name": "Deku Tree MQ GS Lobby",
+          "offset": "0x00",
+          "bitToCheck": "0x01"
+        },
+        {
+          "name": "Deku Tree MQ GS Compass Room",
+          "offset": "0x00",
+          "bitToCheck": "0x03"
+        },
+        {
+          "name": "Deku Tree MQ GS Basement Graves Room",
+          "offset": "0x00",
+          "bitToCheck": "0x02"
+        },
+        {
+          "name": "Deku Tree MQ GS Basement Back Room",
+          "offset": "0x00",
+          "bitToCheck": "0x00"
+        }
+      ]
+    },
+    "bossItems": {
+      "entries": [
+        {
+          "name": "Deku Tree Queen Gohma Heart",
+          "offset": "0x11",
+          "bitToCheck": "0x00"
+        }
+      ]
+    }
+  }
+}

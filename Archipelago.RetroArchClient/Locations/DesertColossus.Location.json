@@ -1,0 +1,65 @@
+﻿{
+  "area": "DesertColossus",
+  "locations": {
+    "getInfos": {
+      "entries": [
+        {
+          "name": "Colossus Great Fairy Reward",
+          "offset": "0x02",
+          "bitToCheck": "0x02"
+        }
+      ]
+    },
+    "groundItems": {
+      "entries": [
+        {
+          "name": "Colossus Freestanding PoH",
+          "offset": "0x5C",
+          "bitToCheck": "0x0D"
+        }
+      ]
+    },
+    "events": {
+      "entries": [
+        {
+          "name": "Sheik at Colossus",
+          "offset": "0x0A",
+          "bitToCheck": "0x0C"
+        }
+      ]
+    },
+    "scrubsanity": {
+      "entries": [
+        {
+          "name": "Colossus Deku Scrub Grotto Front",
+          "offset": "0x27",
+          "bitToCheck": "0x09"
+        },
+        {
+          "name": "Colossus Deku Scrub Grotto Rear",
+          "offset": "0x27",
+          "bitToCheck": "0x08"
+        }
+      ]
+    },
+    "skulltulas": {
+      "entries": [
+        {
+          "name": "Colossus GS Bean Patch",
+          "offset": "0x15",
+          "bitToCheck": "0x00"
+        },
+        {
+          "name": "Colossus GS Tree",
+          "offset": "0x15",
+          "bitToCheck": "0x03"
+        },
+        {
+          "name": "Colossus GS Hill",
+          "offset": "0x15",
+          "bitToCheck": "0x02"
+        }
+      ]
+    }
+  }
+}

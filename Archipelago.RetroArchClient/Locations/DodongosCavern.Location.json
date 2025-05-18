@@ -1,0 +1,101 @@
+﻿{
+  "area": "DodongosCavern",
+  "locations": {
+    "chests": {
+      "entries": [
+        {
+          "name": "Dodongos Cavern Map Chest",
+          "offset": "0x01",
+          "bitToCheck": "0x08"
+        },
+        {
+          "name": "Dodongos Cavern Compass Chest",
+          "offset": "0x01",
+          "bitToCheck": "0x05"
+        },
+        {
+          "name": "Dodongos Cavern Bomb Flower Platform Chest",
+          "offset": "0x01",
+          "bitToCheck": "0x06"
+        },
+        {
+          "name": "Dodongos Cavern Bomb Bag Chest",
+          "offset": "0x01",
+          "bitToCheck": "0x04"
+        },
+        {
+          "name": "Dodongos Cavern End of Bridge Chest",
+          "offset": "0x01",
+          "bitToCheck": "0x0A"
+        },
+        {
+          "name": "Dodongos Cavern Boss Room Chest",
+          "offset": "0x12",
+          "bitToCheck": "0x00"
+        }
+      ]
+    },
+    "scrubsanity": {
+      "entries": [
+        {
+          "name": "Dodongos Cavern Deku Scrub Lobby",
+          "offset": "0x01",
+          "bitToCheck": "0x05"
+        },
+        {
+          "name": "Dodongos Cavern Deku Scrub Side Room Near Dodongos",
+          "offset": "0x01",
+          "bitToCheck": "0x02"
+        },
+        {
+          "name": "Dodongos Cavern Deku Scrub Near Bomb Bag Left",
+          "offset": "0x01",
+          "bitToCheck": "0x01"
+        },
+        {
+          "name": "Dodongos Cavern Deku Scrub Near Bomb Bag Right",
+          "offset": "0x01",
+          "bitToCheck": "0x04"
+        }
+      ]
+    },
+    "skulltulas": {
+      "entries": [
+        {
+          "name": "Dodongos Cavern GS Side Room Near Lower Lizalfos",
+          "offset": "0x01",
+          "bitToCheck": "0x04"
+        },
+        {
+          "name": "Dodongos Cavern GS Scarecrow",
+          "offset": "0x01",
+          "bitToCheck": "0x01"
+        },
+        {
+          "name": "Dodongos Cavern GS Alcove Above Stairs",
+          "offset": "0x01",
+          "bitToCheck": "0x02"
+        },
+        {
+          "name": "Dodongos Cavern GS Vines Above Stairs",
+          "offset": "0x01",
+          "bitToCheck": "0x00"
+        },
+        {
+          "name": "Dodongos Cavern GS Back Room",
+          "offset": "0x01",
+          "bitToCheck": "0x03"
+        }
+      ]
+    },
+    "bossItems": {
+      "entries": [
+        {
+          "name": "Dodongos Cavern King Dodongo Heart",
+          "offset": "0x12",
+          "bitToCheck": "0x00"
+        }
+      ]
+    }
+  }
+}

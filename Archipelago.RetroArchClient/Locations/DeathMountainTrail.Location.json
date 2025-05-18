@@ -1,0 +1,79 @@
+﻿{
+  "area": "DeathMountainTrail",
+  "locations": {
+    "groundItems": {
+      "entries": [
+        {
+          "name": "DMT Freestanding PoH",
+          "offset": "0x60",
+          "bitToCheck": "0x1E"
+        }
+      ]
+    },
+    "chests": {
+      "entries": [
+        {
+          "name": "DMT Chest",
+          "offset": "0x60",
+          "bitToCheck": "0x01"
+        },
+        {
+          "name": "DMT Storms Grotto Chest",
+          "offset": "0x3E",
+          "bitToCheck": "0x17"
+        }
+      ]
+    },
+    "trailGreatFairy": {
+      "entries": [
+        {
+          "name": "DMT Great Fairy Reward",
+          "offset": "0x38",
+          "bitToCheck": "0x18"
+        }
+      ]
+    },
+    "biggoronSword": {
+      "entries": [
+        {
+          "name": "DMT Biggoron",
+          "offset": "0x00",
+          "bitToCheck": "0x00"
+        }
+      ]
+    },
+    "cows": {
+      "entries": [
+        {
+          "name": "DMT Cow Grotto Cow",
+          "offset": "0x3E",
+          "bitToCheck": "0x18"
+        }
+      ]
+    },
+    "skulltulas": {
+      "entries": [
+        {
+          "name": "DMT GS Near Kak",
+          "offset": "0x0F",
+          "bitToCheck": "0x02"
+        },
+        {
+          "name": "DMT GS Bean Patch",
+          "offset": "0x0F",
+          "bitToCheck": "0x01"
+        },
+        {
+          "name": "DMT GS Above Dodongos Cavern",
+          "offset": "0x0F",
+          "bitToCheck": "0x03"
+        },
+        {
+          "name": "DMT GS Falling Rocks Path",
+          "offset": "0x0F",
+          "bitToCheck": "0x04"
+        }
+      ]
+    }
+  }
+}

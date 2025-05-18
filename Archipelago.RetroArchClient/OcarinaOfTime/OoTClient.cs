@@ -31,6 +31,7 @@ public class OoTClient
     private readonly OoTClientDeathLinkService _ootClientDeathLinkService;
     private readonly PlayerNameService _playerNameService;
     private readonly ReceiveItemService _receiveItemService;
+    private readonly JsonParserService _jsonParserService;
 
     public OoTClient()
     {
@@ -49,6 +50,7 @@ public class OoTClient
             memoryService: _memoryService,
             currentSceneService: currentSceneService
         );
+        _jsonParserService = new JsonParserService();
         _gameModeService = new GameModeService(
             memoryService: _memoryService);
         _locationCheckService = new LocationCheckService(
@@ -73,7 +75,7 @@ public class OoTClient
             game: "Ocarina of Time",
             name: _connectionSettings.SlotName,
             itemsHandlingFlags: ItemsHandlingFlags.RemoteItems,
-            version: new Version(0, 5, 1),
+            version: new Version(0, 6, 1),
             tags: ["AP"]
         );
         _archipelagoDeathLinkService = _apSession.CreateDeathLinkService();
@@ -87,7 +89,7 @@ public class OoTClient
         }
 
         Console.WriteLine("Reading location infos...");
-        ReadAndParseAllLocations();
+        _jsonParserService.ReadJsonFiles();
         Console.WriteLine("Location infos read and processed.");
         Console.WriteLine();
         Console.WriteLine("Connected to Archipelago");
@@ -402,49 +404,5 @@ public class OoTClient
 
         return checkedLocationIds.Concat(checkedCollectibleIds)
             .ToArray();
-    }
-
-    private static void ReadAndParseAllLocations()
-    {
-        var deserializer = new DeserializerBuilder()
-            .WithNamingConvention(UnderscoredNamingConvention.Instance)
-            .WithTypeConverter(new ByteToHexConverter())
-            .Build();
-        
-        foreach (var file in Directory.GetFiles("./Data"))
-        {
-            // Screw windows with using backslashes for paths.
-            // Sanitizing this to make things look pretty on all platforms.
-            var sanitizedFile = file.Replace("\\", "/");
-
-            Console.WriteLine($"Reading {sanitizedFile}...");
-            var fileContent = File.ReadAllText(file);
-
-            var parsedData = deserializer.Deserialize<List<object>>(fileContent);
-
-            foreach (Dictionary<object, object> data in parsedData)
-            {
-                var nameExists = data.TryGetValue("name", out var nameValue);
-                var typeExists = data.TryGetValue("type", out var typeValue);
-                var offsetExists = data.TryGetValue("offset", out var offsetValue);
-                var bitExists = data.TryGetValue("bit_to_check", out var bitValue);
-                var areaExists = data.TryGetValue("area", out var areaValue);
-
-                if (!nameExists || !typeExists || !offsetExists || !bitExists || !areaExists)
-                {
-                    throw new Exception($"Cannot parse location due to unreadable data in file {sanitizedFile}");
-                }
-
-                var name = nameValue?.ToString();
-                var type = (LocationType)Enum.Parse(typeof(LocationType), typeValue?.ToString() ?? "Unknown");
-                var offset = Convert.ToByte(offsetValue?.ToString() ?? "0", 16);
-                var bitToCheck = Convert.ToByte(bitValue?.ToString() ?? "0", 16);
-                var area = (Area)Enum.Parse(typeof(Area), areaValue?.ToString() ?? "Unknown");
-
-                var location = new LocationInformation(name!, type, offset, bitToCheck, area);
-
-                AllLocationInformation.AllLocations.Add(location);
-            }
-        }
     }
 }
