@@ -67,7 +67,7 @@ public class OoTClient
             game: "Ocarina of Time",
             name: _connectionSettings.SlotName,
             itemsHandlingFlags: ItemsHandlingFlags.RemoteItems,
-            version: new Version(0, 5, 1),
+            version: new Version(0, 6, 2),
             tags: ["AP"]
         );
         _archipelagoDeathLinkService = _apSession.CreateDeathLinkService();
