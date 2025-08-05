@@ -1,0 +1,96 @@
+using Archipelago.RetroArchClient.Configuration;
+using Archipelago.RetroArchClient.OcarinaOfTime.Models;
+using Archipelago.RetroArchClient.OcarinaOfTime.Services.Interfaces;
+using Archipelago.RetroArchClient.Services.Interfaces;
+
+namespace Archipelago.RetroArchClient.OcarinaOfTime.Services;
+
+public class ConnectionService : IConnectionService
+{
+    private readonly IUserPromptService _userPromptService;
+
+    internal const string PromptArchipelagoHostname = "Archipelago Server Hostname";
+    internal const string PromptArchipelagoPort = "Archipelago Server port";
+    internal const string PromptArchipelagoSlotname = "Slot name";
+    internal const string PromptArchipelagoPassword = "Password";
+    internal const string PromptRetroArchHostname = "RetroArch Hostname";
+    internal const string PromptRetroArchPort = "RetroArch port";
+
+    public ConnectionService(IUserPromptService userPromptService) => _userPromptService = userPromptService;
+
+    public OoTClientConnectionSettings LoadOoTClientConnectionSettings(ConfigurationSettings configurationSettings)
+    {
+        // AutoMapper would be nice here.
+        var settings = new OoTClientConnectionSettings
+        {
+            ArchipelagoHostName = configurationSettings.ArchipelagoServer.Address,
+            ArchipelagoPort = configurationSettings.ArchipelagoServer.Port,
+            Password = configurationSettings.ArchipelagoServer.Password,
+            SlotName = configurationSettings.ArchipelagoServer.SlotName,
+            RetroArchHostName = configurationSettings.RetroArch.Address,
+            RetroArchPort = configurationSettings.RetroArch.Port,
+        };
+
+        // TODO: Make this output pretty
+        Console.WriteLine($"Current settings: {settings}");
+
+        var shouldPromptManually =
+            _userPromptService.PromptForBool("Would you like to update connection details manually?", false);
+
+        if (!shouldPromptManually)
+        {
+            return settings;
+        }
+
+        return PromptForConnectionSettings(settings);
+    }
+
+    // performance improvement idea:
+    // only check save context for locations on area changes, otherwise only use the temp context checks
+    // should do this skip inside the function for each check type, so that checks that don't have temp context still get checked for
+    // with how fast it is now, this would only be worth it for battery usage reasons
+
+    // idea for receiving local items:
+    // could have a sort of local database of checked locations, might want that anyway for performance reasons
+    // any location in the local save file that is checked would be in there, but if you make a new save then there
+    // could be locations checked in the multiworld that aren't marked as checked in the local database
+    // the idea would be that when processing the item queue, we can check against the local database,
+    // if the location is marked as checked there then that means we don't give the item, if it's not marked as checked then we do give the item
+    // this would avoid giving duplicate items but mean we can receive local items when making a new save file
+
+    private OoTClientConnectionSettings PromptForConnectionSettings(OoTClientConnectionSettings defaultSettings)
+    {
+        var defaultApHostname = defaultSettings.ArchipelagoHostName;
+        var apHostName = _userPromptService.PromptForInput(PromptArchipelagoHostname, defaultApHostname);
+
+        var defaultApPort = defaultSettings.ArchipelagoPort;
+        var apPortString = _userPromptService.PromptForInput(PromptArchipelagoPort, defaultApPort.ToString());
+        var apPort = string.IsNullOrWhiteSpace(apPortString) ? defaultApPort : int.Parse(apPortString);
+
+        var defaultSlotName = defaultSettings.SlotName;
+        var slotName = _userPromptService.PromptForInput(PromptArchipelagoSlotname, defaultSlotName);
+
+        var defaultPassword = defaultSettings.Password;
+        var password = _userPromptService.PromptForInput(PromptArchipelagoPassword, defaultPassword);
+
+        var defaultRetroArchHostName = defaultSettings.RetroArchHostName;
+        var retroArchHostname = _userPromptService.PromptForInput(PromptRetroArchHostname, defaultRetroArchHostName);
+
+        var defaultRetroArchPort = defaultSettings.RetroArchPort;
+        var retroArchPortString =
+            _userPromptService.PromptForInput(PromptRetroArchPort, defaultRetroArchPort.ToString());
+        var retroArchPort = string.IsNullOrWhiteSpace(retroArchPortString)
+            ? defaultRetroArchPort
+            : int.Parse(retroArchPortString);
+
+        return new OoTClientConnectionSettings
+        {
+            ArchipelagoHostName = apHostName,
+            ArchipelagoPort = apPort,
+            SlotName = slotName,
+            Password = password,
+            RetroArchHostName = retroArchHostname,
+            RetroArchPort = retroArchPort,
+        };
+    }
+}

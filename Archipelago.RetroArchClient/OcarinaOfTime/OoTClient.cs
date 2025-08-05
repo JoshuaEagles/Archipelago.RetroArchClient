@@ -3,8 +3,10 @@ using System.Net.Sockets;
 using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
+using Archipelago.RetroArchClient.Configuration;
 using Archipelago.RetroArchClient.OcarinaOfTime.Models;
 using Archipelago.RetroArchClient.OcarinaOfTime.Services;
+using Archipelago.RetroArchClient.OcarinaOfTime.Services.Interfaces;
 using Archipelago.RetroArchClient.Services;
 using Archipelago.RetroArchClient.Services.Interfaces;
 using Newtonsoft.Json.Linq;
@@ -16,8 +18,6 @@ public class OoTClient
     private readonly ArchipelagoSession _apSession;
     private readonly DeathLinkService _archipelagoDeathLinkService;
     private readonly CollectibleCheckService _collectibleCheckService;
-
-    private readonly OoTClientConnectionSettings _connectionSettings;
     private readonly GameCompleteService _gameCompleteService;
     private readonly GameModeService _gameModeService;
     private readonly LocationCheckService _locationCheckService;
@@ -25,10 +25,24 @@ public class OoTClient
     private readonly OoTClientDeathLinkService _ootClientDeathLinkService;
     private readonly PlayerNameService _playerNameService;
     private readonly ReceiveItemService _receiveItemService;
+    private readonly IUserPromptService _userPromptService;
+    private readonly IConfigurationService _configurationService;
+    private readonly IConnectionService _connectionService;
+    private readonly IFileService _fileService;
+
+    private readonly OoTClientConnectionSettings _connectionSettings;
+    private readonly ConfigurationSettings _configurationSettings;
 
     public OoTClient()
     {
-        _connectionSettings = PromptForConnectionSettings();
+        // TODO: Set up DI
+        _userPromptService = new UserPromptService();
+        _fileService = new FileService();
+        _configurationService = new ConfigurationService(_userPromptService, _fileService);
+        _connectionService = new ConnectionService(_userPromptService);
+
+        _configurationSettings = _configurationService.LoadConfigurationSettings();
+        _connectionSettings = _connectionService.LoadOoTClientConnectionSettings(_configurationSettings);
 
         var udpClient = new UdpClient();
         udpClient.Connect(hostname: _connectionSettings.RetroArchHostName, port: _connectionSettings.RetroArchPort);
@@ -66,6 +80,7 @@ public class OoTClient
         var loginResult = _apSession.TryConnectAndLogin(
             game: "Ocarina of Time",
             name: _connectionSettings.SlotName,
+            password: _connectionSettings.Password,
             itemsHandlingFlags: ItemsHandlingFlags.RemoteItems,
             version: new Version(0, 6, 2),
             tags: ["AP"]
@@ -214,68 +229,6 @@ public class OoTClient
             isGameCompletionSent = true;
             Console.WriteLine("Game completed");
         }
-    }
-
-    // performance improvement idea:
-    // only check save context for locations on area changes, otherwise only use the temp context checks
-    // should do this skip inside the function for each check type, so that checks that don't have temp context still get checked for
-    // with how fast it is now, this would only be worth it for battery usage reasons
-
-    // idea for receiving local items:
-    // could have a sort of local database of checked locations, might want that anyway for performance reasons
-    // any location in the local save file that is checked would be in there, but if you make a new save then there
-    // could be locations checked in the multiworld that aren't marked as checked in the local database
-    // the idea would be that when processing the item queue, we can check against the local database,
-    // if the location is marked as checked there then that means we don't give the item, if it's not marked as checked then we do give the item
-    // this would avoid giving duplicate items but mean we can receive local items when making a new save file
-
-    private static OoTClientConnectionSettings PromptForConnectionSettings()
-    {
-        Console.WriteLine("Enter the Archipelago Server Hostname, default: archipelago.gg");
-        var apHostname = Console.ReadLine();
-
-        if (string.IsNullOrWhiteSpace(apHostname))
-        {
-            apHostname = "archipelago.gg";
-        }
-
-        // 38281 is the port where Archipelago runs if locally hosted.
-        // This is useful for testing the client on a local server.
-        // However, on the long run, it might be better to have this be configurable
-        // through a config file and make it so the client can select the port
-        // on its own through this.
-        Console.WriteLine("Enter the Archipelago Server port, default: 38281");
-        var apPortString = Console.ReadLine();
-        var apPort = string.IsNullOrWhiteSpace(apPortString) ? 38281 : int.Parse(apPortString);
-
-        Console.WriteLine("Enter the Slot Name, default: Player");
-        var slotName = Console.ReadLine();
-
-        if (string.IsNullOrEmpty(slotName))
-        {
-            slotName = "Player";
-        }
-
-        Console.WriteLine("Enter the RetroArch Hostname, default: localhost");
-        var retroArchHostname = Console.ReadLine();
-
-        if (string.IsNullOrEmpty(retroArchHostname))
-        {
-            retroArchHostname = "localhost";
-        }
-
-        Console.WriteLine("Enter the RetroArch Port, default: 55355");
-        var retroArchPortString = Console.ReadLine();
-        var retroArchPort = string.IsNullOrWhiteSpace(retroArchPortString) ? 55355 : int.Parse(retroArchPortString);
-
-        return new OoTClientConnectionSettings
-        {
-            ArchipelagoHostName = apHostname,
-            ArchipelagoPort = apPort,
-            SlotName = slotName,
-            RetroArchHostName = retroArchHostname,
-            RetroArchPort = retroArchPort,
-        };
     }
 
     private async Task<OoTClientSlotData> GetSlotData()

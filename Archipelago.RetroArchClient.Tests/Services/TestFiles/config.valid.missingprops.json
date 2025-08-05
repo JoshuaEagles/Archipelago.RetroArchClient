@@ -1,0 +1,9 @@
+{
+  "archipelago_server": {
+    "address": "archipelago.gg",
+    "slot_name": "123",
+  },
+  "retroarch": {
+    "address": "localhost",
+  },
+}
