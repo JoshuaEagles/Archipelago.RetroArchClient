@@ -66,6 +66,7 @@ public class OoTClient
         var loginResult = _apSession.TryConnectAndLogin(
             game: "Ocarina of Time",
             name: _connectionSettings.SlotName,
+            password: _connectionSettings.Password,
             itemsHandlingFlags: ItemsHandlingFlags.RemoteItems,
             version: new Version(0, 6, 2),
             tags: ["AP"]
@@ -256,6 +257,14 @@ public class OoTClient
             slotName = "Player";
         }
 
+        Console.WriteLine("Enter the password, leave empty if no password");
+        var password = Console.ReadLine();
+
+        if (string.IsNullOrEmpty(password))
+        {
+            password = null;
+        }
+
         Console.WriteLine("Enter the RetroArch Hostname, default: localhost");
         var retroArchHostname = Console.ReadLine();
 
@@ -273,6 +282,7 @@ public class OoTClient
             ArchipelagoHostName = apHostname,
             ArchipelagoPort = apPort,
             SlotName = slotName,
+            Password = password,
             RetroArchHostName = retroArchHostname,
             RetroArchPort = retroArchPort,
         };
