@@ -4350,7 +4350,7 @@ public static class AllLocationInformation
 			type: LocationType.Chest,
 			offset: 0x5C,
 			bitToCheck: 0xB,
-			area: Area.SpiritTemple
+			area: Area.SpiritTempleMq
 		),
 
 		new (
