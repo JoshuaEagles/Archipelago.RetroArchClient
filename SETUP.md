@@ -10,7 +10,6 @@
    1. Navigate to **Nintendo - Nintendo 64 (Mupen64Plus‑Next)** and download it.
 
 1. Return to the RetroArch main menu
-1. **Load core** -> select **Nintendo 64 (Mupen64Plus‑Next)**
 1. **Enable network commands & QoL settings**
 
    1. Choose **Settings** -> **User Interface**  
@@ -27,10 +26,11 @@
 ## 2. ROM Generation
 
 1. Generate a seed and download the resulting `.apz5` file.
-1. **Patch your ROM** - you need the vanilla *Ocarina of Time* v1.0 ROM ("Choose Your Own Adventure").
-
-   - Randomizer generator: [Ocarina of Time Randomizer (v7.1.0)](https://ootrandomizer.com/generator?version=7.1.0)
-   - Original Archipelago OOT client: this would only be needed to create the patched rom.
+1. Extract the .apz5 with Ark or other extraction tool on Linux, 7zip on Windows
+1. **Patch your ROM** - you need the vanilla *Ocarina of Time* v1.0 ROM.
+1. Randomizer generator: [Ocarina of Time Randomizer (v7.1.0)](https://ootrandomizer.com/generator?version=7.1.0)
+    - `Generate From Patch File` option (near the bottom of the page)
+    - `Override Original Cosmetics` optionally un check this unless you specify new cosmetics on this page
 
 1. **Launch the patched ROM** in RetroArch. The title screen should display "Randomizer".
 
@@ -41,9 +41,9 @@
 1. Download the latest release of the client:  
    <https://github.com/JoshuaEagles/Archipelago.RetroArchClient/releases/latest>
 1. Extract the archive.
-1. Open a terminal in the extracted directory and run:
+1. Open a terminal (Linux & Mac) in the extracted directory and run:
 
-   ```bash
+   ```bash 
    ./Archipelago.RetroArchClient
    ```
 
