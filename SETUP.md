@@ -2,45 +2,53 @@
 
 **Note: Make sure to save often.**
 
-## Retroarch
-1. [Download retroarch](https://www.retroarch.com/?page=platforms), steam version is not recommended at this time, if your repo's store uses flatpack or appimage will work
-1. Install/Load Core 
-    1. Download Core 
-    1. Nintendo 
-    1. Nintendo 64 (Mupen64Plus-Next)
-1. Back to main menu
-1. Load Core -> choose the "Nintendo 64 (Mupen64Plus-Next)"
-1. Enable Network Commands in RetroArch and QOL
-    1. Settings
-    1. User Interface
-    1. Set "Show Advanced Settings" to *ON*
-    1. Set "Pause Content When Menu Is Active" to *OFF*
-    1. Set "Pause Content When Not Active" to *OFF*
-    1. Back to Settings
-    1. Network
-    1. Set "Network Commands" to *ON* (Near bottom of list)
-1. Save Configuration
-    1. Main  Menu
-    1. Configuration File
-    1. "Save Current Configuration"
+## 1. Retroarch
+1. [Download retroarch](https://www.retroarch.com/?page=platforms) - Grab the latest release from the official site. The Steam build is currently unsupported. The Linux flatpak or AppImage versions work fine on most distributions.
+1. **Install / load the core**
 
-## Rom Generation
-1. Generate your seed and collect your .apz5 file.
-1. Patch your rom requires v1.0 ROM (Choose your own adventure)
-    - https://ootrandomizer.com/generator?version=7.1.0
-    - Archipelago OOT Client
-1. Boot the rom in RetroArch when complete, you should see "Randomizer" text on the start screen.
+   1. Open **Install/Load Core** -> **Download Core**.  
+   1. Navigate to **Nintendo - Nintendo 64 (Mupen64Plus‑Next)** and download it.
 
-## Client
-1. Download the [client](https://github.com/JoshuaEagles/Archipelago.RetroArchClient/releases/latest)
-1. Extract
-1. Open directory in terminal
-1. Run the command `./Archipelago.RetroArchClient`
-1. First boot will ask questions, they are straight forward, most notable are port and password
+1. Return to the RetroArch main menu
+1. **Load core** -> select **Nintendo 64 (Mupen64Plus‑Next)**
+1. **Enable network commands & QoL settings**
+
+   1. Choose **Settings** -> **User Interface**  
+      - `Show Advanced Settings`: **ON**  
+      - `Pause Content When Menu Is Active`: **OFF**  
+      - `Pause Content When Not Active`: **OFF**
+   1. Back to **Settings** -> **Network**  
+      - `Network Commands`: **ON** *(near the bottom of the list)*
+1. Save your Configuration
+   - **Main Menu** -> **Configuration File** -> "Save Current Configuration"
+
+---
+
+## 2. ROM Generation
+
+1. Generate a seed and download the resulting `.apz5` file.
+1. **Patch your ROM** - you need the vanilla *Ocarina of Time* v1.0 ROM ("Choose Your Own Adventure").
+
+   - Randomizer generator: [Ocarina of Time Randomizer (v7.1.0)](https://ootrandomizer.com/generator?version=7.1.0)
+   - Original Archipelago OOT client: this would only be needed to create the patched rom.
+
+1. **Launch the patched ROM** in RetroArch. The title screen should display "Randomizer".
+
+---
+
+## 3. Client
+
+1. Download the latest release of the client:  
+   <https://github.com/JoshuaEagles/Archipelago.RetroArchClient/releases/latest>
+1. Extract the archive.
+1. Open a terminal in the extracted directory and run:
+
+   ```bash
+   ./Archipelago.RetroArchClient
+   ```
 
 
-## Notes
+## 4. Notes
 If the client disconnects you may need to restart the client to get it to reconnect.
 Improvements to the client are planned and in development.
 
-**Note: Make sure to save often.**
