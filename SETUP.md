@@ -4,7 +4,8 @@
 
 ## 1. Retroarch
 1. [Download retroarch](https://www.retroarch.com/?page=platforms) - Grab the latest release from the official site. The Steam build is currently unsupported. The Linux flatpak or AppImage versions work fine on most distributions.
-1. **Install / load the core**
+1. **Install the core** - 
+   *NOTE: Do this even if you've previously installed the core to ensure you have the latest version*
 
    1. Open **Install/Load Core** -> **Download Core**.  
    1. Navigate to **Nintendo - Nintendo 64 (Mupen64Plus‑Next)** and download it.
